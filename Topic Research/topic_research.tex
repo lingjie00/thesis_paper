@@ -1,0 +1,152 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage[margin=1in]{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{hyperref}          % hyperlink
+
+%SetFonts
+
+%SetFonts
+
+
+\title{Thesis topic research}
+\author{Lingjie}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\section{Overview}
+    \href{https://www.springer.com/journal/10614}{Computational Economics}: 
+    Research on applying Machine Learning techniques on economics issues 
+    $\rightarrow$ focusing on the HOW (framework and usage)
+
+    Proposed structure
+    \begin{enumerate}
+        \item Research on existing framework and algorithms
+            \subitem[1.1] Explaining algorithms
+            \subitem[1.2] Comparing performance
+        \item Applying framework and algorithms to illustrate the benefit it brings to economic field
+            \subitem[2.1] classic data (with known ground truth or baseline for comparison)
+            \subitem[2.2] new dataset to illustrate usefulness
+    \end{enumerate}
+
+    Relevant keyword: computational economics, machine learning, economic + *topic keywords*
+
+    Search words:
+    \href{https://scholar.google.com.sg/scholar?q=
+    machine+learning+on+economics&hl=en&as_sdt=0&as_vis=1&oi=scholart}{machine learning on economics}
+
+    \subsection{Questions on writing thesis paper}
+
+    How in-depth should an undergraduate thesis be? $\rightarrow$ what is the expectation?
+    I saw some thesis simply compare off the shelve ML models without hyper-parameter tuning.
+
+\section{Possible topics}
+
+    \subsection{ML + Causal inference}
+
+    \textbf{Motivation:} I think social sciences' unique selling point is in its causal inference study. The ability and
+    focus on causal relationship instead of correlation sets a social scientist apart from computer scientist. \\
+    Personally, I hope to further research on applying ML and other techniques to estimate heterogeneous causal effects. \\
+    However, I have no experience in causal inference and I'm uncertain about how 'impactful' a causal paper might be,
+    given that there is no ground truth on counter factual in the real world to compare with. \\
+    Having said that, research on causal inference is of my top interest now.
+
+    \subsubsection{Relevant papers}
+    Framework
+    \begin{itemize}
+        \item \href{https://ideas.repec.org/p/ecl/stabus/3350.html}{Machine Learning for Estimating Heterogeneous Causal
+            Effects}
+        \item \href{https://imai.fas.harvard.edu/research/files/svm.pdf}{Estimating treatment effect heterogeneity in
+            randomized program evaluation}
+        \item \href{https://academic.oup.com/poq/article-abstract/76/3/491/1893905}{Modelling Heterogeneous Treatment
+            Effects in Survey Experiments with Bayesian Additive Regression Trees}
+        \item \href{https://oce-ovid-com.libproxy1.nus.edu.sg/article/00001648-202105000-00012/HTML}{Machine Learning
+            for Causal Inference: On the Use of Cross-fit Estimators}
+        \item \href{https://github.com/jvpoulos/causal-ml}{a list of research papers on causal ML}
+    \end{itemize}
+
+    Sample use case
+    \begin{itemize}
+        \item \href{https://academic-oup-com.libproxy1.nus.edu.sg/biostatistics/article/21/2/336/5631847}{Machine
+            learning for causal inference in Biostatistics}
+    \end{itemize}
+
+    Open-source library
+    \begin{itemize}
+        \item \href{https://github.com/uber/causalml}{Uber causal ML}
+        \item \href{https://github.com/microsoft/EconML}{Microsoft causal ML} and
+            \href{https://www.microsoft.com/en-us/research/group/causal-inference/}{Microsoft Causality and Machine
+            Learning}
+        \item \href{https://www.altdeep.ai/p/causal-ml-minicourse}{paid course on causal ML}
+    \end{itemize}
+
+    \subsection{ML + Causal inference + Optimization}
+
+    \textbf{Motivation:} This topic will be an extension of ML + Causal inference. In a business use case, usually the
+    causal effect is not the final variable of interest. Business usually wants to maximise profit and/or minimise cost.
+    Therefore, the causal effect is used to construct the optimization model which represents profit/cost function. \\
+    However, currently business use correlation study to construct the optimization model instead of causation. It would
+    be interesting to establish a framework from causal inference to optimization.
+
+    \subsubsection{Relevant papers}
+
+    Framework
+    \begin{itemize}
+        \item \href{https://www.oreilly.com/library/view/business-data-science/9781260452785/}{Business Data Science:
+            Combining Machine Learning and Economics to Optimize, Automate, and Accelerate Business Decisions}
+            $\rightarrow$ 'Understand how use ML tools in real world business problems, where causation matters more
+            that correlation'
+    \end{itemize}
+
+    \subsection{ML + Forecasting}
+
+    \textbf{Motivation:} This will be most classic use case for Machine Learning $\rightarrow$ prediction based problem.
+    We can apply different ML techniques to improve the economic forecasting ability. \\
+    Furthermore, it will be the easiest to write about given the current maturity in data science field 
+    and most of my internship experience is prediction based. \\
+    However, this topic is the least interesting to me as I have worked on various projects related to prediction. \\
+    In addition, I think there will be little value add to the academic world given the massive research done on
+    prediction problems.
+
+    \subsubsection{Relevant papers}
+    Sample use case
+    \begin{itemize}
+        \item \href{https://link-springer-com.libproxy1.nus.edu.sg/article/10.1007/s10614-021-10094-w}{Machine Learning
+            in Economics and Finance}
+    \end{itemize}
+
+\section{Possible dataset}
+
+    \subsection{Open data}
+
+    Possible open sourced dataset (either through web scraping or direct download)
+
+    \begin{itemize}
+        \item Social media website (e.g. Twitter, Facebook, Linkedin)
+        \item \href{https://www.google.com/covid19/mobility/}{Google mobility data}
+        \item Financial data
+            \subitem Bitcoin/stock market
+            \subitem Financial news (NLP)
+        \item Macro-economic indicators
+            \subitem GDP/employment data
+    \end{itemize}
+
+    \subsection{Private data}
+
+    \begin{enumerate}
+        \item Singapore water consumption (domestic or non-domestic) $\rightarrow$ require further communication with
+            IWP and PUB
+            \subitem I had a previous internship with IWP and my researcher said we could discuss further for data
+            access
+    \end{enumerate}
+
+
+\end{document}  

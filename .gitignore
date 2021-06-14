@@ -1,0 +1,9 @@
+# latex related
+*.toc
+*.pdf
+
+# vim related
+*.swp
+
+# mac related
+*.DS_Store
