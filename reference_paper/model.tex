@@ -1,0 +1,101 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage[margin=1in]{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}          % hyperlink
+
+%SetFonts
+
+%SetFonts
+
+
+\title{Model}
+\author{Lingjie}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\section{Stochastic discount factor (SDF)}
+
+Arise from consumer maximising present and future utility by choosing asset amount
+
+\begin{tabular}{l @{ := } l}
+    $\xi$ & amount of asset \\
+    $c_t$ & consumption at time $t$ \\
+    $u(c_t)$ & utility at time $t$ \\
+    $E_t(u)$ & expected utility at time $t$ \\
+    $\beta$ & subjective discount factor \\
+    $e_t$ & original consumption level at time $t$ \\
+    $p_t$ & price of asset at time $t$ \\
+    $x_t$ & payoff of asset at time $t$
+\end{tabular}
+
+\begin{align*}
+    \max_{\xi} & ~u(c_t) + E_t\left[ \beta u(c_{t+1}) \right]~s.t.\\
+    c_t &= e_t - p_t\xi \\
+    c_{t+1} &= e_{t+1} + x_{t+1}\xi
+\end{align*}
+
+Solving for First Order Condition to find maxima
+
+\begin{align*}
+    p_tu'(c_t) &= E_t\left[ \beta u'(c_{t+1}) x_{t+1}  \right]\\
+    \Rightarrow p_t &= E_t\left[ \beta \frac{u'(c_{t+1})}{u'(c_t)} x_{t+1}  \right] \\
+    \Leftrightarrow p_t &= E_t \left[ m_{t+1} x_{t+1}  \right]
+\end{align*}
+
+where $m_{t+1}:=\beta\frac{u'(c_{t+1)}}{u'(c_t)}$ is defined as SDF
+
+\section{No-Arbitrrage Asset Pricing}
+
+$m > 0 \Rightarrow$ No-arbitrage. Since marginal utility is assumed to be positive, $m > 0$.
+
+No-arbitrage assumption $\Leftrightarrow$ there exist a $m_{t+1}$ such that
+
+\begin{tabular}{l @{ := } l}
+    $R^e_{t,i}$ & expected return of asset $i$ at time $t$ \\
+    $R_{t,i}$ & actual return of asset $i$ at time $t$ \\
+    $R^f_t$ & return of a risk free asset at time $t$
+\end{tabular}
+
+\begin{align*}
+    R^e_{t+1, i} &= R_{t+1, i} - R^f_{t+1} = 0
+\end{align*}
+
+Let $p_t = 0, x_{t+1} = R^e_{t+1, i} = 0 \Rightarrow E_t\left[ m_{t+1}R^e_{t+1, i}  \right] =0$
+
+and
+\begin{align*}
+    E_t\left[ m_{t+1}R^e_{t+1, i}  \right] = 0 \Leftrightarrow E_t\left[ R^e_{t+1,i}  \right] 
+    &= \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1} )}{Var_t(m_{t+1})}  \right) \cdot \frac{Var_t(m_{t+1})}{E_t\left[ m_{t+1}  \right]} \\
+    &= \beta_{t,i}\lambda_t
+\end{align*}
+
+to show $E_t\left[ R^e_{t+1, i}  \right] = \beta_{t, i}\lambda_t$
+
+\begin{align*}
+    E_t\left[ R^e_{t+1,i}  \right] &=
+    \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1} )}{Var_t(m_{t+1})}  \right) \cdot \frac{Var_t(m_{t+1})}{E_t\left[ m_{t+1}
+    \right]} \\
+                                   &= - \frac{Cov_t(R^e_{t+1, i}, m_{t+1})}{E_t\left[ m_{t+1}  \right]} \\
+                                   &= - \frac{E_t\left[ R^e_{t+1, i}, m_{t+1}  \right] - E_t\left[ R^e_{t+1, i}
+                                   \right]E_t\left[ m_{t+1}  \right]}{E_t\left[ m_{t+1}  \right]} \\
+    \because E_t\left[ R^e_{t+1, i}, m_{t+1}  \right] &= 0 \\
+    \Rightarrow E_t\left[ R^e_{t+1, i}  \right] &= E_t \left[ R^e_{t+1, i}  \right]~(shown)
+\end{align*}
+
+As shown, $E_t\left[ R^e_{t+1, i}  \right] = \beta_{t, i}\lambda_t$.
+
+\begin{tabular}{l @{ := } l}
+    $\beta_{t,i}$ & exposure to systematic risk \\
+    $\lambda_t$ & price of risk \\
+    $E_t[.]$  & expectation conditional on the information at time $t$
+\end{tabular}
+
+\end{document}
