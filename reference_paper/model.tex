@@ -8,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{hyperref}          % hyperlink
+\usepackage{color,soul}  % highlight
 
 %SetFonts
 
@@ -52,14 +53,16 @@ Solving for First Order Condition to find maxima
 
 where $m_{t+1}:=\beta\frac{u'(c_{t+1)}}{u'(c_t)}$ is defined as SDF
 
-\section{No-Arbitrrage Asset Pricing}
+\section{No-Arbitrage Asset Pricing}
+
+\subsection{No-arbitrage}
 
 $m > 0 \Rightarrow$ No-arbitrage. Since marginal utility is assumed to be positive, $m > 0$.
 
 No-arbitrage assumption $\Leftrightarrow$ there exist a $m_{t+1}$ such that
 
 \begin{tabular}{l @{ := } l}
-    $R^e_{t,i}$ & expected return of asset $i$ at time $t$ \\
+    $R^e_{t,i}$ & excess return of asset $i$ at time $t$ \\
     $R_{t,i}$ & actual return of asset $i$ at time $t$ \\
     $R^f_t$ & return of a risk free asset at time $t$
 \end{tabular}
@@ -67,6 +70,8 @@ No-arbitrage assumption $\Leftrightarrow$ there exist a $m_{t+1}$ such that
 \begin{align*}
     R^e_{t+1, i} &= R_{t+1, i} - R^f_{t+1} = 0
 \end{align*}
+
+\subsection{exposure to systematic risk $\beta_{t, i}$ formulation}
 
 Let $p_t = 0, x_{t+1} = R^e_{t+1, i} = 0 \Rightarrow E_t\left[ m_{t+1}R^e_{t+1, i}  \right] =0$
 
@@ -97,5 +102,50 @@ As shown, $E_t\left[ R^e_{t+1, i}  \right] = \beta_{t, i}\lambda_t$.
     $\lambda_t$ & price of risk \\
     $E_t[.]$  & expectation conditional on the information at time $t$
 \end{tabular}
+
+\subsection{SDF weight $\boldmath{\omega_t}$ and tangency portfolio $F_{t+1}$ formulation}
+
+We will use
+
+\begin{tabular}{l @{ := } l}
+    $R^e_t$ & the vector representing $R^e_{t, i}$ for $i\in[1, N]$\\
+    $\omega_t$ & the vector representing SDF weight $\omega_{t, i}$ for $i\in[1, N]$ \\
+    $f_{t+1}$ & tangency portfolio, a scalar
+\end{tabular}
+
+Note $m_{t+1}$ is a scalar.
+
+Now, since SDF is an affine transformation of the tangency portfolio ($m_{t+1} = a + b{f_{t+1}}$), we consider the
+special case when $a=1, b=-1$, then
+
+\begin{align*}
+    m_{t+1} = 1 - f_{t+1} = 1 - \sum_{i=1}^N \omega_{t, i} R^e_{t+1, i} = 1 - {\omega_t}^T {R^e_{t+1}}
+\end{align*}
+
+where $f_{t+1} = \omega_t^TR^e_{t+1}$, the tangency portfolio is the weighted sum of excess returns.
+
+\subsection{linking systematic risk $\beta_{t,i}$ to tangency portfolio $f_{t+1}$}
+
+Now, since $m_{t+1} = 1 - f_{t+1}$, using previous result of 
+\begin{align*}
+    E_t[R^e_{t+1, i}] &= \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1})}{Var_t(m_{t+1})}  \right) \cdot
+    \frac{Var_t(m_{t+1})}{E_t[m_{t+1}]} \\
+                      &= \left( - \frac{Cov_t(R^e_{t+1, i},(1-f_{t+1}))}{Var_t(1-f_{t+1})} \right) \cdot 
+                      \frac{Var_t(1-f_{t+1})}{E_t[1-f_{t+1}]} \\
+                      &= \frac{Cov_t(R^e_{t+1, i}, f_{t+1})}{Var_t(f_{t+1})} \cdot \frac{Var_t(f_{t+1})}{1 -
+                      E_t[f_{t+1}]} \\
+                      &= missing \\
+                      &= \beta_{t, i} E_t[f_{t+1}]
+\end{align*}
+
+\hl{missing proving}
+
+and $R^e_{t+1, i} = \beta_{t+1, i}\cdot f_{t+1} + \epsilon_{t+1, i}$
+
+\section{Applying Generative adversarial network to estimate SDF}
+
+\subsection{Generative adversarial Methods of Moments}
+
+Now, we basically are interested in finding two functions $\omega_t, f_{t+1}$
 
 \end{document}
