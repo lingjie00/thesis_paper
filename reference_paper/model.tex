@@ -144,8 +144,42 @@ and $R^e_{t+1, i} = \beta_{t+1, i}\cdot f_{t+1} + \epsilon_{t+1, i}$
 
 \section{Applying Generative adversarial network to estimate SDF}
 
+
+Now, we basically are interested in finding two functions $\omega_t, \beta_{t, i}$ in order for us to find a $m_{t+1}$ such
+that $E_t[m_{t+1}R^e_{t+1, i}]=0 \Rightarrow R^e_{t+1, i} = \beta_{t, i}f_{t+1}+\epsilon_{t+1, i}$ and achieve
+
+\begin{enumerate}
+    \item Explain cross-section of individual stock return $R^e_{t+1, i}$
+    \item Construct conditional mean-variance efficient tagency portfolio $f_{t+1}(\omega_t)$
+    \item Decompose stock returns into their predictable systematic componenet $\beta_{t, i}, f_{t+1}$ and their non-systematic unpredictable
+        component $\epsilon_{t+1, i}$
+\end{enumerate}
+
+We will be using GAN (Generative adversarial network) methods to deduce $\omega_t$, which will construct $f_{t+1}$ and 
+later will be used to deduce $\beta_{t, i}$.
+
 \subsection{Generative adversarial Methods of Moments}
 
-Now, we basically are interested in finding two functions $\omega_t, f_{t+1}$
+Now, in order for us to use GAN we will require a "Generator" and a "Discriminator". a generator will predict the
+outcome we are interested in (in our case, the function $\omega_t$) while the discriminator will produce fake
+data that meant to confuse the generator. The GAN model will continue to be trained till neither 
+generator nor discriminator can improve their performance further.
+
+\subsubsection{Generator: $\omega$}
+
+\subsubsection{Discriminator: $g$}
+
+We have identified our generator ($\omega_t$), now we will need to define our discriminator.
+
+Previously we have justified that we can find a $m_{t+1}$ such that $E(m_{t+1}R^e_{t+1})=0$, 
+which means that in a more general case we can always find a uncondtional condition where 
+
+\begin{align*}
+    E(m_{t+1}R^e_{t+1, i}g)=0
+\end{align*}
+
+\subsubsection{Model training and architecture}
+
+\subsubsection{Input and Output data}
 
 \end{document}
