@@ -12,4 +12,12 @@
 *.DS_Store
 
 # remove pychache
-*/__pycache__/*
+__pycache__/
+
+# jupyter
+.ipynb_checkpoints/
+
+# dataset
+datasets/
+output/
+output_RF/

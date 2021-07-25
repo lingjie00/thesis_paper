@@ -9,6 +9,7 @@
 \usepackage{amssymb}
 \usepackage{hyperref}          % hyperlink
 \usepackage{color,soul}  % highlight
+\usepackage{graphicx}    % include graphics
 
 %SetFonts
 
@@ -258,7 +259,9 @@ GAN has a two step training procedure.
 The training will continue until neither $g$ nor
 $\omega$ can reduce the loss further.
 
-Both $g$ and $\omega$ will have the same model structure.
+Both $g$ and $\omega$ will have the similar model structure.
 However, $\omega$ will be used to construct $f_{t+1}$ while $g$ will be in its raw form.
+
+\includegraphics[width=\textwidth]{./reference_paper/img/model}
 
 \end{document}
