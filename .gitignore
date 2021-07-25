@@ -10,3 +10,6 @@
 
 # mac related
 *.DS_Store
+
+# remove pychache
+*/__pycache__/*

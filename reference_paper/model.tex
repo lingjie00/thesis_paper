@@ -144,9 +144,14 @@ and $R^e_{t+1, i} = \beta_{t+1, i}\cdot f_{t+1} + \epsilon_{t+1, i}$
 
 \section{Applying Generative adversarial network to estimate SDF}
 
+There are two functions we are interested in finding:
 
-Now, we basically are interested in finding two functions $\omega_t, \beta_{t, i}$ in order for us to find a $m_{t+1}$ such
-that $E_t[m_{t+1}R^e_{t+1, i}]=0 \Rightarrow R^e_{t+1, i} = \beta_{t, i}f_{t+1}+\epsilon_{t+1, i}$ and achieve
+\begin{enumerate}
+    \item $\omega_t=\omega(I_t, I_{t, i})$
+    \item $\beta_{t, i}=\beta(I_t, I_{t, i})$
+\end{enumerate}
+
+These two functions are sufficient for:
 
 \begin{enumerate}
     \item Explain cross-section of individual stock return $R^e_{t+1, i}$
@@ -160,26 +165,100 @@ later will be used to deduce $\beta_{t, i}$.
 
 \subsection{Generative adversarial Methods of Moments}
 
-Now, in order for us to use GAN we will require a "Generator" and a "Discriminator". a generator will predict the
-outcome we are interested in (in our case, the function $\omega_t$) while the discriminator will produce fake
-data that meant to confuse the generator. The GAN model will continue to be trained till neither 
-generator nor discriminator can improve their performance further.
+GAN model requires 'Generator' and 'Discriminator'.
 
-\subsubsection{Generator: $\omega$}
+A generator predict the
+outcome we are interested in (in our case, the function $\omega_t$) while a discriminator produces fake
+data that meant to confuse the generator (a pricing error function $g$ which we will define later). 
 
-\subsubsection{Discriminator: $g$}
+A loss function links the generator and discriminator, and training will continue until
+neither generator nor discriminator can improve their performance further.
 
-We have identified our generator ($\omega_t$), now we will need to define our discriminator.
+\subsubsection{Input Data}
 
-Previously we have justified that we can find a $m_{t+1}$ such that $E(m_{t+1}R^e_{t+1})=0$, 
-which means that in a more general case we can always find a uncondtional condition where 
+We denote the input data with:
+
+\begin{tabular}{l @{ := } l}
+    $I_t$ & macroeconomic data at time $t$, such as inflation\\
+    $I_{t, i}$ & firm specific data at time $t$, such as book to market ratio
+\end{tabular}
+
+\subsubsection{Include macro economic features with RNN and LSTM}
+
+Recurrent neural network (RNN) is a class of neural network that considers the past data in future prediction.
+
+Long Term Short Term Memory (LSTM) is a subclass of RNN that considers dynamic past data in future prediciton.
+
+LSTM is an improvement over vanilla RNN.
+In a vanilla RNN, an unique weight is given to each of the lagged data. 
+The number of lagged data will be pre-determined and could not scale well with higher lags.
+
+LSTM solves the problem by introducing forget gate, input gate and output gate.
+Simplify saying, LSTM endogenously handle the number of lags that will be useful in the prediction.
+
+Since we suspect past macro economic feature will affect our estimation and we are uncertain how many lag terms
+to include, we use RNN with LSTM to let the model decide the number lag terms.
+
+\subsubsection{Generator: $\omega(I_t, I_{t, i})$}
+
+Given that $f_{t+1}=\omega_t^T R^e_{t+1}$, we need $\omega_t$ and $R^e_{t+1}$
+
+$R^e_{t+1}$ can be calculated with $R_{t+1} - R^f_{t+1}$ using price data.
+
+Only estimation required will be $\omega(I_t, I_{t, i})$.
+
+\subsubsection{Discriminator: $g(I_t, I_{t, i})$}
+
+Under no arbitrage model, there exist a $m_{t+1}$ such that $E(m_{t+1}R^e_{t+1})=0$.
+
+In a more general case, we can always find a uncondtional expectation where 
 
 \begin{align*}
-    E(m_{t+1}R^e_{t+1, i}g)=0
+    E(m_{t+1}R^e_{t+1, i}g(I_t, I_{t, i}))=0
 \end{align*}
+
+$g$ represents factors unexplained by the no-arbitrage model, or a pricing error.
+
+We will use $g$ as our discriminator.
+
+\subsubsection{Loss function}
+
+We can summarise the relationship between generator and discriminator using a 
+min max optimization problem as the loss function.
+
+We want to maximise the loss by changing function $g$ while minimise the loss by changing function $\omega$
+
+\begin{align*}
+    \min_{\omega} \max_{g} \frac{1}{N} \sum_{j=1}^N \left\{
+    E \left[ 
+        \left( 1 - \sum_{i=1}^N \omega(I_t, I_{t, i}) R^e_{t+1, i} \right)
+        R^e_{t+1, j}g(I_t, I_{t, j})
+    \right] \right\}^2
+\end{align*}
+
+the final estimated generator function $\hat\omega$ is
+
+\begin{align*}
+    \hat\omega &= \min_{\omega} L(\omega|\hat{g}, I_t, I_{t, i})
+\end{align*}
+
+which is the $\omega$ that minimise the loss function, with a given discriminator $g$.
 
 \subsubsection{Model training and architecture}
 
-\subsubsection{Input and Output data}
+GAN has a two step training procedure.
+
+\begin{enumerate}
+    \item Train $\omega$ while keeping $g$ unchanged
+        \subitem $\min_{\omega} L(\omega|\hat{g}, I_t, I_{t,i})$
+    \item Train $g$ while keeping $\omega$ unchanged
+        \subitem $\max_{g} L(g|\hat\omega, I_t, I_{t,i})$
+\end{enumerate}
+
+The training will continue until neither $g$ nor
+$\omega$ can reduce the loss further.
+
+Both $g$ and $\omega$ will have the same model structure.
+However, $\omega$ will be used to construct $f_{t+1}$ while $g$ will be in its raw form.
 
 \end{document}
