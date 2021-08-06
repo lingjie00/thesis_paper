@@ -26,21 +26,22 @@ class SDFModel(keras.Model):
     """
 
     def __init__(self,
-                 LSTM_units: int = 16,
+                 LSTM_units: int = 4,
                  Dense_units: int = 64,
-                 Dropout_rate: float = 0.):
+                 Dropout_rate: float = 0.95):
         """Init model."""
         super().__init__(name="SDF")
-        self.lstm = keras.layers.LSTM(units=LSTM_units, name="State RNN")
+        self.lstm = keras.layers.LSTM(units=LSTM_units, name="State_RNN")
         self.dense1 = keras.layers.Dense(units=Dense_units, activation="relu",
-                                         name="SDF dense 1")
+                                         name="SDF_dense1")
         self.dense2 = keras.layers.Dense(units=Dense_units, activation="relu",
-                                         name="SDF dense 2")
+                                         name="SDF_dense2")
         self.dense_output = keras.layers.Dense(units=1, activation="linear",
-                                               name="SDF w")
+                                               name="SDF_w")
         self.dropout = keras.layers.Dropout(Dropout_rate)
 
-    def call(self, inputs: list,
+    def call(self,
+             inputs: list,
              normalize: bool = True):
         """Defines the network architecture.
 
@@ -54,9 +55,7 @@ class SDFModel(keras.Model):
         ###################
         # Data processing #
         ###################
-        macro_data, firm_data = inputs
-        return_data, firm_data = firm_data[:, :, 0], firm_data[:, :, 1:]
-        mask = return_data != -99.99  # mask invalid return data
+        macro_data, firm_data, return_data, mask = inputs
 
         ########################
         # Macro data RNN layer #
@@ -100,9 +99,9 @@ class SDFModel(keras.Model):
         weighted_return_data = masked_return_data * w
 
         mask = tf.cast(mask, "int32")
-        Ni = tf.reduce_sum(mask, axis=1)  # length of Time
+        Ti = tf.reduce_sum(mask, axis=1)  # length of Time
         weighted_return_data_split = tf.split(weighted_return_data,
-                                              num_or_size_splits=Ni)
+                                              num_or_size_splits=Ti)
 
         # compute SDF
         sum_lst = []
@@ -113,11 +112,12 @@ class SDFModel(keras.Model):
 
         # normalize SDF
         if normalize:
-            mean_Ni = tf.reduce_mean(Ni)
+            mean_Ni = tf.reduce_mean(Ti)
             mean_Ni = tf.cast(mean_Ni, "float")
-            Ni = tf.cast(Ni, "float")
-            Ni = tf.expand_dims(Ni, axis=1)
-            SDF = SDF / Ni % mean_Ni
+            Ti = tf.cast(Ti, "float")
+            Ti = tf.expand_dims(Ti, axis=1)
+            SDF = SDF / Ti % mean_Ni
 
-        SDF = tf.expand_dims(SDF, axis=1)
-        return SDF + 1
+        SDF += 1
+        SDF = tf.where(tf.math.is_nan(SDF), 0, SDF)
+        return SDF

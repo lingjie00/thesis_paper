@@ -26,13 +26,13 @@ class ConditionalModel(keras.Model):
     """
 
     def __init__(self,
-                 LSTM_units: int = 128,
-                 Dropout_rate: float = 0.):
+                 LSTM_units: int = 32,
+                 Dropout_rate: float = 0.95):
         """Init model."""
         super().__init__(name="Condtional")
-        self.lstm = keras.layers.LSTM(units=LSTM_units, name="Moment RNN")
+        self.lstm = keras.layers.LSTM(units=LSTM_units, name="Moment_RNN")
         self.output_dense = keras.layers.Dense(units=8, activation=tf.nn.tanh,
-                                               name="Conditional g")
+                                               name="Conditional_g")
         self.dropout = keras.layers.Dropout(Dropout_rate)
 
     def call(self, inputs: list):
@@ -49,8 +49,7 @@ class ConditionalModel(keras.Model):
         ###################
         # Data processing #
         ###################
-        macro_data, firm_data = inputs
-        firm_data = firm_data[:, :, 1:]
+        firm_data, macro_data, return_data, mask = inputs
 
         ########################
         # Macro data RNN layer #
