@@ -1,0 +1,141 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage[margin=1in]{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{hyperref}          % hyperlink
+
+%SetFonts
+
+%SetFonts
+
+
+\title{Thesis topic research}
+\author{Lingjie}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\section{Overview}
+    Applied research on solving economics issues with Machine Learning techniques.
+    The thesis paper will focus on the framework and use case
+    (HOW do we apply machine learning techniques and WHAT benefits we can gain).
+
+    Proposed structure
+    \begin{enumerate}
+        \item Research on existing framework and algorithms
+            \subitem[1.1] Explaining algorithms
+            \subitem[1.2] Comparing performance
+        \item Applying framework and algorithms to illustrate the benefit it brings to economic field
+            \subitem[2.1] classic data (with known ground truth or baseline for comparison)
+            \subitem[2.2] new dataset to illustrate usefulness
+    \end{enumerate}
+
+    Relevant keyword: \href{https://www.springer.com/journal/10614}{Computational Economics}, 
+    machine learning, economic + *topic keywords*
+
+    Search words:
+    \href{https://scholar.google.com.sg/scholar?q=
+    machine+learning+on+economics&hl=en&as_sdt=0&as_vis=1&oi=scholart}{machine learning on economics}
+
+    \subsection{Some questions regarding thesis paper}
+
+    How in-depth should an undergraduate thesis be? $\rightarrow$ what is the expectation?
+    I saw some thesis simply compare off the shelve ML models without hyper-parameter tuning.
+
+\section{Possible topics}
+
+    \subsection{ML + Causal inference}
+
+    \textbf{Motivation:}
+    Social science is unique in its causal inference study. 
+    Other data domains such as statistics and computer science focus on prediction instead causation.
+
+    I hope to explore research topics on applying machine learning (and other techniques) to estimate
+    heterogeneous causal effects.
+
+    \textbf{Concerns:} I have no experience in causal inference and I'm uncertain how 'impactful' a
+    causal paper needs to be.
+    I have passed causal inference course in Coursera and read some discussions on causal inference.
+    I will be taking EC4305 Applied Econometrics next semester to have a formal learning.
+
+    \subsubsection{Relevant papers}
+    Framework
+    \begin{itemize}
+        \item \href{https://ideas.repec.org/p/ecl/stabus/3350.html}{Machine Learning for Estimating Heterogeneous Causal
+            Effects}
+        \item \href{https://imai.fas.harvard.edu/research/files/svm.pdf}{Estimating treatment effect heterogeneity in
+            randomized program evaluation}
+        \item \href{https://academic.oup.com/poq/article-abstract/76/3/491/1893905}{Modelling Heterogeneous Treatment
+            Effects in Survey Experiments with Bayesian Additive Regression Trees}
+        \item \href{https://oce-ovid-com.libproxy1.nus.edu.sg/article/00001648-202105000-00012/HTML}{Machine Learning
+            for Causal Inference: On the Use of Cross-fit Estimators}
+        \item \href{https://github.com/jvpoulos/causal-ml}{a list of research papers on causal ML}
+    \end{itemize}
+
+    Sample use case
+    \begin{itemize}
+        \item \href{https://academic-oup-com.libproxy1.nus.edu.sg/biostatistics/article/21/2/336/5631847}{Machine
+            learning for causal inference in Biostatistics}
+    \end{itemize}
+
+    Open-source library
+    \begin{itemize}
+        \item \href{https://github.com/uber/causalml}{Uber causal ML}
+        \item \href{https://github.com/microsoft/EconML}{Microsoft causal ML} and
+            \href{https://www.microsoft.com/en-us/research/group/causal-inference/}{Microsoft Causality and Machine
+            Learning}
+        \item \href{https://www.altdeep.ai/p/causal-ml-minicourse}{paid course on causal ML}
+    \end{itemize}
+
+    \subsection{ML + Forecasting}
+
+    \textbf{Motivation:} Machine learning (and deep learning) introduces more toolkits for economists to apply on
+    forecasting problems.
+
+    Perhaps we can explore the benefit ML techniques brings to a specific domain or problem.
+
+    \textbf{Concerns:} Although I'm most confident with forecasting models, I'm not sure if writing a thesis
+    on this topic will be interesting. Furthermore, I'm not sure what is the value added to economic field
+    with another model fitting.
+
+    \subsubsection{Relevant papers}
+    Sample use case
+    \begin{itemize}
+        \item \href{https://link-springer-com.libproxy1.nus.edu.sg/article/10.1007/s10614-021-10094-w}{Machine Learning
+            in Economics and Finance}
+    \end{itemize}
+
+\section{Possible dataset}
+
+    \subsection{Open data}
+
+    Possible open sourced dataset (either through web scraping or direct download)
+
+    \begin{itemize}
+        \item Social media website (e.g. Twitter, Facebook, Linkedin)
+        \item \href{https://www.google.com/covid19/mobility/}{Google mobility data}
+        \item Financial data
+            \subitem Bitcoin/stock market
+            \subitem Financial news (NLP)
+        \item Macro-economic indicators
+            \subitem GDP/employment data
+    \end{itemize}
+
+    \subsection{Private data}
+
+    \begin{enumerate}
+        \item Singapore water consumption (domestic or non-domestic) $\rightarrow$ require further communication with
+            IWP and PUB
+            \subitem I had a previous internship with IWP and my researcher said we could discuss further for data
+            access
+    \end{enumerate}
+
+
+\end{document}  
