@@ -10,17 +10,17 @@ model to a new dataset.
 
 We will introduce the following
 
-1. [Thesis objective](#Thesis%20objective)
-2. [Code base structure](#Code%20base%20structure)
+1. [Thesis objective](#Thesis&nbspobjective)
+2. [Code base structure](#Code&nbspbase&nbspstructure)
 
 The respective sub folder trees will contain readme for their respective contents.
 
 # Thesis objective
 
 1. [Re-implementation](#Re-implementation)
-2. [Testing result with personal computers](#Testing%20result%20result%20with%20personal%20computers)
-3. [Testing performance on new dataset](#Testing%20performance%20on%20new%20dataset)
-4. [Tweaking model to improve performance](#Tweaking%20model%20to%20improve%20performance)
+2. [Testing result with personal computers](#Testing&nbspresult&nbspresult&nbspwith&nbsppersonal&nbspcomputers)
+3. [Testing performance on new dataset](#Testing&nbspperformance&nbspon&nbspnew&nbspdataset)
+4. [Tweaking model to improve performance](#Tweaking&nbspmodel&nbspto&nbspimprove&nbspperformance)
 
 ## Re-implementation
 
