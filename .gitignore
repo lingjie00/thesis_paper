@@ -4,6 +4,7 @@
 
 # vim related
 *.swp
+.vim/
 
 # markdown related
 *.html
