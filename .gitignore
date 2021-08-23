@@ -22,3 +22,6 @@ __pycache__/
 datasets/
 output/
 output_RF/
+
+# saved models
+saved_models/
