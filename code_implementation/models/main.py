@@ -90,7 +90,7 @@ def train_GAN():
     test_sharpe = loss.sharpe_loss(
         test_sdf
     )
-    print(f"Final test sharpe: {test_sharpe}")
+    # print(f"Final test sharpe: {test_sharpe}")
 
     return sdf_model, conditional_model
 

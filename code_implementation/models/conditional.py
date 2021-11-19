@@ -27,11 +27,11 @@ class ConditionalModel(keras.Model):
 
     def __init__(self,
                  LSTM_units: int = 32,
-                 Dropout_rate: float = 0.05):
+                 Dropout_rate: float = 0.50):
         """Init model."""
         super().__init__(name="Condtional")
         self.lstm = keras.layers.LSTM(units=LSTM_units, name="Moment_RNN")
-        self.output_dense = keras.layers.Dense(units=8, activation="tanh",
+        self.output_dense = keras.layers.Dense(units=8, activation="linear",
                                                name="Conditional_g")
         self.dropout = keras.layers.Dropout(Dropout_rate)
 

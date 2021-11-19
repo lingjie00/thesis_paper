@@ -28,7 +28,7 @@ class SDFModel(keras.Model):
     def __init__(self,
                  LSTM_units: int = 4,
                  Dense_units: int = 32,
-                 Dropout_rate: float = 0.10):
+                 Dropout_rate: float = 0.50):
         """Init model."""
         super().__init__(name="SDF")
         self.lstm = keras.layers.LSTM(units=LSTM_units, name="State_RNN")
