@@ -27,15 +27,19 @@ class ConditionalModel(keras.Model):
 
     def __init__(self,
                  LSTM_units: int = 32,
-                 Dropout_rate: float = 0.95):
+                 Dropout_rate: float = 0.50):
         """Init model."""
         super().__init__(name="Condtional")
         self.lstm = keras.layers.LSTM(units=LSTM_units, name="Moment_RNN")
-        self.output_dense = keras.layers.Dense(units=8, activation=tf.nn.tanh,
+        self.output_dense = keras.layers.Dense(units=8, activation="linear",
                                                name="Conditional_g")
         self.dropout = keras.layers.Dropout(Dropout_rate)
 
-    def call(self, inputs: list):
+    def call(self,
+             inputs: list,
+             training: bool,
+             verbose: bool = False
+             ):
         """Defines the network architecture.
 
         :param inputs: Input data = [macroeconomic data, firm data]
@@ -43,20 +47,23 @@ class ConditionalModel(keras.Model):
         firm data: Time * No firms * firm feature dimension + 1
                     + 1 for the Return data
         :param mask: Mask years without valid return data
-        :param normalize: moments
-
         """
         ###################
         # Data processing #
         ###################
-        firm_data, macro_data, return_data, mask = inputs
+        macro_data, firm_data, return_data, mask = inputs
 
         ########################
         # Macro data RNN layer #
         ########################
         # Macro data -> Dropout -> LSTM
-        h = self.dropout(macro_data)
-        h = self.lstm(h)
+        if verbose:
+            if training:
+                print("Training Conditional")
+            else:
+                print("Retrieve conditional")
+        h = self.lstm(macro_data)
+        h = self.dropout(h, training=training)
 
         ###################################
         # (Macro + firm data) Dense layer #
@@ -72,13 +79,16 @@ class ConditionalModel(keras.Model):
         # The input data will be dim:
         #  None * (macro feature + firm feature)
         concat = tf.concat([firm_data, h], axis=2)
+        if verbose:
+            print(f"concat shape = {concat.shape}")
 
         ###########
         # moments #
         ###########
         # dimension: num condition moment * time * num firms
-        # TODO: understand why moment is calculated as such
         g = self.output_dense(concat)
         g = tf.transpose(g, perm=[2, 0, 1])
+        if verbose:
+            print(f"g shape = {g.shape}")
 
         return g

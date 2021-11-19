@@ -9,10 +9,7 @@ from loss import PricingLoss
 from training import Trainer
 
 
-def train_GAN(
-    modified_training=True,
-    normalize=False
-):
+def train_GAN():
     """Trains the GAN model."""
     ###############
     # Import data #
@@ -25,66 +22,84 @@ def train_GAN(
     firm_path = f"{data_path}/char/Char_train.npz"
     firm_zip = np.load(firm_path)
 
+    valid_macro_path = f"{data_path}/macro/macro_valid.npz"
+    valid_macro_zip = np.load(valid_macro_path)
+
+    valid_firm_path = f"{data_path}/char/Char_valid.npz"
+    valid_firm_zip = np.load(valid_firm_path)
+
+    test_macro_path = f"{data_path}/macro/macro_test.npz"
+    test_macro_zip = np.load(test_macro_path)
+
+    test_firm_path = f"{data_path}/char/Char_test.npz"
+    test_firm_zip = np.load(test_firm_path)
+
     ###################
     # Data processing #
     ###################
+    # input in format: macro, firm, return, mask
     cleaner = Data()
     inputs = cleaner.clean(macro_zip["data"],
                            firm_zip["data"])
-    sample = [
-        inputs[0],
-        inputs[1][:, :5, :],
-        inputs[2][:, :5],
-        inputs[3][:, :5]
-    ]
+    valid_inputs = cleaner.clean(valid_macro_zip["data"],
+                                 valid_firm_zip["data"])
+    test_inputs = cleaner.clean(test_macro_zip["data"],
+                                test_firm_zip["data"])
 
     #################
     # Create models #
     #################
-    sdf_train = SDFModel()
-    sdf_train(sample)
+    sdf_model = SDFModel()
+    sdf_untrainined = sdf_model(inputs, training=True, verbose=True)
 
-    conditional_train = ConditionalModel()
-    conditional_train(sample)
+    conditional_model = ConditionalModel()
+    conditional_model(inputs, training=True, verbose=True)
 
     ######################
     # Loss and Optimizer #
     ######################
-    optimizer = tf.keras.optimizers.Adam()
+    optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
     loss = PricingLoss()
+
+    # compute starting sharpe
+    starting_sharpe = loss.sharpe_loss(
+        sdf_untrainined
+    )
+    print(f"Staring train SHARPE: {starting_sharpe}")
 
     ############
     # Training #
     ############
     trainer = Trainer(loss)
-    if not modified_training:
-        trainer.train(
-            sdf_model=sdf_train,
-            conditional_model=conditional_train,
-            optimizer=optimizer,
-            inputs=inputs,
-            sdf_epoches_unc=10,
-            moment_epoches=10,
-            sdf_epoches_cond=10,
-            steps=100,
-            normalize=normalize
-        )
-    if modified_training:
-        trainer.modified_train(
-            sdf_model=sdf_train,
-            conditional_model=conditional_train,
-            optimizer=optimizer,
-            inputs=inputs,
-            sdf_epoches_unc=100,
-            epoches=50,
-            steps=100,
-            normalize=normalize
-        )
+    trainer.train(
+        sdf_model=sdf_model,
+        conditional_model=conditional_model,
+        optimizer=optimizer,
+        inputs=inputs,
+        valid_inputs=valid_inputs,
+        sdf_epoches_unc=1000,  # author: 256, mine: 500
+        moment_epoches=1000,  # author: 64, mine: 500
+        epoches=5000,  # author: 1024, mine: 5000
+        verbose_freq=100
+    )
 
-    return sdf_train, conditional_train
+    ############
+    # Test set #
+    ############
+    test_sdf = sdf_model(test_inputs)
+    test_sharpe = loss.sharpe_loss(
+        test_sdf
+    )
+    # print(f"Final test sharpe: {test_sharpe}")
+
+    return sdf_model, conditional_model
 
 
 if __name__ == "__main__":
-    sdf_train, conditional_train = train_GAN(
-        modified_training=True,
-        normalize=False)
+    sdf_model, conditional_model = train_GAN()
+    ##############
+    # Save model #
+    ##############
+    sdf_model.save_weights("saved_models/sdf/")
+    conditional_model.save_weights("saved_models/conditional/")
+    print("Model weights saved")

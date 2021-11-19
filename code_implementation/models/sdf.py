@@ -27,8 +27,8 @@ class SDFModel(keras.Model):
 
     def __init__(self,
                  LSTM_units: int = 4,
-                 Dense_units: int = 64,
-                 Dropout_rate: float = 0.95):
+                 Dense_units: int = 32,
+                 Dropout_rate: float = 0.50):
         """Init model."""
         super().__init__(name="SDF")
         self.lstm = keras.layers.LSTM(units=LSTM_units, name="State_RNN")
@@ -42,15 +42,16 @@ class SDFModel(keras.Model):
 
     def call(self,
              inputs: list,
-             normalize: bool = True):
+             training: bool,
+             verbose: bool = False
+             ):
         """Defines the network architecture.
 
         :param inputs: Input data = [macroeconomic data, firm data]
         macroeconomic data: Time * macro feature dimension * 1
         firm data: Time * No firms * firm feature dimension + 1
                     + 1 for the Return data
-        :param normalize: Normalise SDF
-
+        :param training: only during training will we use dropout
         """
         ###################
         # Data processing #
@@ -61,8 +62,14 @@ class SDFModel(keras.Model):
         # Macro data RNN layer #
         ########################
         # Macro data -> Dropout -> LSTM
-        h = self.dropout(macro_data)
-        h = self.lstm(h)
+        if verbose:
+            if training:
+                print("Training SDF")
+            else:
+                print("Get SDF weight")
+
+        h = self.lstm(macro_data)
+        h = self.dropout(h, training=training)
 
         ###################################
         # (Macro + firm data) Dense layer #
@@ -75,49 +82,47 @@ class SDFModel(keras.Model):
         h = tf.expand_dims(h, axis=1)  # insert Tensor of 1s in axis
         h = tf.tile(h, [1, num_firms, 1])  # repeat macro data for each firm
 
+        if verbose:
+            print(f"num firms = {num_firms}")
+            print(f"macro LSTM shape = {h.shape}")
+
         # The input data will be dim:
-        #  None * (macro feature + firm feature)
+        #  total time * (macro feature + firm feature)
+        firm_data = tf.cast(firm_data, "float")
+        h = tf.cast(h, "float")
         concat = tf.concat([firm_data, h], axis=2)
 
+        if verbose:
+            print(f"firm data shape = {firm_data.shape}")
+            print(f"concat shape = {concat.shape}")
+
         # mask input data
-        masked_concat = tf.boolean_mask(concat, mask=mask)
+        if verbose:
+            print(f"mask shape = {mask.shape}")
+        mask = tf.cast(mask, "float")
+        concat_mask = tf.expand_dims(mask, axis=2)
+        concat_mask = tf.repeat(concat_mask, concat.shape[2], axis=2)
+
+        if verbose:
+            print(f"concat mask shape = {concat_mask.shape}")
+        masked_concat = tf.multiply(concat, concat_mask)
+
+        if verbose:
+            print(f"masked concat shape = {masked_concat.shape}")
 
         # Training macro + firm data
         w = self.dense1(masked_concat)
-        w = self.dropout(w)
+        w = self.dropout(w, training=training)
         w = self.dense2(w)
-        w = self.dropout(w)
-        w = self.dense_output(w)
+        w = self.dropout(w, training=training)
+        w = self.dense_output(w)  # dim = (time entry, num firms)
+        w = tf.squeeze(w)
 
-        ###############
-        # Compute SDF #
-        ###############
-        # TODO: understand how to compute SDF
-        # mask Return data
-        masked_return_data = tf.boolean_mask(return_data, mask=mask)
-        # weighted masked Return data with dense output
-        weighted_return_data = masked_return_data * w
+        if verbose:
+            print(f"SDF weight shape = {w.shape}")
 
-        mask = tf.cast(mask, "int32")
-        Ti = tf.reduce_sum(mask, axis=1)  # length of Time
-        weighted_return_data_split = tf.split(weighted_return_data,
-                                              num_or_size_splits=Ti)
+        weighted_return = w * return_data * mask
+        SDF = 1 - tf.reduce_sum(weighted_return, axis=1)
+        SDF = tf.expand_dims(SDF, axis=1)
 
-        # compute SDF
-        sum_lst = []
-        for item in weighted_return_data_split:
-            item_sum = tf.reduce_sum(item, keepdims=True)
-            sum_lst.append(item_sum)
-        SDF = tf.concat(sum_lst, axis=0)
-
-        # normalize SDF
-        if normalize:
-            mean_Ni = tf.reduce_mean(Ti)
-            mean_Ni = tf.cast(mean_Ni, "float")
-            Ti = tf.cast(Ti, "float")
-            Ti = tf.expand_dims(Ti, axis=1)
-            SDF = SDF / Ti % mean_Ni
-
-        SDF += 1
-        SDF = tf.where(tf.math.is_nan(SDF), 0, SDF)
         return SDF
