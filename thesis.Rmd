@@ -1,0 +1,47 @@
+---
+title: "Generative Adversarial Network (GAN) model in Asset Pricing"
+author: "Wang Lingjie"
+output:
+    pdf_document:
+        toc: true
+        toc_depth: 4
+---
+
+<!-- main markdown for the whole thesis -->
+
+<!-- abstract -->
+
+```{r, child=("abstract.Rmd")}
+```
+
+<!-- introduction -->
+
+```{r, child=("introduction.Rmd")}
+```
+
+<!-- literature review -->
+
+```{r, child=("lit_review.Rmd")}
+```
+
+<!-- model -->
+
+```{r, child=("model.Rmd")}
+```
+
+<!-- empirical results -->
+
+```{r, child=("results.Rmd")}
+```
+
+<!-- conclusion -->
+
+```{r, child=("conclusion.Rmd")}
+```
+
+<!-- reference -->
+
+```{r, child=("reference.Rmd")}
+```
+
+

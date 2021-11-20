@@ -1,32 +1,10 @@
-\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
-\usepackage[margin=1in]{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
-\geometry{a4paper}                   		% ... or a4paper or a5paper or ... 
-%\geometry{landscape}                		% Activate for rotated page geometry
-\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
-\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
-								% TeX will automatically convert eps --> pdf in pdflatex		
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{hyperref}          % hyperlink
-\usepackage{color,soul}  % highlight
-\usepackage{graphicx}    % include graphics
+# Model
 
-%SetFonts
-
-%SetFonts
-
-
-\title{Model}
-\author{Lingjie}
-%\date{}							% Activate to display a given date or no date
-
-\begin{document}
-\maketitle
-
-\section{Stochastic discount factor (SDF)}
+## Stochastic discount factor (SDF)
 
 Arise from consumer maximising present and future utility by choosing asset amount
 
+```{=latex}
 \begin{tabular}{l @{ := } l}
     $\xi$ & amount of asset \\
     $c_t$ & consumption at time $t$ \\
@@ -37,54 +15,64 @@ Arise from consumer maximising present and future utility by choosing asset amou
     $p_t$ & price of asset at time $t$ \\
     $x_t$ & payoff of asset at time $t$
 \end{tabular}
+```
 
+```{=latex}
 \begin{align*}
     \max_{\xi} & ~u(c_t) + E_t\left[ \beta u(c_{t+1}) \right]~s.t.\\
     c_t &= e_t - p_t\xi \\
     c_{t+1} &= e_{t+1} + x_{t+1}\xi
 \end{align*}
+```
 
 Solving for First Order Condition to find maxima
 
+```{=latex}
 \begin{align*}
     p_tu'(c_t) &= E_t\left[ \beta u'(c_{t+1}) x_{t+1}  \right]\\
     \Rightarrow p_t &= E_t\left[ \beta \frac{u'(c_{t+1})}{u'(c_t)} x_{t+1}  \right] \\
     \Leftrightarrow p_t &= E_t \left[ m_{t+1} x_{t+1}  \right]
 \end{align*}
+```
 
 where $m_{t+1}:=\beta\frac{u'(c_{t+1)}}{u'(c_t)}$ is defined as SDF
 
-\section{No-Arbitrage Asset Pricing}
-
-\subsection{No-arbitrage}
+## No-Arbitrage Asset Pricing
 
 $m > 0 \Rightarrow$ No-arbitrage. Since marginal utility is assumed to be positive, $m > 0$.
 
 No-arbitrage assumption $\Leftrightarrow$ there exist a $m_{t+1}$ such that
 
+```{=latex}
 \begin{tabular}{l @{ := } l}
     $R^e_{t,i}$ & excess return of asset $i$ at time $t$ \\
     $R_{t,i}$ & actual return of asset $i$ at time $t$ \\
     $R^f_t$ & return of a risk free asset at time $t$
 \end{tabular}
+```
 
+```{=latex}
 \begin{align*}
     R^e_{t+1, i} &= R_{t+1, i} - R^f_{t+1} = 0
 \end{align*}
+```
 
-\subsection{exposure to systematic risk $\beta_{t, i}$ formulation}
+## exposure to systematic risk $\beta_{t, i}$ formulation
 
 Let $p_t = 0, x_{t+1} = R^e_{t+1, i} = 0 \Rightarrow E_t\left[ m_{t+1}R^e_{t+1, i}  \right] =0$
 
 and
+```{=latex}
 \begin{align*}
     E_t\left[ m_{t+1}R^e_{t+1, i}  \right] = 0 \Leftrightarrow E_t\left[ R^e_{t+1,i}  \right] 
     &= \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1} )}{Var_t(m_{t+1})}  \right) \cdot \frac{Var_t(m_{t+1})}{E_t\left[ m_{t+1}  \right]} \\
     &= \beta_{t,i}\lambda_t
 \end{align*}
+```
 
 to show $E_t\left[ R^e_{t+1, i}  \right] = \beta_{t, i}\lambda_t$
 
+```{=latex}
 \begin{align*}
     E_t\left[ R^e_{t+1,i}  \right] &=
     \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1} )}{Var_t(m_{t+1})}  \right) \cdot \frac{Var_t(m_{t+1})}{E_t\left[ m_{t+1}
@@ -95,39 +83,47 @@ to show $E_t\left[ R^e_{t+1, i}  \right] = \beta_{t, i}\lambda_t$
     \because E_t\left[ R^e_{t+1, i}, m_{t+1}  \right] &= 0 \\
     \Rightarrow E_t\left[ R^e_{t+1, i}  \right] &= E_t \left[ R^e_{t+1, i}  \right]~(shown)
 \end{align*}
+```
 
 As shown, $E_t\left[ R^e_{t+1, i}  \right] = \beta_{t, i}\lambda_t$.
 
+```{=latex}
 \begin{tabular}{l @{ := } l}
     $\beta_{t,i}$ & exposure to systematic risk \\
     $\lambda_t$ & price of risk \\
     $E_t[.]$  & expectation conditional on the information at time $t$
 \end{tabular}
+```
 
-\subsection{SDF weight $\boldmath{\omega_t}$ and tangency portfolio $F_{t+1}$ formulation}
+## SDF weight $\boldmath{\omega_t}$ and tangency portfolio $F_{t+1}$ formulation
 
 We will use
 
+```{=latex}
 \begin{tabular}{l @{ := } l}
     $R^e_t$ & the vector representing $R^e_{t, i}$ for $i\in[1, N]$\\
     $\omega_t$ & the vector representing SDF weight $\omega_{t, i}$ for $i\in[1, N]$ \\
     $f_{t+1}$ & tangency portfolio, a scalar
 \end{tabular}
+```
 
 Note $m_{t+1}$ is a scalar.
 
 Now, since SDF is an affine transformation of the tangency portfolio ($m_{t+1} = a + b{f_{t+1}}$), we consider the
 special case when $a=1, b=-1$, then
 
+```{=latex}
 \begin{align*}
     m_{t+1} = 1 - f_{t+1} = 1 - \sum_{i=1}^N \omega_{t, i} R^e_{t+1, i} = 1 - {\omega_t}^T {R^e_{t+1}}
 \end{align*}
+```
 
 where $f_{t+1} = \omega_t^TR^e_{t+1}$, the tangency portfolio is the weighted sum of excess returns.
 
-\subsection{linking systematic risk $\beta_{t,i}$ to tangency portfolio $f_{t+1}$}
+## linking systematic risk $\beta_{t,i}$ to tangency portfolio $f_{t+1}$
 
 Now, since $m_{t+1} = 1 - f_{t+1}$, using previous result of 
+```{=latex}
 \begin{align*}
     E_t[R^e_{t+1, i}] &= \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1})}{Var_t(m_{t+1})}  \right) \cdot
     \frac{Var_t(m_{t+1})}{E_t[m_{t+1}]} \\
@@ -138,33 +134,38 @@ Now, since $m_{t+1} = 1 - f_{t+1}$, using previous result of
                       &= missing \\
                       &= \beta_{t, i} E_t[f_{t+1}]
 \end{align*}
+```
 
-\hl{missing proving}
+<!-- missing proving-->
 
 and $R^e_{t+1, i} = \beta_{t+1, i}\cdot f_{t+1} + \epsilon_{t+1, i}$
 
-\section{Applying Generative adversarial network to estimate SDF}
+## Applying Generative adversarial network to estimate SDF
 
 There are two functions we are interested in finding:
 
+```{=latex}
 \begin{enumerate}
     \item $\omega_t=\omega(I_t, I_{t, i})$
     \item $\beta_{t, i}=\beta(I_t, I_{t, i})$
 \end{enumerate}
+```
 
 These two functions are sufficient for:
 
+```{=latex}
 \begin{enumerate}
     \item Explain cross-section of individual stock return $R^e_{t+1, i}$
     \item Construct conditional mean-variance efficient tagency portfolio $f_{t+1}(\omega_t)$
     \item Decompose stock returns into their predictable systematic componenet $\beta_{t, i}, f_{t+1}$ and their non-systematic unpredictable
         component $\epsilon_{t+1, i}$
 \end{enumerate}
+```
 
 We will be using GAN (Generative adversarial network) methods to deduce $\omega_t$, which will construct $f_{t+1}$ and 
 later will be used to deduce $\beta_{t, i}$.
 
-\subsection{Generative adversarial Methods of Moments}
+## Generative adversarial Methods of Moments
 
 GAN model requires 'Generator' and 'Discriminator'.
 
@@ -175,16 +176,18 @@ data that meant to confuse the generator (a pricing error function $g$ which we 
 A loss function links the generator and discriminator, and training will continue until
 neither generator nor discriminator can improve their performance further.
 
-\subsubsection{Input Data}
+## Input Data
 
 We denote the input data with:
 
+```{=latex}
 \begin{tabular}{l @{ := } l}
     $I_t$ & macroeconomic data at time $t$, such as inflation\\
     $I_{t, i}$ & firm specific data at time $t$, such as book to market ratio
 \end{tabular}
+```
 
-\subsubsection{Include macro economic features with RNN and LSTM}
+## Include macro economic features with RNN and LSTM
 
 Recurrent neural network (RNN) is a class of neural network that considers the past data in future prediction.
 
@@ -200,7 +203,7 @@ Simplify saying, LSTM endogenously handle the number of lags that will be useful
 Since we suspect past macro economic feature will affect our estimation and we are uncertain how many lag terms
 to include, we use RNN with LSTM to let the model decide the number lag terms.
 
-\subsubsection{Generator: $\omega(I_t, I_{t, i})$}
+## Generator: $\omega(I_t, I_{t, i})$
 
 Given that $f_{t+1}=\omega_t^T R^e_{t+1}$, we need $\omega_t$ and $R^e_{t+1}$
 
@@ -208,7 +211,7 @@ $R^e_{t+1}$ can be calculated with $R_{t+1} - R^f_{t+1}$ using price data.
 
 Only estimation required will be $\omega(I_t, I_{t, i})$.
 
-\subsubsection{Discriminator: $g(I_t, I_{t, i})$}
+## Discriminator: $g(I_t, I_{t, i})$
 
 Under no arbitrage model, there exist a $m_{t+1}$ such that $E(m_{t+1}R^e_{t+1})=0$.
 
@@ -222,13 +225,14 @@ $g$ represents factors unexplained by the no-arbitrage model, or a pricing error
 
 We will use $g$ as our discriminator.
 
-\subsubsection{Loss function}
+## Loss function
 
 We can summarise the relationship between generator and discriminator using a 
 min max optimization problem as the loss function.
 
 We want to maximise the loss by changing function $g$ while minimise the loss by changing function $\omega$
 
+```{=latex}
 \begin{align*}
     \min_{\omega} \max_{g} \frac{1}{N} \sum_{j=1}^N \left\{
     E \left[ 
@@ -236,25 +240,30 @@ We want to maximise the loss by changing function $g$ while minimise the loss by
         R^e_{t+1, j}g(I_t, I_{t, j})
     \right] \right\}^2
 \end{align*}
+```
 
 the final estimated generator function $\hat\omega$ is
 
+```{=latex}
 \begin{align*}
     \hat\omega &= \min_{\omega} L(\omega|\hat{g}, I_t, I_{t, i})
 \end{align*}
+```
 
 which is the $\omega$ that minimise the loss function, with a given discriminator $g$.
 
-\subsubsection{Model training and architecture}
+## Model training and architecture
 
 GAN has a two step training procedure.
 
+```{=latex}
 \begin{enumerate}
     \item Train $\omega$ while keeping $g$ unchanged
         \subitem $\min_{\omega} L(\omega|\hat{g}, I_t, I_{t,i})$
     \item Train $g$ while keeping $\omega$ unchanged
         \subitem $\max_{g} L(g|\hat\omega, I_t, I_{t,i})$
 \end{enumerate}
+```
 
 The training will continue until neither $g$ nor
 $\omega$ can reduce the loss further.
@@ -262,6 +271,4 @@ $\omega$ can reduce the loss further.
 Both $g$ and $\omega$ will have the similar model structure.
 However, $\omega$ will be used to construct $f_{t+1}$ while $g$ will be in its raw form.
 
-\includegraphics[width=\textwidth]{./reference_paper/img/model}
-
-\end{document}
+\includegraphics[width=\textwidth]{./img/model}

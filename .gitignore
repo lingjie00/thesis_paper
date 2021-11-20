@@ -2,6 +2,10 @@
 *.toc
 *.pdf
 
+# ignore word files
+*.doc
+*.docx
+
 # vim related
 *.swp
 .vim/
