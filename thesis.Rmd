@@ -4,8 +4,8 @@ output:
         fig_caption: yes
         keep_tex: no
         number_sections: yes
-        toc: true
-        toc_depth: 2
+        toc: false
+        toc_depth: 3
         latex_engine: pdflatex
         template: ./template/svm-latex-ms.tex
 title:
@@ -14,7 +14,11 @@ author:
     name: "Wang Lingjie"
     affiliation: "National University of Singapore"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
-keywords: "Generative Adversarial Network, asset pricing"
+keywords:
+    "Generative Adversarial Network,
+    deep learning,
+    asset pricing,
+    stochastic discount factor"
 thanks: "Replication files are available on the author's
         Github account"
 geometry: margin=1in

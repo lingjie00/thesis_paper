@@ -14,32 +14,15 @@ One fundamental idea of asset pricing is no
 arbitrage condition. Where the excess return is
 the risk-free return plus the risk adjusted asset
 return. (...) stochastic discount factor.
-
 The empirical problem boils down to estimating the
 stochastic discount factor (SDF).
 
 <!-- Explain the current strategy in asset pricing-->
-
 The challenge in estimating SDF comes in
 estimating the structure form of the SDF,
 selecting the right factor to estimate the SDF and
 constructing the right portfolio.
-
-Popular ways to estimate the structure forms of
-SDF revolve around linear models (using linear
-regression), non-linear models (using ensemble and
-boosting tree models, deep neural network). Linear
-model generally works well. Although non-linear
-methods improved the performance, the improvement
-is marginal.
-
-The current method to select relevant factor
-involves selection based on domain expertise (3,
-4, 5 factors) or automatic feature selection
-methods (regularized linear regression such as
-Lasso). The 5 factor models seem to perform well,
-and the feature selected by Lasso is good too.
-
+<!--break-->
 The portfolio construction is less well researched
 and mainly based on domain expert selection.
 Therefore, researches focus on estimating
@@ -47,9 +30,37 @@ functional form of SDF and selecting relevant
 factors would typically keep the portfolio
 constant by using portfolio provided by (famous
 author).
-
+In choosing the right portfolio to estimate pricing kernel.
+Current approaches follow the characteristics sorted
+portfolio, such as Fama French size, book-to-market,
+operating profitability and investment portfolio.
+<!--break-->
+Popular ways to estimate the structure forms of
+SDF revolve around linear models (using linear
+regression), non-linear models (using ensemble and
+boosting tree models, deep neural network). Linear
+model generally works well. Although non-linear
+methods improved the performance, the improvement
+is marginal.
+In estimating the functional form of the pricing kernel.
+Fama French assumes linear pricing kernel, while
+others papers explored non-linear models using machine
+learning techniques such as ensemble and boosting tree
+models, feed forward neural network.  With machine learning
+techniques providing more significant economic gains (Gu et
+al., 2018).
+<!--break-->
+The current method to select relevant factor
+involves selection based on domain expertise (3,
+4, 5 factors) or automatic feature selection
+methods (regularized linear regression such as
+Lasso). The 5 factor models seem to perform well,
+and the feature selected by Lasso is good too.
+In choosing the right factors to estimate the pricing
+kernel. Current approaches involve Fama French 5-factor
+model (Fama & French, 2015) or machine learning LASSO
+approach in Taming the Factor Zoo (Feng et al., 2020).
 <!-- Explain the limitation in asset pricing strategy -->
-
 As a result, the current research generally focus on
 solving only one of the problems at one time.
 Researches that focus on estimating the functional
@@ -58,84 +69,77 @@ factor constant. While researches that focus on
 selecting the factors might alter the functional
 form estimation but still keep the portfolio
 constant.
-
 The current researches work generally well, but
 there is still gaps in the current methods given
 by the statistically significant alpha in the
 asset pricing model.
 
 <!-- Explain how GAN model contributes to the strategy -->
-
 Generative advisory network (GAN) model proposed by
-(researcher name) attempts to solve asset pricing
+Chen et al. attempts to solve asset pricing
 by simultaneously solve the structure model
 estimation, factor selection and portfolio
 construction in a single estimation.
-
 GAN model is based on deep neural network,
 proposed by Goodfellow. The main idea is to train
 two competing networks with different objectives,
 and link the two network with a common loss
 function. One can think of GAN model as a min max
 optimization problem.
-
 One network is called discriminative network. This
 corresponds to standard estimation such as SDF
 functional form estimation.
-
 Another the network is called generative network.
 Generative network attempts to propose new
 observations that are unable to be explained by the
 discriminative network. This could be considered
 as constructing a portfolio where asset pricing
 model failed to explain the excess return.
-
 Therefore, by training both discriminative network
 and generative network simultaneously, we are able
 to estimate the functional form of SDF with
 discriminative network, select the factors and
 combine stocks to form portfolio that is the least
 able to explained by the asset pricing model.
-
-The (researcher) has showed that GAN model
+Chen has showed that GAN model
 outperformed any of the current SDF estimation,
 and is able to construct portfolio where current
 asset pricing models failed to explain most of the
 excess returns. 
-
 <!-- Explain the current validation strategy -->
-
-The (researcher) has validated his research based
+Chen has validated his research based
 on US stock market with (xx) years of return,
 using (xx) number of factors. The final estimation
 is (xx), which is (xx) much better than current
 research.
-
+Chen's paper tested the GAN model against feedforward
+neural network and penalised linear model (elastic net,
+which contains both LASSO and Ridge penalise) and found to
+outperform both models.
 <!-- Explain why the validation strategy is insufficient -->
-
 We attempt to validate the (researcher)'s claim by
 constructing the GAN model described in the
 network and cross validate the result in the
 United Kingdom.
-
-Although the (researcher) has release their code
+Although the Chen et al. has release their code
 base and data, there is little documentation and
 the library is outdated. Most of the research
 model failed to deliver practical impact due to
 lack of execution. Furthermore, external
 validity of the GAN model has yet to be discussed
 as far as our best knowledge.
-
 <!-- Explain how we aim to improve the validation strategy -->
-
 Therefore, our paper attempts to reconstruct the
 model using the latest library, with proper
 documentation for further researches and test the
 GAN model constructed based on the United Kingdom
 data.
+We use Fama French model as a benchmark model as this is the
+most commonly used model today due to its simplicity and
+ease to use. So what we want to test is if the complicated
+GAN model worth our time.
 
 <!-- Explain the work done in UK, and why is it insufficient -->
-
 The United Kingdom was selected due to the
 availability of data. Most of the current
 financial research is done on the United States,

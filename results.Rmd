@@ -2,8 +2,6 @@
 
 ## Data
 
-### Input Data
-
 We denote the input data with:
 
 ```{=latex}
@@ -13,3 +11,12 @@ We denote the input data with:
 \end{tabular}
 ```
 
+## Mispricing error
+
+### Individual assets
+
+### Portfolio
+
+## SHARPE ratio
+
+## Cost benefit analysis

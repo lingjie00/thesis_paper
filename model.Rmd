@@ -2,28 +2,34 @@
 
 ## No arbitrage asset pricing
 
-### Stochastic discount factor (SDF)
+Our model is economic motivated. The underlying assumption
+is based on the no arbitrage asset pricing. We will first
+explain the no arbitrage asset pricing condition before
+explaining how it is linked to the generative adversarial
+model through a loss function.
 
-Arise from consumer maximising present and future utility by choosing asset amount
+Stochastic discount factor (SDF) arise from consumer
+maximising present and future utility by choosing asset
+amount
 
 ```{=latex}
 \begin{tabular}{l @{ := } l}
-    $\xi$ & amount of asset \\
-    $c_t$ & consumption at time $t$ \\
-    $u(c_t)$ & utility at time $t$ \\
-    $E_t(u)$ & expected utility at time $t$ \\
-    $\beta$ & subjective discount factor \\
-    $e_t$ & original consumption level at time $t$ \\
-    $p_t$ & price of asset at time $t$ \\
-    $x_t$ & payoff of asset at time $t$
+$\xi$ & amount of asset \\
+$c_t$ & consumption at time $t$ \\
+$u(c_t)$ & utility at time $t$ \\
+$E_t(u)$ & expected utility at time $t$ \\
+$\beta$ & subjective discount factor \\
+$e_t$ & original consumption level at time $t$ \\
+$p_t$ & price of asset at time $t$ \\
+$x_t$ & payoff of asset at time $t$
 \end{tabular}
 ```
 
 ```{=latex}
 \begin{align*}
-    \max_{\xi} & ~u(c_t) + E_t\left[ \beta u(c_{t+1}) \right]~s.t.\\
-    c_t &= e_t - p_t\xi \\
-    c_{t+1} &= e_{t+1} + x_{t+1}\xi
+\max_{\xi} & ~u(c_t) + E_t\left[ \beta u(c_{t+1}) \right]~s.t.\\
+c_t &= e_t - p_t\xi \\
+c_{t+1} &= e_{t+1} + x_{t+1}\xi
 \end{align*}
 ```
 
@@ -31,15 +37,13 @@ Solving for First Order Condition to find maxima
 
 ```{=latex}
 \begin{align*}
-    p_tu'(c_t) &= E_t\left[ \beta u'(c_{t+1}) x_{t+1}  \right]\\
-    \Rightarrow p_t &= E_t\left[ \beta \frac{u'(c_{t+1})}{u'(c_t)} x_{t+1}  \right] \\
-    \Leftrightarrow p_t &= E_t \left[ m_{t+1} x_{t+1}  \right]
+p_tu'(c_t) &= E_t\left[ \beta u'(c_{t+1}) x_{t+1}  \right]\\
+\Rightarrow p_t &= E_t\left[ \beta \frac{u'(c_{t+1})}{u'(c_t)} x_{t+1}  \right] \\
+\Leftrightarrow p_t &= E_t \left[ m_{t+1} x_{t+1}  \right]
 \end{align*}
 ```
 
 where $m_{t+1}:=\beta\frac{u'(c_{t+1)}}{u'(c_t)}$ is defined as SDF
-
-### No-Arbitrage Asset Pricing
 
 $m > 0 \Rightarrow$ No-arbitrage. Since marginal utility is assumed to be positive, $m > 0$.
 
@@ -59,101 +63,25 @@ No-arbitrage assumption $\Leftrightarrow$ there exist a $m_{t+1}$ such that
 \end{align*}
 ```
 
-### exposure to systematic risk $\beta_{t, i}$ formulation
+## Fama French factor model
 
-Let $p_t = 0, x_{t+1} = R^e_{t+1, i} = 0 \Rightarrow E_t\left[ m_{t+1}R^e_{t+1, i}  \right] =0$
-
-and
-```{=latex}
-\begin{align*}
-    E_t\left[ m_{t+1}R^e_{t+1, i}  \right] = 0 \Leftrightarrow E_t\left[ R^e_{t+1,i}  \right] 
-    &= \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1} )}{Var_t(m_{t+1})}  \right) \cdot \frac{Var_t(m_{t+1})}{E_t\left[ m_{t+1}  \right]} \\
-    &= \beta_{t,i}\lambda_t
-\end{align*}
-```
-
-to show $E_t\left[ R^e_{t+1, i}  \right] = \beta_{t, i}\lambda_t$
-
-```{=latex}
-\begin{align*}
-    E_t\left[ R^e_{t+1,i}  \right] &=
-    \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1} )}{Var_t(m_{t+1})}  \right) \cdot \frac{Var_t(m_{t+1})}{E_t\left[ m_{t+1}
-    \right]} \\
-                                   &= - \frac{Cov_t(R^e_{t+1, i}, m_{t+1})}{E_t\left[ m_{t+1}  \right]} \\
-                                   &= - \frac{E_t\left[ R^e_{t+1, i}, m_{t+1}  \right] - E_t\left[ R^e_{t+1, i}
-                                   \right]E_t\left[ m_{t+1}  \right]}{E_t\left[ m_{t+1}  \right]} \\
-    \because E_t\left[ R^e_{t+1, i}, m_{t+1}  \right] &= 0 \\
-    \Rightarrow E_t\left[ R^e_{t+1, i}  \right] &= E_t \left[ R^e_{t+1, i}  \right]~(shown)
-\end{align*}
-```
-
-As shown, $E_t\left[ R^e_{t+1, i}  \right] = \beta_{t, i}\lambda_t$.
-
-```{=latex}
-\begin{tabular}{l @{ := } l}
-    $\beta_{t,i}$ & exposure to systematic risk \\
-    $\lambda_t$ & price of risk \\
-    $E_t[.]$  & expectation conditional on the information at time $t$
-\end{tabular}
-```
-
-### SDF weight $\boldmath{\omega_t}$ and tangency portfolio $F_{t+1}$ formulation
-
-We will use
-
-```{=latex}
-\begin{tabular}{l @{ := } l}
-    $R^e_t$ & the vector representing $R^e_{t, i}$ for $i\in[1, N]$\\
-    $\omega_t$ & the vector representing SDF weight $\omega_{t, i}$ for $i\in[1, N]$ \\
-    $f_{t+1}$ & tangency portfolio, a scalar
-\end{tabular}
-```
-
-Note $m_{t+1}$ is a scalar.
-
-Now, since SDF is an affine transformation of the tangency portfolio ($m_{t+1} = a + b{f_{t+1}}$), we consider the
-special case when $a=1, b=-1$, then
-
-```{=latex}
-\begin{align*}
-    m_{t+1} = 1 - f_{t+1} = 1 - \sum_{i=1}^N \omega_{t, i} R^e_{t+1, i} = 1 - {\omega_t}^T {R^e_{t+1}}
-\end{align*}
-```
-
-where $f_{t+1} = \omega_t^TR^e_{t+1}$, the tangency portfolio is the weighted sum of excess returns.
-
-### linking systematic risk $\beta_{t,i}$ to tangency portfolio $f_{t+1}$
-
-Now, since $m_{t+1} = 1 - f_{t+1}$, using previous result of 
-```{=latex}
-\begin{align*}
-    E_t[R^e_{t+1, i}] &= \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1})}{Var_t(m_{t+1})}  \right) \cdot
-    \frac{Var_t(m_{t+1})}{E_t[m_{t+1}]} \\
-                      &= \left( - \frac{Cov_t(R^e_{t+1, i},(1-f_{t+1}))}{Var_t(1-f_{t+1})} \right) \cdot 
-                      \frac{Var_t(1-f_{t+1})}{E_t[1-f_{t+1}]} \\
-                      &= \frac{Cov_t(R^e_{t+1, i}, f_{t+1})}{Var_t(f_{t+1})} \cdot \frac{Var_t(f_{t+1})}{1 -
-                      E_t[f_{t+1}]} \\
-                      &= missing \\
-                      &= \beta_{t, i} E_t[f_{t+1}]
-\end{align*}
-```
-
-<!-- missing proving-->
-
-and $R^e_{t+1, i} = \beta_{t+1, i}\cdot f_{t+1} + \epsilon_{t+1, i}$
+Fama French factor model assumes the stochastic discount
+factor to be a special linear model depending only on a few
+factors. The Fama French three factor model depends on xxx,
+xxx, xxx and five factor model additional includes xxx and
+xxx.
 
 ## Generative adversarial network (GAN) model
 
-### Applying Generative adversarial network to estimate SDF
+Generative adversarial network (GAN) model is first proposed
+by Goodfellow to xxxx. It is currently commonly used in
+deep fake and other image, video related tasks. The
+fundamental idea of GAN network is to train two competing
+network linked through a single loss function.
 
 There are two functions we are interested in finding:
-
-```{=latex}
-\begin{enumerate}
-    \item $\omega_t=\omega(I_t, I_{t, i})$
-    \item $\beta_{t, i}=\beta(I_t, I_{t, i})$
-\end{enumerate}
-```
+$\omega_t=\omega(I_t, I_{t, i})$ and 
+$\beta_{t, i}=\beta(I_t, I_{t, i})$
 
 These two functions are sufficient for:
 
@@ -169,32 +97,16 @@ These two functions are sufficient for:
 We will be using GAN (Generative adversarial network) methods to deduce $\omega_t$, which will construct $f_{t+1}$ and 
 later will be used to deduce $\beta_{t, i}$.
 
-### Generative adversarial Methods of Moments
-
 GAN model requires 'Generator' and 'Discriminator'.
 
-A generator predict the
-outcome we are interested in (in our case, the function $\omega_t$) while a discriminator produces fake
-data that meant to confuse the generator (a pricing error function $g$ which we will define later). 
+A generator predict the outcome we are interested in (in our
+case, the function $\omega_t$) while a discriminator
+produces fake data that meant to confuse the generator (a
+pricing error function $g$ which we will define later). 
 
-A loss function links the generator and discriminator, and training will continue until
-neither generator nor discriminator can improve their performance further.
-
-### Include macro economic features with RNN and LSTM
-
-Recurrent neural network (RNN) is a class of neural network that considers the past data in future prediction.
-
-Long Term Short Term Memory (LSTM) is a subclass of RNN that considers dynamic past data in future prediciton.
-
-LSTM is an improvement over vanilla RNN.
-In a vanilla RNN, an unique weight is given to each of the lagged data. 
-The number of lagged data will be pre-determined and could not scale well with higher lags.
-
-LSTM solves the problem by introducing forget gate, input gate and output gate.
-Simplify saying, LSTM endogenously handle the number of lags that will be useful in the prediction.
-
-Since we suspect past macro economic feature will affect our estimation and we are uncertain how many lag terms
-to include, we use RNN with LSTM to let the model decide the number lag terms.
+A loss function links the generator and discriminator, and
+training will continue until neither generator nor
+discriminator can improve their performance further.
 
 ### Generator: $\omega(I_t, I_{t, i})$
 
@@ -218,7 +130,23 @@ $g$ represents factors unexplained by the no-arbitrage model, or a pricing error
 
 We will use $g$ as our discriminator.
 
-### Loss function
+### Macro-economic data with Long Term Short Term Memory (LSTM)
+
+Recurrent neural network (RNN) is a class of neural network that considers the past data in future prediction.
+
+Long Term Short Term Memory (LSTM) is a subclass of RNN that considers dynamic past data in future prediciton.
+
+LSTM is an improvement over vanilla RNN.
+In a vanilla RNN, an unique weight is given to each of the lagged data. 
+The number of lagged data will be pre-determined and could not scale well with higher lags.
+
+LSTM solves the problem by introducing forget gate, input gate and output gate.
+Simplify saying, LSTM endogenously handle the number of lags that will be useful in the prediction.
+
+Since we suspect past macro economic feature will affect our estimation and we are uncertain how many lag terms
+to include, we use RNN with LSTM to let the model decide the number lag terms.
+
+### Pricing loss function
 
 We can summarise the relationship between generator and discriminator using a 
 min max optimization problem as the loss function.
@@ -265,3 +193,99 @@ Both $g$ and $\omega$ will have the similar model structure.
 However, $\omega$ will be used to construct $f_{t+1}$ while $g$ will be in its raw form.
 
 \includegraphics[width=\textwidth]{./img/model}
+
+## Model evaluation
+
+We evaluate our model with Fama French model based on the
+mispricing error, SHARPE ratio and explained variance.
+
+### Mispricing error with $\alpha, \beta$
+
+The exposure to systematic risk $\beta_{t, i}$ formulation
+
+Let $p_t = 0, x_{t+1} = R^e_{t+1, i} = 0 \Rightarrow E_t\left[ m_{t+1}R^e_{t+1, i}  \right] =0$
+
+and
+```{=latex}
+\begin{align*}
+    E_t\left[ m_{t+1}R^e_{t+1, i}  \right] = 0 \Leftrightarrow E_t\left[ R^e_{t+1,i}  \right] 
+    &= \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1} )}{Var_t(m_{t+1})}  \right) \cdot \frac{Var_t(m_{t+1})}{E_t\left[ m_{t+1}  \right]} \\
+    &= \beta_{t,i}\lambda_t
+\end{align*}
+```
+
+to show $E_t\left[ R^e_{t+1, i}  \right] = \beta_{t, i}\lambda_t$
+
+```{=latex}
+\begin{align*}
+    E_t\left[ R^e_{t+1,i}  \right] &=
+    \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1} )}{Var_t(m_{t+1})}  \right) \cdot \frac{Var_t(m_{t+1})}{E_t\left[ m_{t+1}
+    \right]} \\
+                                   &= - \frac{Cov_t(R^e_{t+1, i}, m_{t+1})}{E_t\left[ m_{t+1}  \right]} \\
+                                   &= - \frac{E_t\left[ R^e_{t+1, i}, m_{t+1}  \right] - E_t\left[ R^e_{t+1, i}
+                                   \right]E_t\left[ m_{t+1}  \right]}{E_t\left[ m_{t+1}  \right]} \\
+    \because E_t\left[ R^e_{t+1, i}, m_{t+1}  \right] &= 0 \\
+    \Rightarrow E_t\left[ R^e_{t+1, i}  \right] &= E_t \left[ R^e_{t+1, i}  \right]~(shown)
+\end{align*}
+```
+
+As shown, $E_t\left[ R^e_{t+1, i}  \right] = \beta_{t, i}\lambda_t$.
+
+```{=latex}
+\begin{tabular}{l @{ := } l}
+    $\beta_{t,i}$ & exposure to systematic risk \\
+    $\lambda_t$ & price of risk \\
+    $E_t[.]$  & expectation conditional on the information at time $t$
+\end{tabular}
+```
+
+The SDF weight $\boldmath{\omega_t}$ and tangency portfolio
+$F_{t+1}$ formulation
+
+We will use
+
+```{=latex}
+\begin{tabular}{l @{ := } l}
+    $R^e_t$ & the vector representing $R^e_{t, i}$ for $i\in[1, N]$\\
+    $\omega_t$ & the vector representing SDF weight $\omega_{t, i}$ for $i\in[1, N]$ \\
+    $f_{t+1}$ & tangency portfolio, a scalar
+\end{tabular}
+```
+
+Note $m_{t+1}$ is a scalar.
+
+Now, since SDF is an affine transformation of the tangency portfolio ($m_{t+1} = a + b{f_{t+1}}$), we consider the
+special case when $a=1, b=-1$, then
+
+```{=latex}
+\begin{align*}
+    m_{t+1} = 1 - f_{t+1} = 1 - \sum_{i=1}^N \omega_{t, i} R^e_{t+1, i} = 1 - {\omega_t}^T {R^e_{t+1}}
+\end{align*}
+```
+
+where $f_{t+1} = \omega_t^TR^e_{t+1}$, the tangency portfolio is the weighted sum of excess returns.
+
+Linking systematic risk $\beta_{t,i}$ to tangency portfolio
+$f_{t+1}$
+
+Now, since $m_{t+1} = 1 - f_{t+1}$, using previous result of 
+```{=latex}
+\begin{align*}
+    E_t[R^e_{t+1, i}] &= \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1})}{Var_t(m_{t+1})}  \right) \cdot
+    \frac{Var_t(m_{t+1})}{E_t[m_{t+1}]} \\
+                      &= \left( - \frac{Cov_t(R^e_{t+1, i},(1-f_{t+1}))}{Var_t(1-f_{t+1})} \right) \cdot 
+                      \frac{Var_t(1-f_{t+1})}{E_t[1-f_{t+1}]} \\
+                      &= \frac{Cov_t(R^e_{t+1, i}, f_{t+1})}{Var_t(f_{t+1})} \cdot \frac{Var_t(f_{t+1})}{1 -
+                      E_t[f_{t+1}]} \\
+                      &= missing \\
+                      &= \beta_{t, i} E_t[f_{t+1}]
+\end{align*}
+```
+
+<!-- missing proving-->
+
+and $R^e_{t+1, i} = \beta_{t+1, i}\cdot f_{t+1} + \epsilon_{t+1, i}$
+
+#### GRC test
+
+### SHARPE ratio
