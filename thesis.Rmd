@@ -1,18 +1,53 @@
 ---
-title: "Generative Adversarial Network (GAN) model in Asset Pricing"
-author: "Wang Lingjie"
 output:
     pdf_document:
+        fig_caption: yes
+        keep_tex: no
+        number_sections: yes
         toc: true
-        toc_depth: 4
+        toc_depth: 2
+        latex_engine: pdflatex
+        template: ./template/svm-latex-ms.tex
+title:
+    "Generative Adversarial Network (GAN) model in Asset Pricing"
+author:
+    name: "Wang Lingjie"
+    affiliation: "National University of Singapore"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+keywords: "Generative Adversarial Network, asset pricing"
+thanks: "Replication files are available on the author's
+        Github account"
+geometry: margin=1in
+# fontfamily: mathpazo
+fontsize: 11pt
+# spacing: double
+# bibliography: ~/Dropbox/master.bib
+# biblio-style: apsr
+abstract: 
+    "The critical goal in asset pricing is to
+    understand the differences in asset's average
+    returns. Capital Asset Pricing Model (CAPM)
+    provides a unified explanation through an asset
+    pricing kernel. The challenges in estimating the
+    asset-pricing kernel include choosing the right
+    factors, estimating the pricing kernel's
+    functional form, and selecting the right
+    portfolio. A recent paper proposed a Generative
+    Adversarial Network (GAN) model attempts to
+    solve all three challenges in a single setup and
+    claim to achieve the best performance compared
+    to all existing models (Chen et al., 2019). We
+    validated Chen's research and empirically tested
+    the model performance in the United Kingdom (UK)
+    data. We found the model performance to be
+    consistent in the UK 19xx - 20xx data,
+    outperforming Fama French model in explaining
+    the asset mispricing."
 ---
 
-<!-- main markdown for the whole thesis -->
-
-<!-- abstract -->
-
-```{r, child=("abstract.Rmd")}
-```
+<!-- main markdown for the whole thesis 
+useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
+-->
 
 <!-- introduction -->
 
