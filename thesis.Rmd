@@ -1,13 +1,13 @@
 ---
 output:
     pdf_document:
+        template: ./template/svm-latex-ms.tex
         fig_caption: yes
         keep_tex: no
         number_sections: yes
-        toc: false
+        toc: true
         toc_depth: 3
         latex_engine: pdflatex
-        template: ./template/svm-latex-ms.tex
 title:
     "Generative Adversarial Network (GAN) model in Asset Pricing"
 author:
@@ -21,10 +21,10 @@ keywords:
     stochastic discount factor"
 thanks: "Replication files are available on the author's
         Github account"
-geometry: margin=1in
+geometry: margin=2.5cm
 # fontfamily: mathpazo
 fontsize: 11pt
-# spacing: double
+spacing: double
 # bibliography: ~/Dropbox/master.bib
 # biblio-style: apsr
 abstract: 
@@ -42,7 +42,7 @@ abstract:
     claim to achieve the best performance compared
     to all existing models (Chen et al., 2019). We
     validated Chen's research and empirically tested
-    the model performance in the United Kingdom (UK)
+    the model performance with the United Kingdom (UK)
     data. We found the model performance to be
     consistent in the UK 19xx - 20xx data,
     outperforming Fama French model in explaining
@@ -77,6 +77,11 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 
 ```{r, child=("conclusion.Rmd")}
 ```
+
+<!--list of tables and figures-->
+\listoffigures
+
+\listoftables
 
 <!-- reference -->
 

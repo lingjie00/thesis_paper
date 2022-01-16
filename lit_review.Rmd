@@ -28,20 +28,18 @@ and mainly based on domain expert selection.
 Therefore, researches focus on estimating
 functional form of SDF and selecting relevant
 factors would typically keep the portfolio
-constant by using portfolio provided by (famous
-author).
+constant by using portfolio provided by Fama French.
 In choosing the right portfolio to estimate pricing kernel.
 Current approaches follow the characteristics sorted
 portfolio, such as Fama French size, book-to-market,
 operating profitability and investment portfolio.
 <!--break-->
-Popular ways to estimate the structure forms of
-SDF revolve around linear models (using linear
-regression), non-linear models (using ensemble and
-boosting tree models, deep neural network). Linear
-model generally works well. Although non-linear
-methods improved the performance, the improvement
-is marginal.
+Popular ways to estimate the structure forms of SDF revolve
+around linear models (using linear regression), non-linear
+models (using ensemble and boosting tree models, feed
+forward neural network). Linear model generally works well.
+Although non-linear methods improved the performance, the
+improvement is marginal.
 In estimating the functional form of the pricing kernel.
 Fama French assumes linear pricing kernel, while
 others papers explored non-linear models using machine
@@ -115,9 +113,9 @@ research.
 Chen's paper tested the GAN model against feedforward
 neural network and penalised linear model (elastic net,
 which contains both LASSO and Ridge penalise) and found to
-outperform both models.
+outperform both kind of models.
 <!-- Explain why the validation strategy is insufficient -->
-We attempt to validate the (researcher)'s claim by
+We attempt to validate the Chen's claim by
 constructing the GAN model described in the
 network and cross validate the result in the
 United Kingdom.
