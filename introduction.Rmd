@@ -17,7 +17,7 @@ individual assets) to estimate the pricing kernel.
 
 A recent paper proposed a Generative Adversarial Network
 (GAN) model that attempts to solve all three problems in a
-single setup (Chen et al., 2019).
+single setup [@chen_deep_2019].
 GAN models consist of a discriminative neural network model
 and a generative neural network model. The discriminative
 and generative works like police and thief with contrasting

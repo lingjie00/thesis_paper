@@ -1,7 +1,7 @@
 ---
 output:
     pdf_document:
-        template: ./template/svm-latex-ms.tex
+        # template: ./template/svm-latex-ms.tex
         fig_caption: yes
         keep_tex: no
         number_sections: yes
@@ -16,17 +16,16 @@ author:
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 keywords:
     "Generative Adversarial Network,
-    deep learning,
-    asset pricing,
-    stochastic discount factor"
+    Asset Pricing
+    "
 thanks: "Replication files are available on the author's
         Github account"
 geometry: margin=2.5cm
 # fontfamily: mathpazo
 fontsize: 11pt
 spacing: double
-# bibliography: ~/Dropbox/master.bib
-# biblio-style: apsr
+bibliography: ref.bib
+csl: ./template/apa.csl
 abstract: 
     "The critical goal in asset pricing is to
     understand the differences in asset's average
@@ -40,7 +39,7 @@ abstract:
     Adversarial Network (GAN) model attempts to
     solve all three challenges in a single setup and
     claim to achieve the best performance compared
-    to all existing models (Chen et al., 2019). We
+    to all existing models [@chen_deep_2019]. We
     validated Chen's research and empirically tested
     the model performance with the United Kingdom (UK)
     data. We found the model performance to be
@@ -84,8 +83,3 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 \listoftables
 
 <!-- reference -->
-
-```{r, child=("reference.Rmd")}
-```
-
-
