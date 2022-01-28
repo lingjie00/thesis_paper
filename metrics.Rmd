@@ -1,0 +1,95 @@
+# Evaluation metrics
+
+We evaluate our model with Fama French model based on the
+mispricing error, SHARPE ratio and explained variance.
+
+## Mispricing error with $\alpha, \beta$
+
+The exposure to systematic risk $\beta_{t, i}$ formulation
+
+Let $p_t = 0, x_{t+1} = R^e_{t+1, i} = 0 \Rightarrow E_t\left[ m_{t+1}R^e_{t+1, i}  \right] =0$
+
+and
+```{=latex}
+\begin{align*}
+    E_t\left[ m_{t+1}R^e_{t+1, i}  \right] = 0 \Leftrightarrow E_t\left[ R^e_{t+1,i}  \right] 
+    &= \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1} )}{Var_t(m_{t+1})}  \right) \cdot \frac{Var_t(m_{t+1})}{E_t\left[ m_{t+1}  \right]} \\
+    &= \beta_{t,i}\lambda_t
+\end{align*}
+```
+
+to show $E_t\left[ R^e_{t+1, i}  \right] = \beta_{t, i}\lambda_t$
+
+```{=latex}
+\begin{align*}
+    E_t\left[ R^e_{t+1,i}  \right] &=
+    \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1} )}{Var_t(m_{t+1})}  \right) \cdot \frac{Var_t(m_{t+1})}{E_t\left[ m_{t+1}
+    \right]} \\
+                                   &= - \frac{Cov_t(R^e_{t+1, i}, m_{t+1})}{E_t\left[ m_{t+1}  \right]} \\
+                                   &= - \frac{E_t\left[ R^e_{t+1, i}, m_{t+1}  \right] - E_t\left[ R^e_{t+1, i}
+                                   \right]E_t\left[ m_{t+1}  \right]}{E_t\left[ m_{t+1}  \right]} \\
+    \because E_t\left[ R^e_{t+1, i}, m_{t+1}  \right] &= 0 \\
+    \Rightarrow E_t\left[ R^e_{t+1, i}  \right] &= E_t \left[ R^e_{t+1, i}  \right]~(shown)
+\end{align*}
+```
+
+As shown, $E_t\left[ R^e_{t+1, i}  \right] = \beta_{t, i}\lambda_t$.
+
+```{=latex}
+\begin{tabular}{l @{ := } l}
+    $\beta_{t,i}$ & exposure to systematic risk \\
+    $\lambda_t$ & price of risk \\
+    $E_t[.]$  & expectation conditional on the information at time $t$
+\end{tabular}
+```
+
+The SDF weight $\boldmath{\omega_t}$ and tangency portfolio
+$F_{t+1}$ formulation
+
+We will use
+
+```{=latex}
+\begin{tabular}{l @{ := } l}
+    $R^e_t$ & the vector representing $R^e_{t, i}$ for $i\in[1, N]$\\
+    $\omega_t$ & the vector representing SDF weight $\omega_{t, i}$ for $i\in[1, N]$ \\
+    $f_{t+1}$ & tangency portfolio, a scalar
+\end{tabular}
+```
+
+Note $m_{t+1}$ is a scalar.
+
+Now, since SDF is an affine transformation of the tangency portfolio ($m_{t+1} = a + b{f_{t+1}}$), we consider the
+special case when $a=1, b=-1$, then
+
+```{=latex}
+\begin{align*}
+    m_{t+1} = 1 - f_{t+1} = 1 - \sum_{i=1}^N \omega_{t, i} R^e_{t+1, i} = 1 - {\omega_t}^T {R^e_{t+1}}
+\end{align*}
+```
+
+where $f_{t+1} = \omega_t^TR^e_{t+1}$, the tangency portfolio is the weighted sum of excess returns.
+
+Linking systematic risk $\beta_{t,i}$ to tangency portfolio
+$f_{t+1}$
+
+Now, since $m_{t+1} = 1 - f_{t+1}$, using previous result of 
+```{=latex}
+\begin{align*}
+    E_t[R^e_{t+1, i}] &= \left( - \frac{Cov_t(R^e_{t+1, i}, m_{t+1})}{Var_t(m_{t+1})}  \right) \cdot
+    \frac{Var_t(m_{t+1})}{E_t[m_{t+1}]} \\
+                      &= \left( - \frac{Cov_t(R^e_{t+1, i},(1-f_{t+1}))}{Var_t(1-f_{t+1})} \right) \cdot 
+                      \frac{Var_t(1-f_{t+1})}{E_t[1-f_{t+1}]} \\
+                      &= \frac{Cov_t(R^e_{t+1, i}, f_{t+1})}{Var_t(f_{t+1})} \cdot \frac{Var_t(f_{t+1})}{1 -
+                      E_t[f_{t+1}]} \\
+                      &= missing \\
+                      &= \beta_{t, i} E_t[f_{t+1}]
+\end{align*}
+```
+
+<!-- missing proving-->
+
+and $R^e_{t+1, i} = \beta_{t+1, i}\cdot f_{t+1} + \epsilon_{t+1, i}$
+
+## GRC test
+
+## SHARPE ratio

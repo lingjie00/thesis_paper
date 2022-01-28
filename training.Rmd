@@ -1,0 +1,51 @@
+# Model training
+
+## Pricing loss function for GAN
+
+We can summarise the relationship between generator and discriminator using a 
+min max optimization problem as the loss function.
+
+We want to maximise the loss by changing function $g$ while minimise the loss by changing function $\omega$
+
+```{=latex}
+\begin{align*}
+    \min_{\omega} \max_{g} \frac{1}{N} \sum_{j=1}^N \left\{
+    E \left[ 
+        \left( 1 - \sum_{i=1}^N \omega(I_t, I_{t, i}) R^e_{t+1, i} \right)
+        R^e_{t+1, j}g(I_t, I_{t, j})
+    \right] \right\}^2
+\end{align*}
+```
+
+the final estimated generator function $\hat\omega$ is
+
+```{=latex}
+\begin{align*}
+    \hat\omega &= \min_{\omega} L(\omega|\hat{g}, I_t, I_{t, i})
+\end{align*}
+```
+
+which is the $\omega$ that minimise the loss function, with a given discriminator $g$.
+
+## GAN Model architecture
+
+GAN has a two step training procedure.
+
+```{=latex}
+\begin{enumerate}
+    \item Train $\omega$ while keeping $g$ unchanged
+        \subitem $\min_{\omega} L(\omega|\hat{g}, I_t, I_{t,i})$
+    \item Train $g$ while keeping $\omega$ unchanged
+        \subitem $\max_{g} L(g|\hat\omega, I_t, I_{t,i})$
+\end{enumerate}
+```
+
+The training will continue until neither $g$ nor
+$\omega$ can reduce the loss further.
+
+Both $g$ and $\omega$ will have the similar model structure.
+However, $\omega$ will be used to construct $f_{t+1}$ while $g$ will be in its raw form.
+
+\includegraphics[width=\textwidth]{./img/model}
+
+## Fama-French factor model

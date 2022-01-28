@@ -192,6 +192,16 @@ $endif$
 
 
 \begin{document}
+
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{cslreferences}%
+{
+    \setlength{\parindent}{0pt}%
+    \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces
+}%
+{\par}
+
 	
 % \pagenumbering{arabic}% resets `page` counter to 1 
 %$if(appendix)$

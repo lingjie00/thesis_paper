@@ -11,8 +11,11 @@ output:
 title:
     "Generative Adversarial Network (GAN) model in Asset Pricing"
 author:
-    name: "Wang Lingjie"
-    affiliation: "National University of Singapore"
+    "Wang Lingjie"
+    # name: "Wang Lingjie"
+    # affiliation: "National University of Singapore"
+header-includes:
+    - \usepackage{setspace}\doublespacing
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 keywords:
     "Generative Adversarial Network,
@@ -67,6 +70,14 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 ```{r, child=("model.Rmd")}
 ```
 
+<!-- model training -->
+```{r, child=("training.Rmd")}
+```
+
+<!-- model evaluation -->
+```{r, child=("metrics.Rmd")}
+```
+
 <!-- empirical results -->
 
 ```{r, child=("results.Rmd")}
@@ -83,3 +94,5 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 \listoftables
 
 <!-- reference -->
+
+# Reference
