@@ -1,15 +1,14 @@
 # Model
 
-We will explain the model architecture in this chapter.
-We will provide an overview in this section before deep
-diving into the specific concepts.
+We will explain the model architecture in this chapter. We
+will provide an overview here before deep diving into the
+specific concepts.
 
 The fundamental idea of our model is based on no arbitrage
-asset pricing model. Which assumes a stochastic discount
+asset pricing model, which assumes a stochastic discount
 factor such that there is no expected excess return,
-therefore no arbitrage opportunity available. We implement
+and no arbitrage opportunity available. We implement
 the no arbitrage condition as our loss function.
-
 The backbone of our model is a Generative Adversarial
 Network Model (GAN) which consist of two competing
 feed forward neutral network called discriminator and
@@ -18,25 +17,23 @@ relationship between factors and stochastic discount factor.
 The generator models the non-linear relationship between
 factors and mis-pricing, a latent variable that violates the
 no-arbitrage pricing assumption.
-
 We include a long short-term memory (LSTM) network to
 extract macroeconomic factors into the discriminator and
 generator. Discriminator and generator have different LSTM
 network to handle for the possibility of different
 information set is required for different networks.
-
 We use Fama-French factor model as the baseline comparison. 
 Fama-French factor model models stochastic discount factor
 as a linear combination as selected factors. The underlying
 model is a linear regression.
 
-```{r, child=("model/no_arbitrage.Rmd")}
-```
-
 ```{r, child=("model/neural_network.Rmd")}
 ```
 
 ```{r, child=("model/lstm.Rmd")}
+```
+
+```{r, child=("model/no_arbitrage.Rmd")}
 ```
 
 ```{r, child=("model/gan.Rmd")}

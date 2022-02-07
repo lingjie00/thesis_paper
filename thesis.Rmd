@@ -1,6 +1,6 @@
 ---
 output:
-    pdf_document:
+    bookdown::pdf_document2:
         # template: ./template/svm-latex-ms.tex
         fig_caption: yes
         keep_tex: no
@@ -54,6 +54,10 @@ abstract:
 <!-- main markdown for the whole thesis 
 useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 -->
+
+```{r echo=F}
+# libraries
+```
 
 <!-- introduction -->
 
