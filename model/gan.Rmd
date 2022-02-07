@@ -1,0 +1,36 @@
+## Generative adversarial network (GAN) model
+
+Generative adversarial network (GAN) model is first proposed
+by Goodfellow to xxxx. It is currently commonly used in
+deep fake and other image, video related tasks. The
+fundamental idea of GAN network is to train two competing
+network linked through a single loss function.
+
+There are two functions we are interested in finding:
+$\omega_t=\omega(I_t, I_{t, i})$ and 
+$\beta_{t, i}=\beta(I_t, I_{t, i})$
+
+These two functions are sufficient for:
+
+```{=latex}
+\begin{enumerate}
+    \item Explain cross-section of individual stock return $R^e_{t+1, i}$
+    \item Construct conditional mean-variance efficient tagency portfolio $f_{t+1}(\omega_t)$
+    \item Decompose stock returns into their predictable systematic componenet $\beta_{t, i}, f_{t+1}$ and their non-systematic unpredictable
+        component $\epsilon_{t+1, i}$
+\end{enumerate}
+```
+
+We will be using GAN (Generative adversarial network) methods to deduce $\omega_t$, which will construct $f_{t+1}$ and 
+later will be used to deduce $\beta_{t, i}$.
+
+GAN model requires 'Generator' and 'Discriminator'.
+
+A generator predict the outcome we are interested in (in our
+case, the function $\omega_t$) while a discriminator
+produces fake data that meant to confuse the generator (a
+pricing error function $g$ which we will define later). 
+
+A loss function links the generator and discriminator, and
+training will continue until neither generator nor
+discriminator can improve their performance further.

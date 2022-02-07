@@ -1,0 +1,64 @@
+## No arbitrage asset pricing model
+
+The no arbitrage asset pricing model assumes the existence
+of a stochastic discount factor (SDF) $M_t$ such that there
+is no expected excess return.
+Formally,
+let $R_{t, i}$ denote the returns of asset $i$ in time $t$,
+$R^f_{t}$ denote the returns of a risk-free asset,
+and $R^{e}_{t, i} = R_{t, i} - R^f_{t}$ denote the excess in
+returns in period $t$.
+Then no arbitrage asset pricing model says that there exist
+a $M_{t}$ such that
+
+$$
+E_t(M_t\cdot R^e_{t, i}) = 0
+$$
+
+We note that the SDF $M_t$ is independent of asset and is
+time varying. We further consider the SDF as an affine
+transformation of the tangency portfolio $F_t$, where we
+denote the tangency portfolio as 
+$F_t = \sum_{i=1}^N \omega_{t, i}R^e_{t, i}$
+
+<!--TODO:
+- explain why SDF is an affine transformation of tangency
+  portfolio
+- explain what is tangency portfolio
+  -->
+  
+$$
+M_t = 1 - F_t
+    = 1 - \sum_{i=1}^N \omega_{t, i} R^e_{t, i}
+$$
+
+<!--TODO:
+- explain how come excess return is a function of tangency
+  portfolio
+-->
+
+and
+
+\begin{align*}
+E_t(R^e_{t, i}) = \beta_i E_t(F_t),\\
+\Rightarrow R^e_{t, i} = \beta_i F_t + \epsilon_{t, i}
+\end{align*}
+
+Where $\beta_i$ is called the risk loadings,
+and $\epsilon_{t, i}$ is an idiosyncratic risk with 
+$E_t(\epsilon_{t, i})=0, Cov_t(F_t, \epsilon_{t, i})=0$.
+The excess return of an asset is then the risk loadings
+multiply by the tangency portfolio.
+
+Therefore, given the no arbitrage pricing model, pricing an
+asset is simplified to finding the SDF portfolio weight
+$\omega_t$ and a risk loadings $\beta_i$.
+
+In GAN model, we use the discriminator to estimate the
+$\omega_{t, i}$ and with the constructed $F_t = \sum_{i=1}^N
+\omega_{t, i}$ to find the risking loadings $\beta_i$.
+While in Fama-French model, they assume a special case of ...
+
+<!--TODO:
+explain how fama French model is a special case
+-->

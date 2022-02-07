@@ -30,159 +30,20 @@ Fama-French factor model models stochastic discount factor
 as a linear combination as selected factors. The underlying
 model is a linear regression.
 
-## No arbitrage asset pricing model
-
-The no arbitrage asset pricing model assumes the existence
-of a stochastic discount factor (SDF) $M_t$ such that there
-is no expected excess return.
-Formally,
-let $R_{t, i}$ denote the returns of asset $i$ in time $t$,
-$R^f_{t}$ denote the returns of a risk-free asset,
-and $R^{e}_{t, i} = R_{t, i} - R^f_{t}$ denote the excess in
-returns in period $t$.
-Then no arbitrage asset pricing model says that there exist
-a $M_{t}$ such that
-
-$$
-E_t(M_t\cdot R^e_{t, i}) = 0
-$$
-
-We note that the SDF $M_t$ is independent of asset and is
-time varying. We further consider the SDF as an affine
-transformation of the tangency portfolio $F_t$, where we
-denote the tangency portfolio as 
-$F_t = \sum_{i=1}^N \omega_{t, i}R^e_{t, i}$
-
-<!--TODO:
-- explain why SDF is an affine transformation of tangency
-  portfolio
-- explain what is tangency portfolio
-  -->
-  
-$$
-M_t = 1 - F_t
-    = 1 - \sum_{i=1}^N \omega_{t, i} R^e_{t, i}
-$$
-
-<!--TODO:
-- explain how come excess return is a function of tangency
-  portfolio
--->
-
-and
-
-\begin{align*}
-E_t(R^e_{t, i}) = \beta_i E_t(F_t),\\
-\Rightarrow R^e_{t, i} = \beta_i F_t + \epsilon_{t, i}
-\end{align*}
-
-Where $\beta_i$ is called the risk loadings,
-and $\epsilon_{t, i}$ is an idiosyncratic risk with 
-$E_t(\epsilon_{t, i})=0, Cov_t(F_t, \epsilon_{t, i})=0$.
-The excess return of an asset is then the risk loadings
-multiply by the tangency portfolio.
-
-Therefore, given the no arbitrage pricing model, pricing an
-asset is simplified to finding the SDF portfolio weight
-$\omega_t$ and a risk loadings $\beta_i$.
-
-In GAN model, we use the discriminator to estimate the
-$\omega_{t, i}$ and with the constructed $F_t = \sum_{i=1}^N
-\omega_{t, i}$ to find the risking loadings $\beta_i$.
-While in Fama-French model, they assume a special case of ...
-
-<!--TODO:
-explain how fama French model is a special case
--->
-
-## Neural network model
-
-Artificial neural network was first proposed in xxx
-
-## Long short-term memory network model
-
-Recurrent neural network (RNN) is a class of neural network that considers the past data in future prediction.
-
-Long Term Short Term Memory (LSTM) is a subclass of RNN that considers dynamic past data in future prediciton.
-
-LSTM is an improvement over vanilla RNN.
-In a vanilla RNN, an unique weight is given to each of the lagged data. 
-The number of lagged data will be pre-determined and could not scale well with higher lags.
-
-LSTM solves the problem by introducing forget gate, input gate and output gate.
-Simplify saying, LSTM endogenously handle the number of lags that will be useful in the prediction.
-
-Since we suspect past macro economic feature will affect our estimation and we are uncertain how many lag terms
-to include, we use RNN with LSTM to let the model decide the number lag terms.
-
-
-## Generative adversarial network (GAN) model
-
-Generative adversarial network (GAN) model is first proposed
-by Goodfellow to xxxx. It is currently commonly used in
-deep fake and other image, video related tasks. The
-fundamental idea of GAN network is to train two competing
-network linked through a single loss function.
-
-There are two functions we are interested in finding:
-$\omega_t=\omega(I_t, I_{t, i})$ and 
-$\beta_{t, i}=\beta(I_t, I_{t, i})$
-
-These two functions are sufficient for:
-
-```{=latex}
-\begin{enumerate}
-    \item Explain cross-section of individual stock return $R^e_{t+1, i}$
-    \item Construct conditional mean-variance efficient tagency portfolio $f_{t+1}(\omega_t)$
-    \item Decompose stock returns into their predictable systematic componenet $\beta_{t, i}, f_{t+1}$ and their non-systematic unpredictable
-        component $\epsilon_{t+1, i}$
-\end{enumerate}
+```{r, child=("model/no_arbitrage.Rmd")}
 ```
 
-We will be using GAN (Generative adversarial network) methods to deduce $\omega_t$, which will construct $f_{t+1}$ and 
-later will be used to deduce $\beta_{t, i}$.
+```{r, child=("model/neural_network.Rmd")}
+```
 
-GAN model requires 'Generator' and 'Discriminator'.
+```{r, child=("model/lstm.Rmd")}
+```
 
-A generator predict the outcome we are interested in (in our
-case, the function $\omega_t$) while a discriminator
-produces fake data that meant to confuse the generator (a
-pricing error function $g$ which we will define later). 
+```{r, child=("model/gan.Rmd")}
+```
 
-A loss function links the generator and discriminator, and
-training will continue until neither generator nor
-discriminator can improve their performance further.
+```{r, child=("model/generator_discriminator.Rmd")}
+```
 
-### Generator: $\omega(I_t, I_{t, i})$
-
-Given that $f_{t+1}=\omega_t^T R^e_{t+1}$, we need $\omega_t$ and $R^e_{t+1}$
-
-$R^e_{t+1}$ can be calculated with $R_{t+1} - R^f_{t+1}$ using price data.
-
-Only estimation required will be $\omega(I_t, I_{t, i})$.
-
-### Discriminator: $g(I_t, I_{t, i})$
-
-Under no arbitrage model, there exist a $m_{t+1}$ such that $E(m_{t+1}R^e_{t+1})=0$.
-
-In a more general case, we can always find a uncondtional expectation where 
-
-\begin{align*}
-    E(m_{t+1}R^e_{t+1, i}g(I_t, I_{t, i}))=0
-\end{align*}
-
-$g$ represents factors unexplained by the no-arbitrage model, or a pricing error.
-
-We will use $g$ as our discriminator.
-
-
-## Generative adversarial network model
-
-## Fama-French factor model
-
-Fama French factor model assumes the stochastic discount
-factor to be a special linear model depending only on a few
-factors. The Fama French three factor model depends on xxx,
-xxx, xxx and five factor model additional includes xxx and
-xxx.
-
+```{r, child=("model/fama_french.Rmd")}
+```

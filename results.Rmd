@@ -1,22 +1,18 @@
 # Empirical findings
 
-## Data
-
-We denote the input data with:
-
-```{=latex}
-\begin{tabular}{l @{ := } l}
-    $I_t$ & macroeconomic data at time $t$, such as inflation\\
-    $I_{t, i}$ & firm specific data at time $t$, such as book to market ratio
-\end{tabular}
+```r include=("data.Rmd")
 ```
 
 ## Mispricing error
 
-### Individual assets
+```r include=("mispricing_error_individual.Rmd")
+```
 
-### Portfolio
+```r include=("mispricing_error_portfolio.Rmd")
+```
 
-## SHARPE ratio
+```r include=("sharpe.Rmd")
+```
 
-## Cost benefit analysis
+```r include=("COVID.Rmd")
+```

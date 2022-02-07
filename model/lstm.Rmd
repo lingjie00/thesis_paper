@@ -1,0 +1,15 @@
+## Long short-term memory network model
+
+Recurrent neural network (RNN) is a class of neural network that considers the past data in future prediction.
+
+Long Term Short Term Memory (LSTM) is a subclass of RNN that considers dynamic past data in future prediciton.
+
+LSTM is an improvement over vanilla RNN.
+In a vanilla RNN, an unique weight is given to each of the lagged data. 
+The number of lagged data will be pre-determined and could not scale well with higher lags.
+
+LSTM solves the problem by introducing forget gate, input gate and output gate.
+Simplify saying, LSTM endogenously handle the number of lags that will be useful in the prediction.
+
+Since we suspect past macro economic feature will affect our estimation and we are uncertain how many lag terms
+to include, we use RNN with LSTM to let the model decide the number lag terms.

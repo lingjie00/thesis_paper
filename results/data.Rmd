@@ -1,0 +1,10 @@
+## Data
+
+We denote the input data with:
+
+```{=latex}
+\begin{tabular}{l @{ := } l}
+    $I_t$ & macroeconomic data at time $t$, such as inflation\\
+    $I_{t, i}$ & firm specific data at time $t$, such as book to market ratio
+\end{tabular}
+```
