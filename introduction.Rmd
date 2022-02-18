@@ -1,8 +1,8 @@
 # Introduction
 
-The fundamental problem of asset pricing is in understanding
+The fundamental problem of asset pricing is to understand
 the risk premium, or the differences in asset's average
-returns. Capital Asset Pricing Model (CAPM) suggests that an
+returns. No-arbitrage asset pricing model suggests that an
 asset is priced through a single asset pricing kernel.
 Although the theory is attractive, it is an empirical
 challenge to estimate the asset pricing kernel.
@@ -17,31 +17,36 @@ individual assets) to estimate the pricing kernel.
 
 A recent paper proposed a Generative Adversarial Network
 (GAN) model that attempts to solve all three problems in a
-single setup [@chen_deep_2019].
-GAN models consist of a discriminative neural network model
-and a generative neural network model. The discriminative
-and generative works like police and thief with contrasting
-objectives linked with a single pricing error loss function.
-The competition can be viewed as a zero-sum game with the
-discriminative network attempts to model the pricing kernel,
-improving the asset pricing model's explanatory power and
-reducing the pricing error loss. While the generative network
-attempts to choose portfolio and factors that is least
-explained by the asset pricing model to increase the pricing
-error loss.
-The goal is to build a discriminative network model with the
-best pricing kernel estimation and a generative network
-model with the best portfolio and factor construction.
-In contrast to previous research that only focus on firm
-characteristics, Chen further includes macroeconomic data
-using neural network long short-term memory (LSTM) proposed
-commonly used in predictions with a time series structure.
-The result is exciting, Chen claim to have outperformed all
-previous models in terms of xxx, xxx, and xxx.
+single setup [@chen_deep_2019]. GAN models is a class of
+neural network framework which consist of a discriminative neural
+network model and a generative neural network model. The
+discriminative and generative models works like police and thief
+with contrasting objectives linked with a single pricing
+error loss function. The competition can be viewed as a
+zero-sum game with the discriminative network attempting to
+model the pricing kernel, improving the no-arbitrage asset
+pricing model's explanatory power and reducing the pricing
+error loss. In contrast, the generative network attempts to choose
+portfolio and factors that is least explained by the
+no-arbitrage asset pricing model to increase the pricing
+error loss. The goal is to simultaneously build a
+discriminative network model with the best pricing kernel
+estimation and a generative network model with the best
+portfolio and factor construction. As compared to
+previous research that only focus on firm
+characteristics data, Chen et al. (2019) further include macroeconomic data
+using long short-term memory (LSTM), a class of neural
+network architecture that is commonly used in predictions
+with a time series structure. The result is exciting, Chen et al. (2019)
+claim to have outperformed all previous models in terms of
+Sharpe ratio, explained variation and pricing errors.
 
-Our paper attempts to validate Chen's research using the
-network model proposed in the paper and empirically test the
-performance in the United Kingdom stock market data from xxx
-to xxx. We further upgraded Chen's code base from the now
-depreciated TensorFlow v1.0 to the latest TensorFlow v2.0.
-All codes are publicly available in author's GitHub account.
+This paper attempts to empirically test the external validity
+of Chen et al. (2019)'s research which is based on the United States stock
+data with the United Kingdom London Stock Exchange data from
+2011 to 2021. 
+
+<!--
+TODO:
+add in end final results
+-->

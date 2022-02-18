@@ -1,10 +1,13 @@
 ## Data
 
-We denote the input data with:
+**Risk-free Rates**
+We take the Sterling Overnight Index Average (SONIA)
+benchmark as the risk-free rates. 
 
-```{=latex}
-\begin{tabular}{l @{ := } l}
-    $I_t$ & macroeconomic data at time $t$, such as inflation\\
-    $I_{t, i}$ & firm specific data at time $t$, such as book to market ratio
-\end{tabular}
-```
+**Macroeconomics data**
+
+Macroeconomics data ($I_t$)
+
+**Firm fundamental data**
+
+Firm specific fundamental data ($I_{t, i}$)

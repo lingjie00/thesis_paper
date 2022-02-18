@@ -1,4 +1,4 @@
-### Generator: $\omega(I_t, I_{t, i})$
+**Generator: $\omega(I_t, I_{t, i})$**
 
 Given that $f_{t+1}=\omega_t^T R^e_{t+1}$, we need $\omega_t$ and $R^e_{t+1}$
 
@@ -6,7 +6,7 @@ $R^e_{t+1}$ can be calculated with $R_{t+1} - R^f_{t+1}$ using price data.
 
 Only estimation required will be $\omega(I_t, I_{t, i})$.
 
-### Discriminator: $g(I_t, I_{t, i})$
+**Discriminator: $g(I_t, I_{t, i})$**
 
 Under no arbitrage model, there exist a $m_{t+1}$ such that $E(m_{t+1}R^e_{t+1})=0$.
 

@@ -1,8 +1,8 @@
 # Model
 
-We will explain the model architecture in this chapter. We
-will provide an overview here before deep diving into the
-specific concepts.
+This chapter focuses on explaining the model architecture
+used in this paper. An overview is provided here before deep
+diving into specific concepts at the sub-chapters.
 
 The fundamental idea of our model is based on no arbitrage
 asset pricing model, which assumes a stochastic discount

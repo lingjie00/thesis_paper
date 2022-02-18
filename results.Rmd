@@ -1,18 +1,17 @@
 # Empirical findings
 
-```r include=("data.Rmd")
+```{r, child=("./results/data.Rmd")}
 ```
 
 ## Mispricing error
-
-```r include=("mispricing_error_individual.Rmd")
+```{r, child=("./results/mispricing_error_individual.Rmd")}
 ```
 
-```r include=("mispricing_error_portfolio.Rmd")
+```{r, child=("./results/mispricing_error_portfolio.Rmd")}
 ```
 
-```r include=("sharpe.Rmd")
+```{r, child=("./results/sharpe.Rmd")}
 ```
 
-```r include=("COVID.Rmd")
+```{r, child=("./results/COVID.Rmd")}
 ```

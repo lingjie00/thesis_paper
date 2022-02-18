@@ -1,6 +1,10 @@
-# Model training
+# Model training {#model_training}
 
-## Pricing loss function for GAN
+## Training Neutral network
+
+**Regularization with Dropout**
+
+**Empirical no arbitrage asset pricing loss**
 
 We can summarise the relationship between generator and discriminator using a 
 min max optimization problem as the loss function.

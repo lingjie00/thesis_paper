@@ -22,34 +22,40 @@ keywords:
     Asset Pricing
     "
 thanks: "Replication files are available on the author's
-        Github account"
+        [Github account](https://github.com/lingjie00/asset_pricing)"
 geometry: margin=2.5cm
+urlcolor: blue
 # fontfamily: mathpazo
 fontsize: 11pt
 spacing: double
 bibliography: ref.bib
 csl: ./template/apa.csl
 abstract: 
-    "The critical goal in asset pricing is to
-    understand the differences in asset's average
-    returns. Capital Asset Pricing Model (CAPM)
-    provides a unified explanation through an asset
-    pricing kernel. The challenges in estimating the
-    asset-pricing kernel include choosing the right
-    factors, estimating the pricing kernel's
-    functional form, and selecting the right
-    portfolio. A recent paper proposed a Generative
-    Adversarial Network (GAN) model attempts to
-    solve all three challenges in a single setup and
-    claim to achieve the best performance compared
-    to all existing models [@chen_deep_2019]. We
-    validated Chen's research and empirically tested
-    the model performance with the United Kingdom (UK)
-    data. We found the model performance to be
-    consistent in the UK 19xx - 20xx data,
-    outperforming Fama French model in explaining
-    the asset mispricing."
+    "
+    The critical goal in asset pricing is to understand the
+    differences in asset’s average returns. No-arbitrage
+    pricing theory provides a direct explanation by
+    explaining price differences through an asset-pricing
+    kernel. However, it remains a challenge to estimate the
+    asset-pricing kernel. The difficulties include (1)
+    choosing the right factors, (2) estimating the pricing
+    kernel’s functional form, and (3) selecting the right
+    portfolio to estimate the kernel. A recent paper
+    proposed a Generative Adversarial Network (GAN) model
+    that attempts to solve all three challenges in a single
+    setup and claim to achieve the best performance compared
+    to all existing models [@chen_deep_2019]. This paper empirically
+    validated Chen et al. (2019)’s research which is based on the United
+    States stock data with the United Kingdom (UK) London
+    Stock Exchange 2011 - 2021 data.
+    "
 ---
+
+<!-- Results
+We found the model performance to be
+consistent in the UK 2011 - 2021 data,
+outperforming Fama French model in explaining
+the asset mispricing. -->
 
 <!-- main markdown for the whole thesis 
 useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
@@ -93,6 +99,8 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 ```
 
 <!--list of tables and figures-->
+# List of Tables and Figures
+
 \listoffigures
 
 \listoftables

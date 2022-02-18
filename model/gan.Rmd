@@ -1,4 +1,4 @@
-## Generative adversarial network (GAN) model
+## Generative adversarial network (GAN) model {#GAN_model}
 
 Generative adversarial network (GAN) model is first proposed
 by Goodfellow to xxxx. It is currently commonly used in

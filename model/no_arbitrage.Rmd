@@ -1,4 +1,4 @@
-## No arbitrage asset pricing model
+## No arbitrage asset pricing loss function {#loss_function}
 
 The no arbitrage asset pricing model assumes the existence
 of a stochastic discount factor (SDF) $M_t$ such that there
