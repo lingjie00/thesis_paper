@@ -29,6 +29,7 @@ urlcolor: blue
 fontsize: 11pt
 spacing: double
 bibliography: ref.bib
+nocite: "@fama_five-factor_2015 @fama_choosing_2017 @coulombe_can_2021"
 csl: ./template/apa.csl
 abstract: 
     "
