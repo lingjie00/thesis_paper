@@ -1,55 +1,132 @@
-# Model training {#model_training}
+<!-- # Model training --> 
+
+We first explains how do we train a general neural network
+before focusing on GAN model training. We end with
+Fama-French model training.
 
 ## Training Neutral network
 
-**Regularization with Dropout**
+Training neural network is an empirical experiment. 
+We explained the most important components including
+optimization algorithm, dynamic learning rate and
+regularization. We followed Chen et al. (2019)'s experiment
+in hyper-parameters tuning including number of hidden units
+and number of hidden layers.
 
-**Empirical no arbitrage asset pricing loss**
+### Optimizer using Adam
 
-We can summarise the relationship between generator and discriminator using a 
-min max optimization problem as the loss function.
+As explained in [neural network model](#nn_model), one key
+components in the training procedure is back-propagation. We
+used adaptive moment estimation (Adam) [@kingma_adam_2015] which
+combines momentum optimization and RMSProp, another
+optimizer popular before Adam. We define
+$\bold{\theta}$ as the multi-variable weights,
+$\nabla_{\bold{\theta}}J(\bold{\theta})$ as the
+multi-variable gradient with respect to a loss function $J(\cdot)$,
+$\eta$ as the learning rate,
+$\bold{m}$ as the momentum vector, and $\bold{s}$ as the
+squared of momentum vector,
+$\beta_1$ as the momentum rate,
+$\beta_2$ as the decay rate,
+$\epsilon$ as the smoothing parameter to avoid zero
+division,
+$\otimes$ as the element wise multiplication,
+and $\oslash$ as the element wise division.
+In contrast to a gradient descent algorithm where the
+updating rule is independent of the previous gradients:
+$\bold{\theta} \leftarrow \bold{\theta} - \eta
+\nabla_{\bold{\theta}} J(\bold{\theta})$,
+a general momentum algorithm includes an additional parameter
+$\bold{m}$ that captures the value of previous gradients,
+allowing for faster convergence.
+Adaptive gradient methods scale down the gradient by the
+past gradient value $\sqrt{\bold{s}}$, decaying the steeper
+gradients more than the smoother gradients, allowing the
+parameter to convergence even faster.
+And Adam combined the momentum and adaptive gradients
+techniques.
 
-We want to maximise the loss by changing function $g$ while minimise the loss by changing function $\omega$
+A momentum algorithm is described as:
 
-```{=latex}
-\begin{align*}
-    \min_{\omega} \max_{g} \frac{1}{N} \sum_{j=1}^N \left\{
-    E \left[ 
-        \left( 1 - \sum_{i=1}^N \omega(I_t, I_{t, i}) R^e_{t+1, i} \right)
-        R^e_{t+1, j}g(I_t, I_{t, j})
-    \right] \right\}^2
-\end{align*}
-```
+1. $\bold{m} \leftarrow \beta_1 \bold{m} - \eta
+   \nabla_{\bold{\theta}}J(\bold{\theta})$
+2. $\bold{\theta}\leftarrow \bold{\theta} + \bold{m}$
 
-the final estimated generator function $\hat\omega$ is
+An adaptive gradient algorithm is described as:
 
-```{=latex}
-\begin{align*}
-    \hat\omega &= \min_{\omega} L(\omega|\hat{g}, I_t, I_{t, i})
-\end{align*}
-```
+1. $\bold{s} \leftarrow \beta_2 \bold{s} + (1-\beta_2)
+   \nabla_{\bold{\theta}} J(\bold{\theta}) \otimes
+   \nabla_{\bold{\theta}}J(\bold{\theta})$
+2. $\bold{\theta} \leftarrow \bold{\theta} - \eta
+   \nabla_{\bold{\theta}}J(\bold{\theta}) \oslash \sqrt{\bold{s} + \epsilon}$
 
-which is the $\omega$ that minimise the loss function, with a given discriminator $g$.
+The Adam algorithm is described as:
+
+1. $\bold{m} \leftarrow \beta_1 \bold{m} - (1-\beta_1)
+   \nabla_{\bold{\theta}} J(\bold{\theta})$
+2. $\bold{s} \leftarrow \beta_2 \bold{s} + (1-\beta_2)
+   \nabla_{\bold{\theta}} J(\bold{\theta}) \otimes
+   \nabla_{\bold{\theta}} J(\bold{\theta})$
+3. $\hat{ \bold{m} } \leftarrow \frac{\bold{m}}{1-\beta_1^t}$
+4. $\hat{ \bold{s} } \leftarrow \frac{\bold{s}}{1-\beta_2^t}$
+5. $\bold{\theta} \leftarrow \bold{\theta} + 
+   \eta \hat{ \bold{m} } \oslash \sqrt{\hat{ \bold{s} } + \epsilon}$
+
+### Dynamic learning rate with learning schedule
+
+The learning rate $\eta$ affects the extend gradients are
+updated. A too high learning rate prevents gradient descent
+from converging while a too low learning rate significantly
+increase the training time. Instead of using a fixed
+learning rate, this paper adopts a exponential scheduling
+where the learning rate is updated as the training epochs $t$
+increase. We denote $\eta_0$ as the initial learning rate,
+$s$ as a hyper-parameter step that decrease the impact of the
+initial $s$ training epochs. The learning rate decrease
+faster as the training epochs increase.
+
+$$
+\eta(t) = \eta_0 0.1 ^{t/s}
+$$
+
+### Regularization
+
+Regularization refers to techniques used to over
+over-fitting, that is the model is tuned solely on the
+training data and does not generalise well in unseen test
+data. Common regularization techniques used in traditional
+machine learning including $\ell 1$ and $\ell 2$ penalty.
+Deep learning provides additional regularization techniques
+including dropout and early stopping which is adopted in
+this paper.
+
+#### Regularization with dropout
+
+Dropout is a simple but powerful algorithm, users set a
+hyper-parameter dropout rate $p$ and during training, $p$%
+of the hidden units will not be included in the gradient
+calculation. Intuitively, dropout forces the neural network
+to train a new but dependent model during each training
+epochs, avoiding relying on the same information each time.
+Dropout is not used during prediction.
+
+#### Regularization with early stopping
+
+Early stopping is a technique that stops model training
+before the model over-fits the training data. Stopping
+criteria is pre-set by the users and for a standard neural
+network usually the decrease in loss function is used as the
+criteria. For example, if the decrease in loss between $t$
+and $t+1$ is less than $\epsilon$, training stops. It is
+harder to decide on a stopping criteria for GAN models, and
+this paper use Sharpe ratio as the stopping criteria.
+Besides preventing over-fitting, early stopping also allows
+automated training as users can set higher training epochs
+without terminating model training manually.
 
 ## GAN Model architecture
 
-GAN has a two step training procedure.
-
-```{=latex}
-\begin{enumerate}
-    \item Train $\omega$ while keeping $g$ unchanged
-        \subitem $\min_{\omega} L(\omega|\hat{g}, I_t, I_{t,i})$
-    \item Train $g$ while keeping $\omega$ unchanged
-        \subitem $\max_{g} L(g|\hat\omega, I_t, I_{t,i})$
-\end{enumerate}
+```{r child="training_GAN.Rmd"}
 ```
-
-The training will continue until neither $g$ nor
-$\omega$ can reduce the loss further.
-
-Both $g$ and $\omega$ will have the similar model structure.
-However, $\omega$ will be used to construct $f_{t+1}$ while $g$ will be in its raw form.
-
-\includegraphics[width=\textwidth]{./img/model}
 
 ## Fama-French factor model

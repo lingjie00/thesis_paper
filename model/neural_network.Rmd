@@ -1,9 +1,9 @@
-## Neural network model
+## Neural network model {#nn_model}
 
 Neural network is a general non-parametric non-linear model
 that models both non-linear relationship between input data
-$\bold{X}$ and output $y=f(\bold{X})$ and interaction
-effects between input data $\bold{X}$. In this paper we
+$\mathbf{X}$ and output $y=f(\mathbf{X})$ and interaction
+effects between input data $\mathbf{X}$. In this paper we
 built two neural network models to (1) model the stochastic
 discount factor (SDF) weight and (2) model conditional
 moments in discriminant network model, which will be
@@ -20,11 +20,11 @@ the role of a loss function in this chapter before going in
 depth on our economic driven loss function in [No arbitrage
 asset pricing loss function](#loss_function).
 
-**Feed forward neural network**
+### Feed forward neural network
 A standard feed forward neural network consist of one input
 layer, one or multiple hidden layer(s) and one output layer.
 In the input layer (first layer in figure
-\@ref(fig:feedforward)), each of the input data $\bold{X} =
+\@ref(fig:feedforward)), each of the input data $\mathbf{X} =
 (X_1, X_2, \cdots, X_p)$ forms a single unit. The input
 layer is then linked to the units in the hidden layer called
 hidden units, where the number of hidden units and number of
@@ -38,7 +38,8 @@ both macroeconomic factors and firm financial data.
 
 <!--TODO: replace this image-->
 
-**Hidden layers and hidden units**
+### Hidden layers and hidden units
+
 Hidden layers refer to the number of layers between input
 and output layer. A deep neural network refers to a feed
 forward network with multiple hidden layers. We considered a
@@ -58,7 +59,8 @@ $h_j^{(k)}(\omega_{ij}^{(k)}
   then combined at the output layer to produce the final
   output.
 
-**Activation function**
+### Activation function
+
 There are various activation functions ($h_k(\cdot)$)
 available. In this paper we used one of the most commonly
 used activation functions known as rectified linear unit
@@ -66,8 +68,7 @@ used activation functions known as rectified linear unit
 0)$ effectively removes the negative values. It is shown to
 improve the convergence rate of stochastic gradient descent
 compared to other activation functions such as sigmoid
-function.
-<!--TODO: provide citation for ReLU -->
+function [@nair_rectified_2010].
 
 ```{r relu, fig.cap="Rectified linear unit (ReLU) activation function", echo=F}
 data <- -5:5
@@ -75,12 +76,13 @@ data <- ifelse(data <= 0, 0, data)
 plot(-5:5, data, type = "l", xlab = "x", ylab = "ReLU(x)")
 ```
 
-**Loss function**
+### Loss function
 
-**Backpropagation**
+### Back-propagation
+
 After the data is passed through from input layer to output
-layer, a backpropagation training algorithm is then used to
-train the network. Backpropagation minimises a given loss
+layer, a back-propagation training algorithm is then used to
+train the network. Back-propagation minimises a given loss
 function by updating the weights and biases in the network
 model through gradient descent and chain rule.
 
@@ -89,14 +91,14 @@ example, let's assume a loss function of mean squared error.
 We have
 
 $$
-\text{Loss: } E(\bold{X}, \bold{\omega}) = E\left[ \bold{y} - \hat{f}(\bold{X})\right]^2
+\text{Loss: } E(\mathbf{X}, \mathbf{\omega}) = E\left[ \mathbf{y} - \hat{f}(\mathbf{X})\right]^2
 $$
 
 With gradient:
 
 $$
-\frac{\partial E(\bold{X}, \bold{\omega})}{\partial \omega_{ij}^k}
-= \frac{\partial E(\bold{X}, \bold{\omega})}{\partial a_j^k}
+\frac{\partial E(\mathbf{X}, \mathbf{\omega})}{\partial \omega_{ij}^k}
+= \frac{\partial E(\mathbf{X}, \mathbf{\omega})}{\partial a_j^k}
 \frac{\partial a_j^k}{\partial \omega_{ij}^k}
 $$
 
@@ -104,5 +106,5 @@ And update the weights using gradient descent method:
 
 $$
 \omega_{ij}^k = \omega_{ij}^k - \lambda \frac{\partial
-E(\bold{X}, \bold{\omega})}{\partial \bold{\omega}}
+E(\mathbf{X}, \mathbf{\omega})}{\partial \mathbf{\omega}}
 $$

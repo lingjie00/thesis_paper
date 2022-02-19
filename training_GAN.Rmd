@@ -1,0 +1,74 @@
+As explained in [Generative adversarial network (GAN)
+model](#GAN_model), a GAN model trains a discriminator and
+generator simultaneously. To further increase the
+convergence speed, we first train the individual network
+separately in a standard neural network training procedure
+before training them simultaneously in a GAN framework.
+
+### Discriminator network structure
+As illustrated in figure [](), the discriminator network has
+two input layers with one for macroeconomic data and another
+for firm characteristics data. The network concatenate the
+latent variables produced by long short-term memory (LSTM)
+and firm characteristics to produce a single output which
+correspond to the stochastic discount factor (SDF) weight
+$\bold{\omega_t}$. Therefore, the training for discriminator
+can be express as the following equation.
+
+$$
+\min_{\omega} L(\omega|\hat{g}, I_t, I_{t,i})
+$$
+
+### Generator network structure
+As illustrated in figure [](), the generator network shares
+a similar network structure as the discriminator network.
+The only difference is in the output layer where generator
+network will select latent variables that represents a
+combination of assets and factors that are unexplained by
+the no-arbitrage condition. Therefore, the training for
+generator can be express as the following equation.
+
+$$
+\max_{g} L(g|\hat\omega, I_t, I_{t,i})
+$$
+
+### GAN network structure
+
+As showned in figure \@ref(fig:ganDiagram), the discriminator and generator
+are linked by a common pricing loss function. Discriminator
+aims to decrease the pricing loss while generator aims to
+increase the pricing loss. Note that in constructing the
+SDF, we require the SDF weights multiply by the excess
+returns before the pricing loss calculation.
+
+![(#fig:ganDiagram) GAN model structure](./img/model)
+
+### Empirical no arbitrage asset pricing loss
+
+The relationship between discriminator and generator can be
+express as a min max optimization with respect to the
+pricing loss function. As the firms exist for different
+duration, to incorporate missing data, we weighted the
+pricing loss with respect to the number of non-missing data
+$T_i$.
+
+\begin{align*}
+\min_{\omega} \max_{g} L(\omega, g|I_t, I_{t, i}) &=
+\frac{1}{N} \sum_{i=1}^N 
+\frac{T_i}{T}
+\left[ 
+\frac{1}{T_i}
+\sum_{t\in T_i}
+\left( 1 - \sum_{j=1}^N \omega(I_t, I_{t, j}) R^e_{t+1, j} \right)
+R^e_{t+1, i}g(I_t, I_{t, i})
+\right]^2\\
+&=
+\frac{1}{N} \sum_{i=1}^N 
+\frac{T_i}{T}
+\left[ 
+\frac{1}{T_i}
+\sum_{t\in T_i}
+M_{t+1}
+R^e_{t+1, i}g(I_t, I_{t, i})
+\right]^2
+\end{align*}

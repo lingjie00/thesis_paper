@@ -1,4 +1,4 @@
-# Literature Review
+<!-- # Literature Review -->
 
 <!-- Explain the current literature on the issue
 Highlighting the gap in the literature
@@ -38,13 +38,14 @@ factors. There are many other papers exploring the
 possibility of other factors. A recent paper systematically
 reviewed a wide range of previously proposed factors and
 found that most factors provide little additional values
-than the five factor model [@feng_taming_2020]. However, Chen
-et al. (2019) show that all factors considered contributed
-to the GAN model. Furthermore, macroeconomic data further
-improves the model performance, aligned with another
-research paper [@pelger_interpretable_2018]. This paper extracts
-the United Kingdom’s macroeconomic data from Goulet Coulombe
-et al. (2021) and firm fundamental data from financial data
+than the five factor model [@feng_taming_2020]. However,
+Chen et al. (2019) show that all factors considered
+contributed to the GAN model. Furthermore, Chen et al.
+(2019) shows macroeconomic data further improves the model
+performance, aligned with another research paper
+[@pelger_interpretable_2018]. This paper extracts the United
+Kingdom’s macroeconomic data from Goulet Coulombe et al.
+(2021) and firm fundamental data from financial data
 provider Finage.
 
 Typical test portfolios are based on firm characteristics
@@ -86,3 +87,15 @@ Therefore, one of the critical contributions of this paper
 is to provide insights into the potential benefits that
 exploring advanced models that can bring to the United
 Kingdom.
+
+Training neural network models is an empirical challenge,
+regularisation techniques are commonly used in machine
+learning to prevent over-fitting. Besides the dropout
+[@srivastava_dropout_2014] techniques adopted by Chen et al.
+(2019), this paper further includes early stopping rules
+[@yao_early_2007], allowing automated training instead of
+arbitrary training epochs. Understanding and explaining
+neural network require the foundation of many various
+fields, this paper referenced to Hands-On Machine Learning
+with Scikit-Learn and TensorFlow for the explanation.
+[@geron_hands-machine_2017]

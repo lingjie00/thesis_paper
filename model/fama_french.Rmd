@@ -1,8 +1,9 @@
 ## Fama-French factor model
 
+<!--
 Fama French factor model assumes the stochastic discount
 factor to be a special linear model depending only on a few
 factors. The Fama French three factor model depends on xxx,
 xxx, xxx and five factor model additional includes xxx and
 xxx.
-
+-->

@@ -1,5 +1,6 @@
 ## Data
 
+<!--
 **Risk-free Rates**
 We take the Sterling Overnight Index Average (SONIA)
 benchmark as the risk-free rates. 
@@ -11,3 +12,4 @@ Macroeconomics data ($I_t$)
 **Firm fundamental data**
 
 Firm specific fundamental data ($I_{t, i}$)
+-->

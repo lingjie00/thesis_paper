@@ -1,4 +1,4 @@
-# Empirical findings
+<!-- # Empirical findings -->
 
 ```{r, child=("./results/data.Rmd")}
 ```

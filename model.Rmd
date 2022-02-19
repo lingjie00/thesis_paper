@@ -1,4 +1,4 @@
-# Model
+<!-- # Model -->
 
 This chapter focuses on explaining the model architecture
 used in this paper. An overview is provided here before deep
@@ -37,9 +37,6 @@ model is a linear regression.
 ```
 
 ```{r, child=("model/gan.Rmd")}
-```
-
-```{r, child=("model/generator_discriminator.Rmd")}
 ```
 
 ```{r, child=("model/fama_french.Rmd")}

@@ -1,33 +1,16 @@
 ---
 output:
     bookdown::pdf_document2:
-        # template: ./template/svm-latex-ms.tex
+        template: ./template/thesis_template.tex
         fig_caption: yes
         keep_tex: no
         number_sections: yes
         toc: true
-        toc_depth: 3
+        toc_depth: 2
         latex_engine: pdflatex
-title:
-    "Generative Adversarial Network (GAN) model in Asset Pricing"
-author:
-    "Wang Lingjie"
-    # name: "Wang Lingjie"
-    # affiliation: "National University of Singapore"
-header-includes:
-    - \usepackage{setspace}\doublespacing
-date: "`r format(Sys.time(), '%B %d, %Y')`"
-keywords:
-    "Generative Adversarial Network,
-    Asset Pricing
-    "
-thanks: "Replication files are available on the author's
-        [Github account](https://github.com/lingjie00/asset_pricing)"
-geometry: margin=2.5cm
-urlcolor: blue
-# fontfamily: mathpazo
-fontsize: 11pt
-spacing: double
+title: "Generative Adversarial Network (GAN) model in Asset Pricing"
+author: "Wang Lingjie"
+keywords: "Generative Adversarial Network, Asset Pricing"
 bibliography: ref.bib
 nocite: "@fama_five-factor_2015 @fama_choosing_2017 @coulombe_can_2021"
 csl: ./template/apa.csl
@@ -50,6 +33,9 @@ abstract:
     States stock data with the United Kingdom (UK) London
     Stock Exchange 2011 - 2021 data.
     "
+acknowledgement:
+    "
+    "
 ---
 
 <!-- Results
@@ -67,45 +53,58 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 ```
 
 <!-- introduction -->
+# Introduction
+\thispagestyle{plain}
 
 ```{r, child=("introduction.Rmd")}
 ```
 
 <!-- literature review -->
 
+# Literature Review
+\thispagestyle{plain}
+
 ```{r, child=("lit_review.Rmd")}
 ```
 
 <!-- model -->
+# Model
+\thispagestyle{plain}
 
 ```{r, child=("model.Rmd")}
 ```
 
 <!-- model training -->
+# Model Training {#model_training}
+\thispagestyle{plain}
+
 ```{r, child=("training.Rmd")}
 ```
 
 <!-- model evaluation -->
+# Evaluation metrics
+
+\thispagestyle{plain}
+
 ```{r, child=("metrics.Rmd")}
 ```
 
 <!-- empirical results -->
+# Empirical findings
+\thispagestyle{plain}
 
 ```{r, child=("results.Rmd")}
 ```
 
 <!-- conclusion -->
+# Conclusion
+\thispagestyle{plain}
 
 ```{r, child=("conclusion.Rmd")}
 ```
 
-<!--list of tables and figures-->
-# List of Tables and Figures
+<!-- references -->
+\newpage
 
-\listoffigures
-
-\listoftables
-
-<!-- reference -->
-
-# Reference
+# BIBLIOGRAPHY
+\thispagestyle{plain}

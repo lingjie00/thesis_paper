@@ -1,36 +1,42 @@
-## Generative adversarial network (GAN) model {#GAN_model}
+## GAN model and pricing loss function {#loss_function}
 
-Generative adversarial network (GAN) model is first proposed
-by Goodfellow to xxxx. It is currently commonly used in
-deep fake and other image, video related tasks. The
-fundamental idea of GAN network is to train two competing
-network linked through a single loss function.
+The discussion on no-arbitrage asset pricing has reduced the
+asset pricing model into estimating SDF weights which we assume to be
+a function of factors including macroeconomic data $I_t$ and
+firm characteristic data $I_{t, i}$. The discriminator
+network in this paper will be responsible for $\omega$
+estimation.
+However, if the no-arbitrage asset pricing model alone is
+insufficient to explain the differences in asset pricing,
+then we can define a function $g(I_t, I_{t, i})$ that
+selects the test assets and characteristic SDF is unable to
+explain. The generator network in this paper will be
+responsible for $g$ estimation.
 
-There are two functions we are interested in finding:
-$\omega_t=\omega(I_t, I_{t, i})$ and 
-$\beta_{t, i}=\beta(I_t, I_{t, i})$
+$$
+\text{Discriminator: } \omega(I_t, I_{t, i})
+\text{, Generator:} g(I_t, I_{t, i})
+$$
 
-These two functions are sufficient for:
+Therefore, the conditional no arbitrage pricing model
+implies infinite unconditional expectation where
+$E[M_{t+1}R^e_{t+1, i}g(I_t, I_{t, i})] = 0$, and we can
+summary the GAN training procedure as a zero-sum game where
+the discriminator tries to minimise the pricing loss while
+the generator tries to maximise the pricing loss. Note that
+the functions estimated by discriminator and generator are
+both time and asset independent. We summarise the
+relationship as the following no-arbitrage pricing loss
+function.
 
-```{=latex}
-\begin{enumerate}
-    \item Explain cross-section of individual stock return $R^e_{t+1, i}$
-    \item Construct conditional mean-variance efficient tagency portfolio $f_{t+1}(\omega_t)$
-    \item Decompose stock returns into their predictable systematic componenet $\beta_{t, i}, f_{t+1}$ and their non-systematic unpredictable
-        component $\epsilon_{t+1, i}$
-\end{enumerate}
-```
-
-We will be using GAN (Generative adversarial network) methods to deduce $\omega_t$, which will construct $f_{t+1}$ and 
-later will be used to deduce $\beta_{t, i}$.
-
-GAN model requires 'Generator' and 'Discriminator'.
-
-A generator predict the outcome we are interested in (in our
-case, the function $\omega_t$) while a discriminator
-produces fake data that meant to confuse the generator (a
-pricing error function $g$ which we will define later). 
-
-A loss function links the generator and discriminator, and
-training will continue until neither generator nor
-discriminator can improve their performance further.
+\begin{align*}
+    \min_{\omega} \max_{g} L(\omega, g|I_t, I_{t, i}) &=
+    \frac{1}{N} \sum_{i=1}^N \left\{
+    E \left[ \left( 1 - \sum_{j=1}^N \omega(I_t, I_{t, j})
+    R^e_{t+1, j} \right) R^e_{t+1, j}g(I_t, I_{t, i})
+    \right] \right\}^2\\
+    &= 
+    \frac{1}{N} \sum_{i=1}^N \left\{
+    E \left[ M_{t+1} R^e_{t+1, i}g(I_t, I_{t, i})
+    \right] \right\}^2\\
+\end{align*}

@@ -1,4 +1,4 @@
-# Introduction
+<!--INTRODUCTION-->
 
 The fundamental problem of asset pricing is to understand
 the risk premium, or the differences in asset's average
@@ -45,6 +45,11 @@ This paper attempts to empirically test the external validity
 of Chen et al. (2019)'s research which is based on the United States stock
 data with the United Kingdom London Stock Exchange data from
 2011 to 2021. 
+
+
+Replication files are available on the author's GitHub
+account
+[github.com/lingjie00/asset_pricing](https://github.com/lingjie00/asset_pricing)
 
 <!--
 TODO:

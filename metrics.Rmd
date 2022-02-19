@@ -1,4 +1,4 @@
-# Evaluation metrics
+<!-- # Evaluation metrics -->
 
 This paper evaluates the performance of the GAN model against the
 Fama French model based on the mispricing error and Sharpe
