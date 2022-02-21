@@ -7,13 +7,13 @@ standard neural network training procedure before training
 them simultaneously in a GAN framework.
 
 ### Discriminator network structure
-As illustrated in figure \@ref(fig:discriminator), the discriminator network has
+As illustrated in Figure \@ref(fig:discriminator), the discriminator network has
 two input layers, one for macroeconomic data and another
 for firm characteristics data. The network concatenates the
 latent variables produced by the LSTM layer
 and firm characteristics to produce a single output
 corresponding to the stochastic discount factor (SDF) weight
-$\bold{\omega_t}$. Therefore, the training for discriminator
+$\mathbf{\omega_t}$. Therefore, the training for discriminator
 can be expressed as the following equation.
 
 $$
@@ -23,7 +23,7 @@ $$
 ![(#fig:discriminator)Discriminator structure](./img/discriminator)
 
 ### Generator network structure
-As illustrated in figure \@ref(fig:generator), the generator network shares
+As illustrated in Figure \@ref(fig:generator), the generator network shares
 a similar structure as the discriminator network.
 The only difference is in the output layer, where the generator
 network will select factors representing a
@@ -39,7 +39,7 @@ $$
 
 ### GAN network structure
 
-As shown in figure \@ref(fig:ganDiagram), the discriminator and generator
+As shown in Figure \@ref(fig:ganDiagram), the discriminator and generator
 are linked by a single pricing loss function. Discriminator
 aims to decrease the pricing loss while generator seeks to
 increase the pricing loss. Note that we require the SDF

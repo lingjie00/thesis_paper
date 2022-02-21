@@ -38,8 +38,8 @@ tangency portfolio $F_{t+1}$,
 and we have $M_{t+1} = a - b F_{t+1}$.
 We define the tangency portfolio in terms of the 
 excess return compared to the risk-free rate $F_{t+1} :=
-\bold{\omega}_t^T R^e_{t+1, F}$ with the SDF weight
-$\bold{\omega}_t$. Furthermore, since
+\mathbf{\omega}_t^T R^e_{t+1, F}$ with the SDF weight
+$\mathbf{\omega}_t$. Furthermore, since
 $E[M_{t+1}R^f_{t+1}] = 1 \Rightarrow R^f_{t+1} = 1/E[M_{t+1}]$.
 We have:
 \begin{align*}

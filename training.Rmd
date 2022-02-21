@@ -20,11 +20,11 @@ is one critical component in the training procedure.
 We used adaptive moment estimation (Adam)
 [@kingma_adam_2015], which combines momentum optimization and
 RMSProp, another optimizer famou before Adam. We define
-$\bold{\theta}$ as the multi-variable weights,
-$\nabla_{\bold{\theta}}L(\bold{\theta})$ as the
+$\mathbf{\theta}$ as the multi-variable weights,
+$\nabla_{\mathbf{\theta}}L(\mathbf{\theta})$ as the
 multi-variable gradient with respect to a loss function $L(\cdot)$,
 $\eta$ as the learning rate,
-$\bold{m}$ as the momentum vector, and $\bold{s}$ as the
+$\mathbf{m}$ as the momentum vector, and $\mathbf{s}$ as the
 squared of momentum vector,
 $\beta_1$ as the momentum rate,
 $\beta_2$ as the decay rate,
@@ -34,13 +34,13 @@ $\otimes$ as the element wise multiplication,
 and $\oslash$ as the element wise division.
 In contrast to a gradient descent algorithm where the
 updating rule is independent of the previous gradients:
-$\bold{\theta} \leftarrow \bold{\theta} - \eta
-\nabla_{\bold{\theta}} L(\bold{\theta})$,
+$\mathbf{\theta} \leftarrow \mathbf{\theta} - \eta
+\nabla_{\mathbf{\theta}} L(\mathbf{\theta})$,
 a general momentum algorithm includes an additional parameter
-$\bold{m}$ that captures the value of previous gradients,
+$\mathbf{m}$ that captures the value of previous gradients,
 allowing for faster convergence.
 Adaptive gradient methods scale down the gradient by the
-past gradient value $\sqrt{\bold{s}}$, decaying the steeper
+past gradient value $\sqrt{\mathbf{s}}$, decaying the steeper
 gradients more than the smoother gradients, allowing the
 parameter to convergence even faster.
 Adam combined the momentum and adaptive gradients
@@ -48,30 +48,30 @@ techniques.
 
 A momentum algorithm is described as:
 
-1. $\bold{m} \leftarrow \beta_1 \bold{m} - \eta
-   \nabla_{\bold{\theta}}L(\bold{\theta})$
-2. $\bold{\theta}\leftarrow \bold{\theta} + \bold{m}$
+1. $\mathbf{m} \leftarrow \beta_1 \mathbf{m} - \eta
+   \nabla_{\mathbf{\theta}}L(\mathbf{\theta})$
+2. $\mathbf{\theta}\leftarrow \mathbf{\theta} + \mathbf{m}$
 
 An adaptive gradient algorithm is described as:
 
-1. $\bold{s} \leftarrow \beta_2 \bold{s} + (1-\beta_2)
-   \nabla_{\bold{\theta}} L(\bold{\theta}) \otimes
-   \nabla_{\bold{\theta}}L(\bold{\theta})$
-2. $\bold{\theta} \leftarrow \bold{\theta} - \eta
-   \nabla_{\bold{\theta}}L(\bold{\theta})
-   \oslash \sqrt{\bold{s} + \epsilon}$
+1. $\mathbf{s} \leftarrow \beta_2 \mathbf{s} + (1-\beta_2)
+   \nabla_{\mathbf{\theta}} L(\mathbf{\theta}) \otimes
+   \nabla_{\mathbf{\theta}}L(\mathbf{\theta})$
+2. $\mathbf{\theta} \leftarrow \mathbf{\theta} - \eta
+   \nabla_{\mathbf{\theta}}L(\mathbf{\theta})
+   \oslash \sqrt{\mathbf{s} + \epsilon}$
 
 The Adam algorithm is described as:
 
-1. $\bold{m} \leftarrow \beta_1 \bold{m} - (1-\beta_1)
-   \nabla_{\bold{\theta}} L(\bold{\theta})$
-2. $\bold{s} \leftarrow \beta_2 \bold{s} + (1-\beta_2)
-   \nabla_{\bold{\theta}} L(\bold{\theta}) \otimes
-   \nabla_{\bold{\theta}} L(\bold{\theta})$
-3. $\hat{ \bold{m} } \leftarrow \frac{\bold{m}}{1-\beta_1^t}$
-4. $\hat{ \bold{s} } \leftarrow \frac{\bold{s}}{1-\beta_2^t}$
-5. $\bold{\theta} \leftarrow \bold{\theta} + 
-   \eta \hat{ \bold{m} } \oslash \sqrt{\hat{ \bold{s} } + \epsilon}$
+1. $\mathbf{m} \leftarrow \beta_1 \mathbf{m} - (1-\beta_1)
+   \nabla_{\mathbf{\theta}} L(\mathbf{\theta})$
+2. $\mathbf{s} \leftarrow \beta_2 \mathbf{s} + (1-\beta_2)
+   \nabla_{\mathbf{\theta}} L(\mathbf{\theta}) \otimes
+   \nabla_{\mathbf{\theta}} L(\mathbf{\theta})$
+3. $\hat{ \mathbf{m} } \leftarrow \frac{\mathbf{m}}{1-\beta_1^t}$
+4. $\hat{ \mathbf{s} } \leftarrow \frac{\mathbf{s}}{1-\beta_2^t}$
+5. $\mathbf{\theta} \leftarrow \mathbf{\theta} + 
+   \eta \hat{ \mathbf{m} } \oslash \sqrt{\hat{ \mathbf{s} } + \epsilon}$
 
 Algorithms modified from [@geron_hands-machine_2017]
 

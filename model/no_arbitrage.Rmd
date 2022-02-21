@@ -14,10 +14,10 @@ $$
 
 SDF can be expressed as an affine transformation of a
 mean-variance efficient tangency portfolio.
-Let $\bold{\omega}_t$ denote the SDF weights used to
+Let $\mathbf{\omega}_t$ denote the SDF weights used to
 construct the tangency portfolio based on all the assets in
 the market, and
-$F_{t+1} := \bold{\omega}_t^T R^e_{t+1}$ denote the tangency
+$F_{t+1} := \mathbf{\omega}_t^T R^e_{t+1}$ denote the tangency
 portfolio.
 Using the covariance formula
 $E(XY)=E(X)E(Y) + Cov(X, Y)$ and correlation formula 
@@ -47,7 +47,7 @@ information, we consider one of the possible $(a, b) = (1,
 1)$.
 
 $$
-M_{t+1} = 1 - F_{t+1} = 1 - \bold{\omega}_t^T R^e_{t+1}
+M_{t+1} = 1 - F_{t+1} = 1 - \mathbf{\omega}_t^T R^e_{t+1}
 $$
 
 Therefore, the no-arbitrage condition reduces the
@@ -57,7 +57,7 @@ use this relationship to construct our loss function that
 trains the GAN model.
 
 $$
-E\left[\left(1-\bold{\omega}_t^T R^e_{t+1}\right)R^e_{t+1, i}\right] = 0
+E\left[\left(1-\mathbf{\omega}_t^T R^e_{t+1}\right)R^e_{t+1, i}\right] = 0
 $$
 
 
