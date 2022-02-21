@@ -1,21 +1,64 @@
 ## Long short-term memory network architecture {#LSTM_model}
 
-Recurrent neural network (RNN) is a class of neural network
-that considers the past data in future prediction, while
-long Term Short Term Memory (LSTM) is a subclass of RNN that
-considers dynamic past data in future prediction.
+A recurrent neural network (RNN) is a class of neural networks
+that considers the past data in future prediction. Long
+Short-Term Memory (LSTM) is a sub-class of RNN that
+considers more extended dynamics through a gate controlling system.
+We focus our discussion here with LSTM.
+In contrast to a feed-forward network that receives only
+input data $\mathbf{x}_{(t)}$ at time $t$,
+an LSTM also gets a short term state
+$\mathbf{h}_{(t)}$ and a long term state $\mathbf{c}_{(t)}$.
 
-LSTM is an improvement over vanilla RNN. In a vanilla RNN,
-an unique weight is given to each of the lagged data. The
-number of lagged data will be pre-determined and could not
-scale well with higher lags.
-LSTM solves the problem by introducing forget gate, input
-gate and output gate. Simplify saying, LSTM endogenously
-handle the number of lags that will be useful in the
-prediction.
+As shown in figure \@ref(fig:lstmcell), the long term state
+$\mathbf{c}_{(t-1)}$ from the previous iteration travel
+through a forget gate and an input
+gate before being passed through to the next iteration.
+The long term state $\mathbf{c}_{(t)}$ is also being passed
+as a short term state $\mathbf{h}_{(t)}$ through an output
+gate (which is also the output of the cell $\mathbf{y}_{(t)}$).
+The gates are being controlled by the functions
+$\mathbf{f}_{(t)}, \mathbf{i}_{(t)}, \mathbf{o}_{(t)}$, with
+logistic activation functions that produce $1$ to keep the
+gate open and $0$ to close the gate. The decision on the
+gates is based on the input data $\mathbf{x}_{(t)}$ and
+short term state $\mathbf{h}_{(t)}$. The function
+$\mathbf{q}_{(t)}$ takes in the data and short term state to
+be combined with the long term state.
+Summarising the LSTM computation, we have the following
+equations. $\mathbf{W}_{x\cdot}$ are the weights for
+$\mathbf{x}_{(t)}$, and $\mathbf{W}_{h\cdot}$ are the weights
+for $\mathbf{h}_{(t-1)}$ and $\mathbf{b}_i$ are the bias for
+$i$ layers, $\otimes$ are element-wise multiplication.
+Therefore, using an LSTM neural network layer allows the GAN
+model to extract long term dynamics from macroeconomics data
+without specifying the number of lags as a hyper-parameter.
 
-Since we suspect past macro economic feature will affect our
-estimation and we are uncertain how many lag terms to
-include, we use RNN with LSTM to let the model decide the
-number lag terms.
+![(#fig:lstmcell) Long short-term memory cell](./img/lstm)
+
+\begin{align*}
+\mathbf{i}_{(t)} &= \sigma(
+    \mathbf{W}_{xi}^T \mathbf{x}_{(t)}
+    + \mathbf{W}_{hi}^T\mathbf{h}_{(t-1)} + \mathbf{b}_i
+) \\
+\mathbf{f}_{(t)} &= \sigma(
+    \mathbf{W}_{xf}^T\mathbf{x}_{(t)} + \mathbf{W}_{hf}^T
+    \mathbf{h}_{(t-1)} + \mathbf{b}_f
+) \\
+\mathbf{o}_{(t)} &= \sigma(
+    \mathbf{W}_{xo}^T \mathbf{x}_{(t)} +
+    \mathbf{W}_{ho}^T\mathbf{h}_{(t-1)} + \mathbf{b}_o
+) \\
+\mathbf{q}_{(t)} &= tanh(
+    \mathbf{W}_{xg}^T \mathbf{x}_{(t)} +
+    \mathbf{W}^T_{hg}\mathbf{h}_{(t-1)} + \mathbf{b}_g
+) \\
+\mathbf{c}_{(t)} &= \mathbf{f}_{(t)} \otimes \mathbf{c}_{(t-1)} + 
+    \mathbf{i}_{(t)}\otimes \mathbf{q}_{(t)}\\
+\mathbf{y}_{(t)} &= \mathbf{h}_{(t)} = \mathbf{o}_{(t)}
+\otimes tanh(\mathbf{c}_{(t)})
+\end{align*}
+
+Algorithms modified from [@geron_hands-machine_2017]
+
 

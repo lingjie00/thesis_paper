@@ -1,22 +1,24 @@
-## No arbitrage asset pricing model 
+## No-arbitrage asset-pricing model {#no_arbitrage}
 
-The no-arbitrage asset pricing model assumes a stochastic
-discount factor (SDF) $M_t$ such that excess return does not
-exist. We denote $R_{t, i}$ as the asset $i$'s return in
-time $t$ and $R^f_t$ as the return of a risk free asset.
-Therefore, the excess return is defined as $R^e_{t, i} =
-R_{t, i} - R^f_{t, i}$. The no-arbitrage asset pricing model
-can be express as the following equation. Note that SDF is
-asset independent and time varying.
-
+The no-arbitrage asset pricing model assumes the existence
+of an asset independent, time-dependent pricing kernel, also known as a stochastic
+discount factor (SDF) $M_t$, such that excess return does not
+exist. Let $R_{t+1, i}$ denote the asset $i$'s return in
+time $t+1$ and $R^f_{t+1}$ as the return of a risk-free asset.
+The excess return is then defined as $R^e_{t+1, i} :=
+R_{t+1, i} - R^f_{t+1}$. Summarising the no-arbitrage
+condition, we have the following equation.
 $$
 E_t[M_{t+1} R^e_{t+1, i}] = 0
 $$
 
-We can also express SDF as an affine transformation of
-tangency portfolio, which we denote the tangency portfolio as
-$F_t := \bold{\omega_t}^T R^e_{t+1}$, where
-$\bold{\omega_t}$ is the SDF weights.
+SDF can be expressed as an affine transformation of a
+mean-variance efficient tangency portfolio.
+Let $\bold{\omega}_t$ denote the SDF weights used to
+construct the tangency portfolio based on all the assets in
+the market, and
+$F_{t+1} := \bold{\omega}_t^T R^e_{t+1}$ denote the tangency
+portfolio.
 Using the covariance formula
 $E(XY)=E(X)E(Y) + Cov(X, Y)$ and correlation formula 
 $E(XY) = E(X)E(Y)+\rho(X, Y)\sigma(X)\sigma(Y)$,
@@ -29,32 +31,60 @@ forming the mean-variance frontier, illustrated in
 figure \@ref(fig:mvf).
 
 $$
-|E(R^e_{t+1, i})| \leq \left(\frac{\sigma_t(M_{t+1})}
+|E_t(R^e_{t+1, i})| \leq \left(\frac{\sigma_t(M_{t+1})}
 {E_t(M_{t+1})}\right)\sigma_t(R^e_{t+1})
 $$
 
 ![(#fig:mvf) Mean-variance frontier](./img/mvf){width=50%}
 
-Now, since tangency portfolio occur at the mean-variance
-frontier when $\rho(M_{t+1}, F_{t+1})=-1$, this means
-tangency portfolio is perfectly correlated to SDF $M_{t+1}$
-and we can express the SDF as a linear function of
-tangency portfolio, $M_{t+1} = a - b F_{t+1}$. Since any
+Since tangency portfolio occurs at the mean-variance
+frontier where $\rho(M_{t+1}, F_{t+1})=-1$,
+tangency portfolio is perfectly correlated to SDF
+and is an affine transformation of the SDF
+($M_{t+1} = a - b F_{t+1}$). Since any
 mean-variance efficient return carries all the pricing
 information, we consider one of the possible $(a, b) = (1,
 1)$.
 
 $$
-M_{t+1} = 1 - F_{t+1} = 1 - \bold{\omega_t}^T R^e_{t+1, F}
+M_{t+1} = 1 - F_{t+1} = 1 - \bold{\omega}_t^T R^e_{t+1}
 $$
 
-Therefore, the no-arbitrage states there exists a SDF
-$M_{t+1}$ which is a linear function of the tangency
-portfolio $F_{t+1}$ such that for any asset $i$, we have the
-following relationship which we will use to construct our
-loss function to train GAN model.
+Therefore, the no-arbitrage condition reduces the
+asset-pricing problem into estimating an SDF weight function
+$\omega$ such that the following equation holds. We will
+use this relationship to construct our loss function that
+trains the GAN model.
 
 $$
-E\left[\left(1-\bold{\omega}_t^T R^e_{t+1,
-F}\right)R^e_{t+1, i}\right] = 0
+E\left[\left(1-\bold{\omega}_t^T R^e_{t+1}\right)R^e_{t+1, i}\right] = 0
 $$
+
+
+## Pricing loss function {#loss_function}
+
+The no-arbitrage condition reduced the asset-pricing problem
+into estimating SDF weight function $\omega$.
+This paper assumes $\omega$ is a function of
+macroeconomic data $I_t$ and firm characteristic
+data $I_{t, i}$.
+However, suppose the no-arbitrage condition
+alone is insufficient to explain the differences in asset
+pricing. In that case, we can define a function $g(I_t, I_{t, i})$
+that selects firm characteristic and assets and output some factor
+unexplained by the no-arbitrage
+to price the assets. The relationship between $\omega(I_t,
+I_{t, i})$ and $g(I_t, I_{t, i})$ can be described as the
+following equation. We define this as our pricing loss
+function. The pricing loss function can be viewed as a
+competition between the no-arbitrage condition and an
+alternative theory that explains the variation in
+asset excess returns, which will be the key to building our
+GAN model.
+
+$$
+E\left[\left(1-\omega(I_t, I_{t, i})^T R^e_{t+1}\right)R^e_{t+1, i}
+g(I_t, I_{t, i})
+\right] = 0
+$$
+

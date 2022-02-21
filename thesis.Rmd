@@ -29,7 +29,7 @@ abstract:
     that attempts to solve all three challenges in a single
     setup and claim to achieve the best performance compared
     to all existing models [@chen_deep_2019]. This paper empirically
-    validated Chen et al. (2019)’s research which is based on the United
+    validated Chen et al. (2019)’s research based on the United
     States stock data with the United Kingdom (UK) London
     Stock Exchange 2011 - 2021 data.
     "
@@ -60,7 +60,7 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 ```
 
 <!-- literature review -->
-
+\newpage
 # Literature Review
 \thispagestyle{plain}
 
@@ -68,6 +68,7 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 ```
 
 <!-- model -->
+\newpage
 # Model
 \thispagestyle{plain}
 
@@ -90,6 +91,7 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 ```
 
 <!-- empirical results -->
+\newpage
 # Empirical findings
 \thispagestyle{plain}
 
@@ -106,5 +108,5 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 <!-- references -->
 \newpage
 
-# BIBLIOGRAPHY
+# Bibliography
 \thispagestyle{plain}

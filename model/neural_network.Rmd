@@ -1,73 +1,72 @@
 ## Neural network model {#nn_model}
 
-Neural network is a general non-parametric non-linear model
-that models both non-linear relationship between input data
-$\mathbf{X}$ and output $y=f(\mathbf{X})$ and interaction
-effects between input data $\mathbf{X}$. In this paper we
-built two neural network models to (1) model the stochastic
-discount factor (SDF) weight and (2) model conditional
-moments in discriminant network model, which will be
-explained later in chapter on [generative adversary network
-(GAN) model](#GAN_model) . The two neural network models are
-a combination of feed forward neural network and recurrent
-neural network. We first explain the standard feed forward
-neural network before expanding to recurrent neural network
+A neural network model is a general non-parametric
+non-linear model that models both non-linear relationships
+and interaction effects between input and output data. In
+this paper, we built two neural network models to (1) model
+the stochastic discount factor (SDF) weight and (2) model
+factors unexplained by the no-arbitrage condition. The [GAN
+model](#gan_model) section explains the use of these two
+neural networks in depth.
+Each of the two neural network models combines feed-forward
+and recurrent neural networks. We first explain the
+standard feed-forward
+neural network before expanding to the recurrent neural network
 in [long short-term memory (LSTM)
 architecture](#LSTM_model). Various training techniques are
-employed to avoid model over-fitting and will be explained
-under [model training](#model_training). We briefly mention
-the role of a loss function in this chapter before going in
-depth on our economic driven loss function in [No arbitrage
-asset pricing loss function](#loss_function).
+employed to avoid model over-fitting and are explained
+under [model training](#model_training). 
 
 ### Feed forward neural network
-A standard feed forward neural network consist of one input
+
+A standard feed-forward neural network consists of one input
 layer, one or multiple hidden layer(s) and one output layer.
-In the input layer (first layer in figure
-\@ref(fig:feedforward)), each of the input data $\mathbf{X} =
-(X_1, X_2, \cdots, X_p)$ forms a single unit. The input
-layer is then linked to the units in the hidden layer called
-hidden units, where the number of hidden units and number of
-hidden layers are hyper-parameters of choice. The arrow in
-figure \@ref(fig:feedforward) showing that each of the
-inputs (first layer) will be linked to each of the hidden
-units (second layer). In our model, our input data includes
-both macroeconomic factors and firm financial data.
+For example, a data $\mathbf{X} = (X_1, X_2, \cdots, X_p)$ with $p$
+covariates has $p$ input units in the input layer (first
+layer in figure \@ref(fig:feedforward)).
+The input
+layer is then linked to the hidden units in the hidden
+layer, as indicated by the arrow between the first layer and
+the second layer.
+Finally, the hidden layers are linked to the output layer to
+produce predictions, as indicated by the arrows between the
+second and last layers.
+Our model's input data includes
+both macroeconomic factors and firm characteristics data.
 
 ![(#fig:feedforward) Feed forward neural network](./img/feedforward)
 
-<!--TODO: replace this image-->
-
 ### Hidden layers and hidden units
 
-Hidden layers refer to the number of layers between input
-and output layer. A deep neural network refers to a feed
-forward network with multiple hidden layers. We considered a
-simple feed forward network with one hidden layer in
-Figure \@ref{fig:feedforward}.
-Within each hidden layer $k$, which consist of $j$ hidden
-nodes, each of the input data $i$ with dimension $p$ has a
-individual weight ($\omega_{ij}^{(k)}$), and a common bias
-($\omega_{0j}^{(k)}$). This is effectively a linear
-regression model: $\omega_{0j}^{(k)} + \sum_{i=1}^p
-\omega_{ij}^{(k)} X_i$. After forming the linear regression
-output, an activation function $h(\cdot)$ is applied to
-perform non-linear transformation on the hidden units.
-Therefore, the end output of each of the hidden units are
+Hidden layers refer to the layers between the input
+and output layer, and hidden units are the units within
+each hidden layer. A deep neural network is a feed-forward
+network with multiple hidden layers.
+In each hidden layer $k$, there are $j$ hidden units, where
+the number of hidden units and the number of hidden layers
+are hyper-parameters.
+Within the $j$th hidden unit, each
+covariate $i$ has an individual weight $\omega_{ij}^{(k)}$,
+and all covariates share a common bias $\omega_{0j}^{(k)}$.
+This is effectively a linear
+regression with $\omega_{0j}^{(k)} + \sum_{i=1}^p
+\omega_{ij}^{(k)} X_i$.
+An activation function $h(\cdot)$ is then applied to the linear
+regression output. Usually, the activation action will be a
+non-linear function.
+Therefore, the output of each of the hidden units are
 $h_j^{(k)}(\omega_{ij}^{(k)}
-+ \sum_{i=1}^p \omega_{ij}^{(k)} X_i)$. The hidden units are
-  then combined at the output layer to produce the final
-  output.
++ \sum_{i=1}^p \omega_{ij}^{(k)} X_i)$. 
 
 ### Activation function
 
-There are various activation functions ($h_k(\cdot)$)
-available. In this paper we used one of the most commonly
+There are various activation functions $h(\cdot)$
+available. This paper uses one of the most commonly
 used activation functions known as rectified linear unit
 (ReLU), shown in Figure \@ref(fig:relu). $ReLU(x) := \max(x,
 0)$ effectively removes the negative values. It is shown to
 improve the convergence rate of stochastic gradient descent
-compared to other activation functions such as sigmoid
+compared to other activation functions such as the sigmoid
 function [@nair_rectified_2010].
 
 ```{r relu, fig.cap="Rectified linear unit (ReLU) activation function", echo=F}
@@ -78,33 +77,23 @@ plot(-5:5, data, type = "l", xlab = "x", ylab = "ReLU(x)")
 
 ### Loss function
 
+After the data is passed from the input layer to the output
+layer, a loss function calculates the loss in the model. The
+loss summarises the training objective.
+One commonly used loss function is
+mean squared error $E(\mathbf{y} - \mathbf{\hat{y}})$,
+which minimises the mean squared distance between actual
+output and predictions.
+This paper implemented a custom pricing loss
+function described in the [pricing loss
+function](#loss_function) section.
+
 ### Back-propagation
 
-After the data is passed through from input layer to output
-layer, a back-propagation training algorithm is then used to
-train the network. Back-propagation minimises a given loss
-function by updating the weights and biases in the network
-model through gradient descent and chain rule.
-
-Going back to the feed forward network with one hidden layer
-example, let's assume a loss function of mean squared error.
-We have
-
-$$
-\text{Loss: } E(\mathbf{X}, \mathbf{\omega}) = E\left[ \mathbf{y} - \hat{f}(\mathbf{X})\right]^2
-$$
-
-With gradient:
-
-$$
-\frac{\partial E(\mathbf{X}, \mathbf{\omega})}{\partial \omega_{ij}^k}
-= \frac{\partial E(\mathbf{X}, \mathbf{\omega})}{\partial a_j^k}
-\frac{\partial a_j^k}{\partial \omega_{ij}^k}
-$$
-
-And update the weights using gradient descent method:
-
-$$
-\omega_{ij}^k = \omega_{ij}^k - \lambda \frac{\partial
-E(\mathbf{X}, \mathbf{\omega})}{\partial \mathbf{\omega}}
-$$
+After the loss is calculated, a back-propagation training
+algorithm is then used to train the network.
+Back-propagation algorithm minimises a given loss function
+by updating the weights and biases in the network model
+through gradient descent methods. This paper adopted
+adaptive moment estimation (Adam) as the optimiser as
+described in [training neural network](#adam) section.

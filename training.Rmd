@@ -1,28 +1,28 @@
 <!-- # Model training --> 
 
-We first explains how do we train a general neural network
-before focusing on GAN model training. We end with
-Fama-French model training.
+This chapter explained the techniques we used to train the
+GAN and Fama-French factor models. We first describe a
+general neural network training before focusing on GAN model.
 
-## Training Neutral network
+## Training neutral network
 
-Training neural network is an empirical experiment. 
-We explained the most important components including
-optimization algorithm, dynamic learning rate and
-regularization. We followed Chen et al. (2019)'s experiment
-in hyper-parameters tuning including number of hidden units
-and number of hidden layers.
+Training neural network is an empirical experiment.
+We used Chen et al. (2019)’s best-performing
+hyper-parameters tuning, including the number of hidden
+units and number of hidden layers, while following the best
+practice of neural network training, including dynamic
+learning rate and regularisation.
 
-### Optimizer using Adam
+### Optimizer using Adam {#adam}
 
-As explained in [neural network model](#nn_model), one key
-components in the training procedure is back-propagation. We
-used adaptive moment estimation (Adam) [@kingma_adam_2015] which
-combines momentum optimization and RMSProp, another
-optimizer popular before Adam. We define
+As explained in the [neural network model](#nn_model), back-propagation
+is one critical component in the training procedure.
+We used adaptive moment estimation (Adam)
+[@kingma_adam_2015], which combines momentum optimization and
+RMSProp, another optimizer famou before Adam. We define
 $\bold{\theta}$ as the multi-variable weights,
-$\nabla_{\bold{\theta}}J(\bold{\theta})$ as the
-multi-variable gradient with respect to a loss function $J(\cdot)$,
+$\nabla_{\bold{\theta}}L(\bold{\theta})$ as the
+multi-variable gradient with respect to a loss function $L(\cdot)$,
 $\eta$ as the learning rate,
 $\bold{m}$ as the momentum vector, and $\bold{s}$ as the
 squared of momentum vector,
@@ -35,7 +35,7 @@ and $\oslash$ as the element wise division.
 In contrast to a gradient descent algorithm where the
 updating rule is independent of the previous gradients:
 $\bold{\theta} \leftarrow \bold{\theta} - \eta
-\nabla_{\bold{\theta}} J(\bold{\theta})$,
+\nabla_{\bold{\theta}} L(\bold{\theta})$,
 a general momentum algorithm includes an additional parameter
 $\bold{m}$ that captures the value of previous gradients,
 allowing for faster convergence.
@@ -43,47 +43,51 @@ Adaptive gradient methods scale down the gradient by the
 past gradient value $\sqrt{\bold{s}}$, decaying the steeper
 gradients more than the smoother gradients, allowing the
 parameter to convergence even faster.
-And Adam combined the momentum and adaptive gradients
+Adam combined the momentum and adaptive gradients
 techniques.
 
 A momentum algorithm is described as:
 
 1. $\bold{m} \leftarrow \beta_1 \bold{m} - \eta
-   \nabla_{\bold{\theta}}J(\bold{\theta})$
+   \nabla_{\bold{\theta}}L(\bold{\theta})$
 2. $\bold{\theta}\leftarrow \bold{\theta} + \bold{m}$
 
 An adaptive gradient algorithm is described as:
 
 1. $\bold{s} \leftarrow \beta_2 \bold{s} + (1-\beta_2)
-   \nabla_{\bold{\theta}} J(\bold{\theta}) \otimes
-   \nabla_{\bold{\theta}}J(\bold{\theta})$
+   \nabla_{\bold{\theta}} L(\bold{\theta}) \otimes
+   \nabla_{\bold{\theta}}L(\bold{\theta})$
 2. $\bold{\theta} \leftarrow \bold{\theta} - \eta
-   \nabla_{\bold{\theta}}J(\bold{\theta}) \oslash \sqrt{\bold{s} + \epsilon}$
+   \nabla_{\bold{\theta}}L(\bold{\theta})
+   \oslash \sqrt{\bold{s} + \epsilon}$
 
 The Adam algorithm is described as:
 
 1. $\bold{m} \leftarrow \beta_1 \bold{m} - (1-\beta_1)
-   \nabla_{\bold{\theta}} J(\bold{\theta})$
+   \nabla_{\bold{\theta}} L(\bold{\theta})$
 2. $\bold{s} \leftarrow \beta_2 \bold{s} + (1-\beta_2)
-   \nabla_{\bold{\theta}} J(\bold{\theta}) \otimes
-   \nabla_{\bold{\theta}} J(\bold{\theta})$
+   \nabla_{\bold{\theta}} L(\bold{\theta}) \otimes
+   \nabla_{\bold{\theta}} L(\bold{\theta})$
 3. $\hat{ \bold{m} } \leftarrow \frac{\bold{m}}{1-\beta_1^t}$
 4. $\hat{ \bold{s} } \leftarrow \frac{\bold{s}}{1-\beta_2^t}$
 5. $\bold{\theta} \leftarrow \bold{\theta} + 
    \eta \hat{ \bold{m} } \oslash \sqrt{\hat{ \bold{s} } + \epsilon}$
 
+Algorithms modified from [@geron_hands-machine_2017]
+
 ### Dynamic learning rate with learning schedule
 
-The learning rate $\eta$ affects the extend gradients are
+The learning rate $\eta$ affects the extent gradients are
 updated. A too high learning rate prevents gradient descent
 from converging while a too low learning rate significantly
-increase the training time. Instead of using a fixed
-learning rate, this paper adopts a exponential scheduling
-where the learning rate is updated as the training epochs $t$
-increase. We denote $\eta_0$ as the initial learning rate,
-$s$ as a hyper-parameter step that decrease the impact of the
-initial $s$ training epochs. The learning rate decrease
-faster as the training epochs increase.
+increases the training time. Instead of using a fixed
+learning rate, this paper adopts exponential scheduling
+where the learning rate is updated as the training epochs
+$t$ increase. We denote $\eta_0$ as the initial learning
+rate, $s$ as a hyper-parameter step that decreases the
+impact of the initial $s$ training epochs. As a result, the
+learning rate decreases faster as the training epochs
+increase.
 
 $$
 \eta(t) = \eta_0 0.1 ^{t/s}
@@ -91,42 +95,43 @@ $$
 
 ### Regularization
 
-Regularization refers to techniques used to over
-over-fitting, that is the model is tuned solely on the
-training data and does not generalise well in unseen test
-data. Common regularization techniques used in traditional
-machine learning including $\ell 1$ and $\ell 2$ penalty.
-Deep learning provides additional regularization techniques
-including dropout and early stopping which is adopted in
-this paper.
+Regularisation refers to techniques used to prevent
+over-fitting. Over-fitting occurs when the model is tuned
+solely on the training data and does not generalise well in
+unseen test data. For example, LASSO and Ridge modify
+least square regression by including $\ell 1$ and $\ell 2$
+penalties. Deep learning provides additional regularisation
+techniques, including the dropout and early stopping
+adopted in this paper.
 
-#### Regularization with dropout
+#### Regularisation with dropout
 
-Dropout is a simple but powerful algorithm, users set a
-hyper-parameter dropout rate $p$ and during training, $p$%
+Dropout is a simple yet powerful algorithm, users set a
+hyper-parameter dropout rate $p$, and during training, $p$%
 of the hidden units will not be included in the gradient
 calculation. Intuitively, dropout forces the neural network
 to train a new but dependent model during each training
-epochs, avoiding relying on the same information each time.
+epoch, avoiding relying on the same information each time.
 Dropout is not used during prediction.
 
-#### Regularization with early stopping
+#### Regularisation with early stopping
 
 Early stopping is a technique that stops model training
 before the model over-fits the training data. Stopping
-criteria is pre-set by the users and for a standard neural
-network usually the decrease in loss function is used as the
-criteria. For example, if the decrease in loss between $t$
-and $t+1$ is less than $\epsilon$, training stops. It is
-harder to decide on a stopping criteria for GAN models, and
-this paper use Sharpe ratio as the stopping criteria.
+criteria is pre-set by the users, and for a standard neural
+network, the decrease in loss function is often used as the
+criteria. For example, training stops if the decrease in loss between $t$
+and $t+1$ is less than $\epsilon$. However, it is
+harder to decide on stopping criteria for GAN models, and
+this paper uses the Sharpe ratio as the stopping criteria.
 Besides preventing over-fitting, early stopping also allows
 automated training as users can set higher training epochs
 without terminating model training manually.
 
-## GAN Model architecture
+## GAN architecture {#gan_structure}
 
 ```{r child="training_GAN.Rmd"}
 ```
 
-## Fama-French factor model
+## Training Fama-French factor model
+

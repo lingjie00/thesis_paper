@@ -11,8 +11,8 @@ implied by the no-arbitrage condition. We first explain the
 exposure to systematic risk $\beta_{t, i}$ formulation
 before interpreting the variable of interest: mispricing
 error $\alpha_i$.
-As explained in [no-arbitrage asset pricing loss function
-chapter](#loss_function), no-arbitrage condition implies
+As explained in [no-arbitrage asset-pricing](#no_arbitrage)
+section, no-arbitrage condition implies
 $E_t[M_{t+1}R^e_{t+1, i}] = 0$. As shown in the equation
 below, using the covariance formula
 $Cov(X, Y) = E(XY)-E(X)E(Y)$ we have 
@@ -22,7 +22,7 @@ independent of asset $i$ and $\beta_{t, i}$ is the quantity
 of risk.
 
 \begin{align*}
-E_t[M_{t+1}R^e_{t+1, i}] = 0 &= Cov_t[M_{t+1}R^e_{t+1, i}] +
+E_t[M_{t+1}R^e_{t+1, i}] &= 0 = Cov_t[M_{t+1}R^e_{t+1, i}] +
 E_t[M_{t+1}]E_t[R^e_{t+1, i}]\\
 \Rightarrow E_t[R^e_{t+1, i}] &= 
 \left(-\frac{Cov_t[M_{t+1}, R^e_{t+1,
@@ -84,11 +84,11 @@ R^e_{t+1, i} = \alpha_i + \beta_{t, i} F_{t+1} +
 \epsilon_{t+1, i}
 $$
 
-## Sharpe ratio
+## Sharpe ratio {#sharpe_ratio}
 
-William F. Sharpe proposed the Sharpe ratio in 1966 to evaluate
+William F. Sharpe (1966) proposed the Sharpe ratio to evaluate
 the performance of risk-adjusted assets relative to a
-risk-free asset [@sharpe_mutual_1966]. A Sharpe ratio ($S$)
+risk-free asset. A Sharpe ratio ($S$)
 for an asset $i$ is defined as the asset's historical excess
 return $E_t(R^e_{i})$ weighted by the risk of the asset,
 where the standard deviation of the excess return $\sigma_i$

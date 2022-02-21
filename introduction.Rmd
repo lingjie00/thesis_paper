@@ -1,55 +1,55 @@
 <!--INTRODUCTION-->
 
-The fundamental problem of asset pricing is to understand
-the risk premium, or the differences in asset's average
-returns. No-arbitrage asset pricing model suggests that an
-asset is priced through a single asset pricing kernel.
-Although the theory is attractive, it is an empirical
-challenge to estimate the asset pricing kernel.
-There are three challenges in estimating the asset pricing
-kernel.
-Firstly, in choosing the right factors (data features) to
-estimate the pricing kernel. 
-Secondly, in estimating the functional form of the pricing
-kernel. 
-Lastly, in choosing the right portfolio (combination of
+The fundamental problem of asset pricing is understanding
+the differences in asset average returns. The no-arbitrage
+asset pricing model suggests a single asset pricing kernel
+known as stochastic discount factor (SDF) that priced all
+assets in the economy. However, it is an empirical challenge
+to estimate the asset-pricing kernel. There are three
+challenges in estimating the asset-pricing kernel:
+(1) choosing the right factors (data features) to
+estimate the pricing kernel,
+(2) in estimating the functional form of the pricing
+kernel,
+(3) selecting the right portfolio (combination of
 individual assets) to estimate the pricing kernel. 
 
 A recent paper proposed a Generative Adversarial Network
 (GAN) model that attempts to solve all three problems in a
-single setup [@chen_deep_2019]. GAN models is a class of
-neural network framework which consist of a discriminative neural
-network model and a generative neural network model. The
-discriminative and generative models works like police and thief
+single setup [@chen_deep_2019].
+GAN models are a class of neural network frameworks
+consisting of a discriminative neural network model and a
+generative neural network model.
+The discriminative and generative models work like police
+and thief
 with contrasting objectives linked with a single pricing
-error loss function. The competition can be viewed as a
+error loss function. The competition is a
 zero-sum game with the discriminative network attempting to
 model the pricing kernel, improving the no-arbitrage asset
 pricing model's explanatory power and reducing the pricing
-error loss. In contrast, the generative network attempts to choose
-portfolio and factors that is least explained by the
-no-arbitrage asset pricing model to increase the pricing
-error loss. The goal is to simultaneously build a
+error loss.
+In contrast, the generative network chooses portfolio and
+factors that the no-arbitrage asset pricing model least
+explains to increase the pricing error loss.
+The goal is to simultaneously build a
 discriminative network model with the best pricing kernel
 estimation and a generative network model with the best
-portfolio and factor construction. As compared to
-previous research that only focus on firm
-characteristics data, Chen et al. (2019) further include macroeconomic data
-using long short-term memory (LSTM), a class of neural
-network architecture that is commonly used in predictions
-with a time series structure. The result is exciting, Chen et al. (2019)
-claim to have outperformed all previous models in terms of
-Sharpe ratio, explained variation and pricing errors.
+portfolio and factor construction.
+Compared to previous research that only focuses on firm
+characteristics data, Chen et al. (2019) further include
+macroeconomic data using long short-term memory (LSTM), a
+class of neural network architecture commonly used in
+predictions with a time series structure. Chen et al. (2019)
+claim to have outperformed all previous models in Sharpe
+ratio, explained variation and pricing errors.
 
 This paper attempts to empirically test the external validity
 of Chen et al. (2019)'s research which is based on the United States stock
-data with the United Kingdom London Stock Exchange data from
-2011 to 2021. 
-
-
+data with the United Kingdom London Stock Exchange 2011 to
+2021 data. 
 Replication files are available on the author's GitHub
 account
-[github.com/lingjie00/asset_pricing](https://github.com/lingjie00/asset_pricing)
+[github.com/lingjie00/asset_pricing](https://github.com/lingjie00/asset_pricing).
 
 <!--
 TODO:

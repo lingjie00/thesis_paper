@@ -1,42 +1,33 @@
-## GAN model and pricing loss function {#loss_function}
+## GAN model {#gan_model}
 
-The discussion on no-arbitrage asset pricing has reduced the
-asset pricing model into estimating SDF weights which we assume to be
-a function of factors including macroeconomic data $I_t$ and
-firm characteristic data $I_{t, i}$. The discriminator
-network in this paper will be responsible for $\omega$
-estimation.
-However, if the no-arbitrage asset pricing model alone is
-insufficient to explain the differences in asset pricing,
-then we can define a function $g(I_t, I_{t, i})$ that
-selects the test assets and characteristic SDF is unable to
-explain. The generator network in this paper will be
-responsible for $g$ estimation.
+GAN model consists of two competing neural networks called
+discriminator and generator. The discriminator in this paper
+will estimate the SDF weight function $\omega(I_t, I_{t,
+i})$, and the generator will estimate the factor function
+$g(I_t, I_{t, i})$. Both models use an
+LSTM network to extract macroeconomic data and a
+feed-forward network to extract firm characteristic data.
+The [GAN architecture](#gan_structure) section
+explains the model structure in-depth.
 
 $$
 \text{Discriminator: } \omega(I_t, I_{t, i})
 \text{, Generator:} g(I_t, I_{t, i})
 $$
 
-Therefore, the conditional no arbitrage pricing model
-implies infinite unconditional expectation where
-$E[M_{t+1}R^e_{t+1, i}g(I_t, I_{t, i})] = 0$, and we can
-summary the GAN training procedure as a zero-sum game where
-the discriminator tries to minimise the pricing loss while
-the generator tries to maximise the pricing loss. Note that
-the functions estimated by discriminator and generator are
-both time and asset independent. We summarise the
-relationship as the following no-arbitrage pricing loss
-function.
+Therefore, the GAN training procedure can be viewed as a
+zero-sum game where the discriminator minimises the
+pricing loss. In contrast, the generator tries to maximise the
+pricing loss. Note that the functions estimated by
+discriminator and generator are both time and asset
+independent. Given a data size $N$, we summarise the GAN training as the following
+min-max optimisation problem with the pricing loss function
+motivated by the no-arbitrage condition.
 
 \begin{align*}
     \min_{\omega} \max_{g} L(\omega, g|I_t, I_{t, i}) &=
     \frac{1}{N} \sum_{i=1}^N \left\{
     E \left[ \left( 1 - \sum_{j=1}^N \omega(I_t, I_{t, j})
     R^e_{t+1, j} \right) R^e_{t+1, j}g(I_t, I_{t, i})
-    \right] \right\}^2\\
-    &= 
-    \frac{1}{N} \sum_{i=1}^N \left\{
-    E \left[ M_{t+1} R^e_{t+1, i}g(I_t, I_{t, i})
-    \right] \right\}^2\\
+    \right] \right\}^2
 \end{align*}

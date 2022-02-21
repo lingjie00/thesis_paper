@@ -1,31 +1,20 @@
 <!-- # Model -->
 
-This chapter focuses on explaining the model architecture
-used in this paper. An overview is provided here before deep
-diving into specific concepts at the sub-chapters.
+This chapter focuses on explaining the models used in this
+paper. First, we present the no-arbitrage asset-pricing
+model that is the foundation of our base model: the
+Fama-French factor model and the GAN model. Next, we
+expand the no-arbitrage condition to construct a pricing
+loss function used in the GAN model. Then, we describe a
+simple feed-forward neural network before exploring a
+recurrent neural network model that considers data dynamics.
+Following that, we explain the GAN model, which
+consists of two neural network models competing based on the
+pricing loss function and end the chapter
+with an explanation for the Fama-French factor model.
 
-The fundamental idea of our model is based on no arbitrage
-asset pricing model, which assumes a stochastic discount
-factor such that there is no expected excess return,
-and no arbitrage opportunity available. We implement
-the no arbitrage condition as our loss function.
-The backbone of our model is a Generative Adversarial
-Network Model (GAN) which consist of two competing
-feed forward neutral network called discriminator and
-generator. The discriminator models the non-linear
-relationship between factors and stochastic discount factor.
-The generator models the non-linear relationship between
-factors and mis-pricing, a latent variable that violates the
-no-arbitrage pricing assumption.
-We include a long short-term memory (LSTM) network to
-extract macroeconomic factors into the discriminator and
-generator. Discriminator and generator have different LSTM
-network to handle for the possibility of different
-information set is required for different networks.
-We use Fama-French factor model as the baseline comparison. 
-Fama-French factor model models stochastic discount factor
-as a linear combination as selected factors. The underlying
-model is a linear regression.
+```{r, child=("model/no_arbitrage.Rmd")}
+```
 
 ```{r, child=("model/neural_network.Rmd")}
 ```
@@ -33,11 +22,9 @@ model is a linear regression.
 ```{r, child=("model/lstm.Rmd")}
 ```
 
-```{r, child=("model/no_arbitrage.Rmd")}
-```
-
 ```{r, child=("model/gan.Rmd")}
 ```
 
 ```{r, child=("model/fama_french.Rmd")}
 ```
+

@@ -5,7 +5,7 @@ Highlighting the gap in the literature
 Explain clearly how your research contribute to
 the topic -->
 
-The asset pricing model explains the differences in asset
+<!-- The asset pricing model explains the differences in asset
 returns and risk-free returns through a risk exposure to the
 asset pricing kernel called the stochastic discount factor
 (SDF). However, it remains an empirical challenge to
@@ -13,6 +13,7 @@ estimate the SDF. The challenge in estimating SDF comes in
 three aspects. (1) Estimating the functional form of the
 SDF, (2) selecting the correct factor and (3) selecting the
 right assets for estimation (portfolio construction).
+-->
 
 Various papers have explored different models in estimating
 the functional form of the SDF. They ranged from the popular
@@ -21,41 +22,43 @@ non-linear machine learning models such as tree and neural
 network models. A comparison of different machine learning
 models shows that tree and neural network models marginally
 outperform linear models, with the neural network as the
-best performing model [@gu_empirical_2019]. Recent papers on
-asset pricing models using another class of advanced neural
-network models Autoencoder suggest including economic theory
-in estimation dramatically improves the model performance
-[@gu_autoencoder_2019]. Therefore, the Generative Adversarial
-Network (GAN) model proposed by Chen et al. (2019)
-similarity attempts to improve the neural network model
-performance further by including the no-arbitrage condition
-in the model estimation.
+best performing model [@gu_empirical_2019]. A recent paper
+on asset pricing models uses Autoencoder, another class of
+advanced neural network models, found that the inclusion of
+economic theory in estimation dramatically improves the
+model performance [@gu_autoencoder_2019]. The Generative
+Adversarial Network (GAN) model proposed by Chen et al.
+(2019) similarly attempts to improve the neural network
+model performance by including the no-arbitrage
+condition in the model estimation.
 
 Different papers have estimated their models based on
 various factors. For example, Fama and French (1993, 2015,
-2017) expanded their factor models from three to six
-factors. There are many other papers exploring the
-possibility of other factors. A recent paper systematically
+2017) expanded their factor models from three to five and six
+factors. While many other papers have explored the
+possibility of other factors, a recent paper systematically
 reviewed a wide range of previously proposed factors and
 found that most factors provide little additional values
-than the five factor model [@feng_taming_2020]. However,
-Chen et al. (2019) show that all factors considered
-contributed to the GAN model. Furthermore, Chen et al.
-(2019) shows macroeconomic data further improves the model
-performance, aligned with another research paper
+than the five factor model when estimated with a linear
+model [@feng_taming_2020]. However,
+Chen et al. (2019) found that all factors taken into
+consideration have
+contributed to the GAN model. Furthermore, including
+macroeconomic data further improves the model
+performance, aligned with another research paper's finding
 [@pelger_interpretable_2018]. This paper extracts the United
 Kingdom’s macroeconomic data from Goulet Coulombe et al.
 (2021) and firm fundamental data from financial data
 provider Finage.
 
 Typical test portfolios are based on firm characteristics
-sorted assets (Fama & French, 1993). Papers in the field
+sorted assets (Fama & French, 1993). Papers in asset-pricing
 generally choose test portfolios based on firm
 characteristics sorted assets such as Fama French Size and
 Book-to-Market portfolios or include all assets in the
 estimation. The GAN model in this paper contains a
-discriminative network that performs asset selection to
-maximise the pricing error.
+discriminative network that performs asset and factor
+selection to maximise the pricing error.
 
 GAN models are first proposed for image recognition tasks
 [@goodfellow_generative_2014] and continue to be heavily
@@ -64,38 +67,39 @@ model in this paper included a recurrent neural network with
 long short-term memory (LSTM) architecture
 [@hochreiter_long_1997]. LSTM is commonly used in sequence
 data to capture dynamics in data, such as language-related
-tasks [@houdt_review_2020]. This paper uses the GAN model to
-estimate SDF and portfolio construction, while LSTM extracts
-latent variables from macroeconomic data.
+tasks [@houdt_review_2020]. This paper uses LSTM to extract
+the dynamic information from macroeconomic data.
 
-This paper tested the external validity of the Chen et al.
-(2019) model based on United Kingdom London Stock Exchange
-data. Most of the empirical papers are tested on the
-data-rich United States data, with around 20% of the papers
-in top Finance journals investigating countries outside the
-U.S. [@karolyi_home_2012]. Therefore, the performance of Chen et
-al. (2019)’s model in a different context, such as the U.K.,
-remained to be answered and explored in this paper.
-
-Currently, limited papers done on the U.K. asset pricing
-have their limitations. They are either exploring a limited
+The main contribution of this paper is in testing the
+external validity of Chen et al. (2019)'s model with the
+United Kingdom (U.K.) London Stock Exchange (LSE) data. Most empirical
+papers are tested on the data-rich United States data, with
+around 20% of the papers in top finance journals
+investigating countries outside the United States (U.S.)
+[@karolyi_home_2012]. Chen et al. (2019) model was also
+trained based on the U.S. data. Therefore, the model performance
+in a different context, such
+as the U.K., remains to be answered and explored in this
+paper.
+There are several researches done on LSE data
+but none answers the question this paper seeks to answer.
+The existing papers are either exploring a limited
 number of stocks [@njaala_does_2015], focusing only on
 linear factor models [@bhatnagar_capital_2012]
 [@korajczyk_empirical_1989] or forecast asset pricing
 without considering economic theories [@tobek_does_2018].
 Therefore, one of the critical contributions of this paper
-is to provide insights into the potential benefits that
-exploring advanced models that can bring to the United
-Kingdom.
+is to provide insights into the potential benefits advanced
+models can bring to the United Kingdom.
 
-Training neural network models is an empirical challenge,
-regularisation techniques are commonly used in machine
-learning to prevent over-fitting. Besides the dropout
-[@srivastava_dropout_2014] techniques adopted by Chen et al.
-(2019), this paper further includes early stopping rules
-[@yao_early_2007], allowing automated training instead of
-arbitrary training epochs. Understanding and explaining
-neural network require the foundation of many various
-fields, this paper referenced to Hands-On Machine Learning
-with Scikit-Learn and TensorFlow for the explanation.
-[@geron_hands-machine_2017]
+Training neural network models is an empirical challenge.
+Regularisation techniques are commonly used in machine
+learning to prevent over-fitting and improve model training
+results. Besides the dropout strategy [@srivastava_dropout_2014]
+adopted by Chen et al. (2019), this paper further
+includes early stopping rules [@yao_early_2007], allowing
+automated training instead of arbitrary training epochs.
+Understanding and explaining neural networks require the
+foundation of many various fields, this paper referenced
+Hands-On Machine Learning with Scikit-Learn and TensorFlow
+for the explanation. [@geron_hands-machine_2017]
