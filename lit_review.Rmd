@@ -15,91 +15,132 @@ SDF, (2) selecting the correct factor and (3) selecting the
 right assets for estimation (portfolio construction).
 -->
 
-Various papers have explored different models in estimating
-the functional form of the SDF. They ranged from the popular
-linear factor models [@fama_common_1993] to different
-non-linear machine learning models such as tree and neural
-network models. A comparison of different machine learning
-models shows that tree and neural network models marginally
-outperform linear models, with the neural network as the
-best performing model [@gu_empirical_2019]. A recent paper
-on asset pricing models uses Autoencoder, another class of
-advanced neural network models, found that the inclusion of
-economic theory in estimation dramatically improves the
-model performance [@gu_autoencoder_2019]. The Generative
-Adversarial Network (GAN) model proposed by Chen et al.
-(2019) similarly attempts to improve the neural network
-model performance by including the no-arbitrage
-condition in the model estimation.
+The literature on determining the appropriate form of the
+SDF has a long history and perhaps is one of the largest in
+finance. @sharpe_capital_1964, @lintner_valuation_1965 and 
+@sharpe_capital_1964, @lintner_valuation_1965 and 
+@mossin_equilibrium_1966 first introduced Capital Asset Pricing
+Model (CAPM) in the 1960s to explain the variation in asset
+returns with the assets' exposure to market risk. The
+resultant regression coefficient in this single-factor model
+is coined as "beta", and investors continued to use "beta"
+to describe the risk of assets.
 
-Different papers have estimated their models based on
-various factors. For example, Fama and French (1993, 2015,
-2017) expanded their factor models from three to five and six
-factors. While many other papers have explored the
-possibility of other factors, a recent paper systematically
-reviewed a wide range of previously proposed factors and
-found that most factors provide little additional values
-than the five factor model when estimated with a linear
-model [@feng_taming_2020]. However,
-Chen et al. (2019) found that all factors taken into
-consideration have
-contributed to the GAN model. Furthermore, including
-macroeconomic data further improves the model
-performance, aligned with another research paper's finding
-[@pelger_interpretable_2018]. This paper extracts the United
-Kingdom’s macroeconomic data from Goulet Coulombe et al.
-(2021) and firm fundamental data from financial data
-provider Finage.
+@fama_common_1993 found that small market capitalisation
+stocks and low-value stocks outperformed the market and
+proposed to expand on CAPM by including size and value
+factors. The size factor is the difference in returns between the
+smallest and largest stocks measured by market capitalisation.
+The value factor is the difference in returns between the cheapest and
+most expensive stocks measured by price to book ratio.
+@carhart_persistence_1997 builds on the three-factor model
+to include a momentum factor: the difference
+in returns between the best and worst-performing stocks.
+@fama_five-factor_2015 later expands on the three-factor model to
+include profitability and investment. The profitability
+factor is the difference in returns between stocks with high
+and low operating profitability, and the investment factor is
+the difference in returns between high and low capital
+investment stocks. The three, four, and five factor models
+have been a benchmark for asset pricing models and
+remain relevant today. 
+In recent years different research papers have attempted to find new
+factors to expand on the existing factors. @feng_taming_2020
+and @freyberger_dissecting_2017
+investigated hundreds of risk factors proposed by the
+different literature and found only a handful is
+statistically significant in explaining the asset returns.
+The different factor models can be viewed from the lens of
+arbitrage pricing theory (APT) proposed by
+@roll_arbitrage_1984, which summaries the relationship
+between assets' expected returns with multiple factors using
+the stochastic discount factor (SDF).
 
-Typical test portfolios are based on firm characteristics
-sorted assets (Fama & French, 1993). Papers in asset-pricing
-generally choose test portfolios based on firm
-characteristics sorted assets such as Fama French Size and
-Book-to-Market portfolios or include all assets in the
-estimation. The GAN model in this paper contains a
-discriminative network that performs asset and factor
-selection to maximise the pricing error.
+The factor models mentioned earlier explores different
+factors while assuming a linear functional form for SDF.
+Recent literature attempts to estimate non-linear SDF
+with non-linear, non-parametric models such as tree and
+neural network models. Non-parametric models do not require
+a priori of the SDF functional form, while
+non-linear models allow for a flexible estimation of the
+SDF functional form. @freyberger_dissecting_2017 shows that
+non-linear relationships are important in SDF estimation and
+@gu_empirical_2019 compared different
+machine learning models and show that tree and neural
+network models marginally outperform linear models,
+with the neural network model as the best performing model.
+However, traditional machine learning does not 
+consider economic theories during estimation.
+@gu_autoencoder_2019 and @chen_deep_2019 found that imposing
+constraints based on economic theory can further improve
+the neural network models.
 
-GAN models are first proposed for image recognition tasks
-[@goodfellow_generative_2014] and continue to be heavily
-used in image and video tasks [@s_generative_2021]. The GAN
-model in this paper included a recurrent neural network with
-long short-term memory (LSTM) architecture
-[@hochreiter_long_1997]. LSTM is commonly used in sequence
-data to capture dynamics in data, such as language-related
-tasks [@houdt_review_2020]. This paper uses LSTM to extract
-the dynamic information from macroeconomic data.
+@chen_deep_2019 improve classical neural network models
+by imposing APT condition through a generative adversarial
+network (GAN) model.
+@goodfellow_generative_2014 first introduced GAN models for image recognition tasks
+and GAN models continued to be heavily used in image and video tasks,
+as suggested by a recent survey by @s_generative_2021.
+GAN models differ from classical neural network models by including two
+competing neural networks in a zero-sum game. In the context
+of @chen_deep_2019 and this paper, one of the neural
+networks will compete to price assets through APT while the
+other neural networks will attempt to find factors and
+mispriced assets to increase pricing error. Details about
+the GAN model can be found under methodology.
 
-The main contribution of this paper is in testing the
-external validity of Chen et al. (2019)'s model with the
-United Kingdom (U.K.) London Stock Exchange (LSE) data. Most empirical
-papers are tested on the data-rich United States data, with
-around 20% of the papers in top finance journals
-investigating countries outside the United States (U.S.)
-[@karolyi_home_2012]. Chen et al. (2019) model was also
-trained based on the U.S. data. Therefore, the model performance
-in a different context, such
-as the U.K., remains to be answered and explored in this
-paper.
-There are several researches done on LSE data
+Consumption-based asset pricing is another school of thought
+that derives SDF directly from a utility function. However, 
+@campbell_explaining_2000 show that the consumption-based model
+cannot take into consideration the time-varying
+feature of SDF and has poor performance compared to APT
+models. Therefore, this paper continued to focus on APT
+models.
+
+@pelger_interpretable_2018 and @chen_deep_2019 found that
+including macroeconomic data can further improve the
+performance of machine learning models.
+@chen_deep_2019 included a recurrent neural network with
+long short-term memory (LSTM) architecture in the GAN model
+to capture the times series macroeconomic data.
+LSTM is first proposed by @hochreiter_long_1997, and a recent
+review on the applications of LSTM by @houdt_review_2020
+found that LSTM is still commonly used in sequence data to
+capture dynamics in data, such as language-related tasks.
+Details about LSTM can be found in the methodology section.
+
+The main contribution of this paper is in examining the
+external validity of @chen_deep_2019's model with the
+United Kingdom (U.K.) London Stock Exchange (LSE) data.
+@karolyi_home_2012 found that most
+empirical papers consider the data-rich United States, with
+only around 20% of the papers in top finance journals
+investigating countries outside the United States (U.S.).
+@chen_deep_2019 model was also
+trained based on the U.S. data. Therefore, the model
+performance in a different context, such as the U.K.,
+remains to be answered and explored in this paper.
+There are several works of literature done on LSE data,
 but none answers the question this paper seeks to answer.
-The existing papers are either exploring a limited
-number of stocks [@njaala_does_2015], focusing only on
-linear factor models [@bhatnagar_capital_2012]
-[@korajczyk_empirical_1989] or forecast asset pricing
-without considering economic theories [@tobek_does_2018].
+The most relevant existing papers are either exploring a limited
+number of stocks, @bhatnagar_capital_2012 and 
+@korajczyk_empirical_1989 focusing only on
+linear factor models, while @tobek_does_2018
+forecast asset prices without considering economic theories.
 Therefore, one of the critical contributions of this paper
 is to provide insights into the potential benefits advanced
 models can bring to the United Kingdom.
 
-Training neural network models is an empirical challenge.
-Regularisation techniques are commonly used in machine
-learning to prevent over-fitting and improve model training
-results. Besides the dropout strategy [@srivastava_dropout_2014]
-adopted by Chen et al. (2019), this paper further
-includes early stopping rules [@yao_early_2007], allowing
-automated training instead of arbitrary training epochs.
-Understanding and explaining neural networks require the
-foundation of many various fields, this paper referenced
-Hands-On Machine Learning with Scikit-Learn and TensorFlow
-for the explanation. [@geron_hands-machine_2017]
+Current literature recommended validating asset-pricing
+models with portfolios instead of individual assets.
+A portfolio combines multiple assets and could
+theoretically reduce idiosyncratic volatility, improving
+model estimation.
+@fama_common_1993 proposed to form a test portfolio
+by sorting assets based on firm characteristics, which
+corresponds to the factors in the three-factor model.
+Characteristics sorted test portfolios remain a popular
+choice among literature.
+This paper explores characteristics sorted portfolio
+and individual assets to investigate the GAN model performance
+in different contexts.

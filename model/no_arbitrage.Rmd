@@ -2,18 +2,23 @@
 
 The no-arbitrage asset pricing model assumes the existence
 of an asset independent, time-dependent pricing kernel, also known as a stochastic
-discount factor (SDF) $M_t$, such that excess return does not
+discount factor (SDF) $M_t$, such that expected excess return does not
 exist. Let $R_{t+1, i}$ denote the asset $i$'s return in
 time $t+1$ and $R^f_{t+1}$ as the return of a risk-free asset.
 The excess return is then defined as $R^e_{t+1, i} :=
 R_{t+1, i} - R^f_{t+1}$. Summarising the no-arbitrage
-condition, we have the following equation.
+condition, we have the equation
 $$
-E_t[M_{t+1} R^e_{t+1, i}] = 0
+E_t[M_{t+1} R^e_{t+1, i}] = 0.
 $$
 
 SDF can be expressed as an affine transformation of a
 mean-variance efficient tangency portfolio.
+The mean-variance efficient frontier refers to the maximum
+possible balance between the mean excess returns and risk
+factor, measured by the variance of the
+excess returns. A portfolio that achieve this mean-variance
+efficiency is considered as a tangency portfolio. 
 Let $\mathbf{\omega}_t$ denote the SDF weights used to
 construct the tangency portfolio based on all the assets in
 the market, and
@@ -35,7 +40,7 @@ $$
 {E_t(M_{t+1})}\right)\sigma_t(R^e_{t+1})
 $$
 
-![(#fig:mvf) Mean-variance frontier](./img/mvf){width=50%}
+![(#fig:mvf) Mean-variance frontier](./src/mvf){width=50%}
 
 Since tangency portfolio occurs at the mean-variance
 frontier where $\rho(M_{t+1}, F_{t+1})=-1$,
@@ -63,7 +68,7 @@ $$
 
 ## Pricing loss function {#loss_function}
 
-The no-arbitrage condition reduced the asset-pricing problem
+The no-arbitrage condition reduces the asset pricing problem
 into estimating SDF weight function $\omega$.
 This paper assumes $\omega$ is a function of
 macroeconomic data $I_t$ and firm characteristic
@@ -79,8 +84,8 @@ following equation. We define this as our pricing loss
 function. The pricing loss function can be viewed as a
 competition between the no-arbitrage condition and an
 alternative theory that explains the variation in
-asset excess returns, which will be the key to building our
-GAN model.
+asset excess returns, which is the key in building the
+GAN model proposed by Chen et al. (2019).
 
 $$
 E\left[\left(1-\omega(I_t, I_{t, i})^T R^e_{t+1}\right)R^e_{t+1, i}

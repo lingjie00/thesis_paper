@@ -1,1 +1,14 @@
 ### Individual assets
+
+As explained in [Mispricing error with beta representation](#beta),
+the assets' expected excess return relates to the SDF by a
+risk factor $\beta$. The equation
+
+$$
+E_t[R^e_{t+1, i}] = \beta_{t, i}E_t[F_{t+1}]
+$$
+
+implies that higher risk exposure $\beta_{t, i}$ should have
+higher expected returns. We sorted the stocks by the $\beta$
+after regressing to the GAN SDF and plotted the average
+excess return against the $\beta$.

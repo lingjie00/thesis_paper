@@ -1,11 +1,32 @@
-## Fama-French factor model
+## Factor models
 
-<!--
-Fama French factor model assumes the stochastic discount
-factor to be a special linear model depending only on a few
-factors. The Fama French three factor model depends on xxx,
-xxx, xxx and five factor model additional includes xxx and
-xxx.
--->
+The @carhart_persistence_1997 four-factor model builds on
+@fama_common_1993's three-factor model. This paper uses the
+four-factor model as the benchmark against the GAN model.
 
+The three-factor model aims
+to explain the assets' excess returns through (1) market
+risk ($R^e_{mt}$),
+(2) outperformance of small market capitalisation
+companies relative to large market capitalisation companies
+(small minus big, SMB)
+and (3) the outperformance of high book-to-market value
+companies versus low book-to-market value companies (high
+minus low, HML).
+The four-factor model further included a momentum (UMD)
+factor to account for the speed of price change.
+If the factor model correctly explains the variation in
+asset prices, we expect a no-intercept regression with
+$E(\alpha_i)=0$.
+Formally the model can be described by the following
+equation, where $R^e_{t+1, i}$ is asset i's excess return,
 
+$$
+R^e_{t+1, i} = \alpha_i + \beta_i R^e_{mt} + s_i SMB_t + h_i HML_t + \omega_i UMD_t + \epsilon_{t, i}.
+$$
+
+Therefore, in contrast to the non-linear, non-parametric GAN model
+outlined in @chen_deep_2019, @fama_common_1993 and
+@carhart_persistence_1997 model can be considered as a
+parametric model where assets' excess return is a linear
+combination of the constructed factors.

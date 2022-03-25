@@ -20,7 +20,7 @@ $$
 \min_{\omega} L(\omega|\hat{g}, I_t, I_{t,i})
 $$
 
-![(#fig:discriminator)Discriminator structure](./img/discriminator)
+![(#fig:discriminator)Discriminator structure](./src/discriminator)
 
 ### Generator network structure
 As illustrated in Figure \@ref(fig:generator), the generator network shares
@@ -35,7 +35,7 @@ $$
 \max_{g} L(g|\hat\omega, I_t, I_{t,i})
 $$
 
-![(#fig:generator)Generator structure](./img/generator)
+![(#fig:generator)Generator structure](./src/generator)
 
 ### GAN network structure
 
@@ -46,7 +46,7 @@ increase the pricing loss. Note that we require the SDF
 weights multiplied by the excess returns before the pricing
 loss calculation in constructing the SDF.
 
-![(#fig:ganDiagram) GAN model structure](./img/model)
+![(#fig:ganDiagram) GAN model structure](./src/model)
 
 ### Empirical no arbitrage asset pricing loss
 

@@ -1,10 +1,13 @@
 ## Long short-term memory network architecture {#LSTM_model}
 
-A recurrent neural network (RNN) is a class of neural networks
-that considers the past data in future prediction. Long
-Short-Term Memory (LSTM) is a sub-class of RNN that
-considers more extended dynamics through a gate controlling system.
-We focus our discussion here with LSTM.
+A recurrent neural network (RNN) is a class of neural
+networks that considers the past data in future prediction
+and hence is particularly suited for the prediction of time
+series data.
+Long Short-Term Memory (LSTM) is a sub-class of RNN that
+considers more extended dynamics through a gate controlling
+system.
+We focus our discussion here on LSTM.
 In contrast to a feed-forward network that receives only
 input data $\mathbf{x}_{(t)}$ at time $t$,
 an LSTM also gets a short term state
@@ -34,7 +37,7 @@ Therefore, using an LSTM neural network layer allows the GAN
 model to extract long term dynamics from macroeconomics data
 without specifying the number of lags as a hyper-parameter.
 
-![(#fig:lstmcell) Long short-term memory cell](./img/lstm)
+![(#fig:lstmcell) Long short-term memory cell](./src/lstm)
 
 \begin{align*}
 \mathbf{i}_{(t)} &= \sigma(
@@ -59,6 +62,6 @@ without specifying the number of lags as a hyper-parameter.
 \otimes tanh(\mathbf{c}_{(t)})
 \end{align*}
 
-Algorithms modified from [@geron_hands-machine_2017]
+Algorithms adapted from @geron_hands-machine_2017
 
 

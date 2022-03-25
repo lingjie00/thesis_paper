@@ -1,6 +1,6 @@
 <!-- # Model -->
 
-This chapter focuses on explaining the models used in this
+This chapter focuses on explaining the empirical approach used in this
 paper. First, we present the no-arbitrage asset-pricing
 model that is the foundation of our base model: the
 Fama-French factor model and the GAN model. Next, we
@@ -12,6 +12,19 @@ Following that, we explain the GAN model, which
 consists of two neural network models competing based on the
 pricing loss function and end the chapter
 with an explanation for the Fama-French factor model.
+
+Training neural network models is an empirical challenge.
+Regularisation techniques are commonly used in machine
+learning to prevent over-fitting and improve model training
+results. @chen_deep_2019 adopted a dropout strategy proposed
+by @srivastava_dropout_2014.
+This paper further includes early stopping rules introduced
+by @yao_early_2007, early stopping allows
+automated training instead of arbitrary training epochs.
+Understanding and explaining neural networks require the
+foundation of many various fields, this paper referenced
+Hands-On Machine Learning with Scikit-Learn and TensorFlow
+for the explanation by @geron_hands-machine_2017.
 
 ```{r, child=("model/no_arbitrage.Rmd")}
 ```

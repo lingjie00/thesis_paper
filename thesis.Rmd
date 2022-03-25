@@ -10,46 +10,47 @@ output:
         latex_engine: pdflatex
 title: "Generative Adversarial Network (GAN) model in Asset Pricing"
 author: "Wang Lingjie"
-keywords: "Generative Adversarial Network, Asset Pricing"
+keywords:
+    "
+    Generative Adversarial Network, Asset Pricing,
+    Stochastic Discount Factor, Machine Learning,
+    Deep Learning, Stock Returns
+    "
 bibliography: ref.bib
-nocite: "@fama_five-factor_2015 @fama_choosing_2017 @coulombe_can_2021"
+nocite: ""
 csl: ./template/apa.csl
 abstract: 
     "
-    The critical goal in asset pricing is to understand the
-    differences in asset’s average returns. No-arbitrage
-    pricing theory provides a direct explanation by
-    explaining price differences through an asset-pricing
-    kernel. However, it remains a challenge to estimate the
+    The critical goal in asset pricing is to explain
+    variation in expected returns of financial assets.
+    No-arbitrage pricing theory suggests the idea of the
+    pricing kernel that governs asset prices.
+    However, it remains a challenge to estimate the
     asset-pricing kernel. The difficulties include (1)
     choosing the right factors, (2) estimating the pricing
     kernel’s functional form, and (3) selecting the right
-    portfolio to estimate the kernel. A recent paper
-    proposed a Generative Adversarial Network (GAN) model
-    that attempts to solve all three challenges in a single
-    setup and claim to achieve the best performance compared
-    to all existing models [@chen_deep_2019]. This paper empirically
-    validated Chen et al. (2019)’s research based on the United
-    States stock data with the United Kingdom (UK) London
-    Stock Exchange 2011 - 2021 data.
+    portfolio to estimate the kernel.
+    Recently, @chen_deep_2019 proposed a Generative
+    Adversarial Network (GAN) model that attempts to solve
+    all three challenges in a single setup and claim to
+    achieve the best performance compared to all existing
+    models.
+    This paper seeks to empirically validate @chen_deep_2019's
+    research based on the United States stock data
+    with the United Kingdom (UK) London Stock Exchange 1998
+    - 2017 data. This paper found that even in a relatively
+    data poor context, GAN model has higher Sharpe ratio
+    than factor models. However, the improvement in
+    mispricing error is marginal.
     "
 acknowledgement:
     "
     "
 ---
 
-<!-- Results
-We found the model performance to be
-consistent in the UK 2011 - 2021 data,
-outperforming Fama French model in explaining
-the asset mispricing. -->
-
-<!-- main markdown for the whole thesis 
-useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
--->
-
-```{r echo=F}
+```{r echo=F, warning=F, message=F}
 # libraries
+library(tidyverse)
 ```
 
 <!-- introduction -->
@@ -69,7 +70,7 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 
 <!-- model -->
 \newpage
-# Model
+# Methodology
 \thispagestyle{plain}
 
 ```{r, child=("model.Rmd")}
@@ -90,9 +91,17 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 ```{r, child=("metrics.Rmd")}
 ```
 
+<!-- data -->
+# Data
+
+\thispagestyle{plain}
+
+```{r, child=("results/data.Rmd")}
+```
+
 <!-- empirical results -->
-\newpage
 # Empirical findings
+
 \thispagestyle{plain}
 
 ```{r, child=("results.Rmd")}
@@ -100,6 +109,7 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 
 <!-- conclusion -->
 # Conclusion
+
 \thispagestyle{plain}
 
 ```{r, child=("conclusion.Rmd")}
@@ -109,4 +119,5 @@ useful link: http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
 \newpage
 
 # Bibliography
+
 \thispagestyle{plain}

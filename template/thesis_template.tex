@@ -12,6 +12,7 @@
 \usepackage[nottoc]{tocbibind}  % for display table and figure
 \usepackage{longtable,booktabs,array}
 \usepackage{multirow}
+\usepackage{float}
 % fix Rmd missing package issue
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -69,6 +70,10 @@ $if(graphics)$
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+$endif$
+
+$if(highlighting-macros)$
+$highlighting-macros$
 $endif$
 
 

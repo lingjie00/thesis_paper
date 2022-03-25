@@ -13,7 +13,7 @@ units and number of hidden layers, while following the best
 practice of neural network training, including dynamic
 learning rate and regularisation.
 
-### Optimizer using Adam {#adam}
+### Adam Optimizer {#adam}
 
 As explained in the [neural network model](#nn_model), back-propagation
 is one critical component in the training procedure.
@@ -73,7 +73,7 @@ The Adam algorithm is described as:
 5. $\mathbf{\theta} \leftarrow \mathbf{\theta} + 
    \eta \hat{ \mathbf{m} } \oslash \sqrt{\hat{ \mathbf{s} } + \epsilon}$
 
-Algorithms modified from [@geron_hands-machine_2017]
+Algorithms adapted from @geron_hands-machine_2017
 
 ### Dynamic learning rate with learning schedule
 
@@ -134,4 +134,14 @@ without terminating model training manually.
 ```
 
 ## Training Fama-French factor model
+
+Fama-French factor model can be trained using least square
+estimation. This paper minimises the mean squared error loss
+function with the following minimisation with firm specific
+parameters $(\beta_i, s_i, h_i, \omega_i)$ and number of
+observations $T_i$,
+
+$$
+\min_{\beta_i, s_i, h_i, \omega_i} \frac{1}{T_i} \sum_{t\in T_i} \left(R^e_{t+1, i} - \alpha_i - \beta_i R^e_{mt} - s_i SMB_t - h_i HML_t - \omega_i UMD_t\right)^2.
+$$
 

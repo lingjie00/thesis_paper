@@ -4,7 +4,7 @@ This paper evaluates the performance of the GAN model against the
 Fama French model based on the mispricing error and Sharpe
 ratio.
 
-## Mispricing error with beta representation
+## Mispricing error with beta representation {#beta}
 
 Expected return beta representation refers to the one-factor model
 implied by the no-arbitrage condition. We first explain the
@@ -70,14 +70,11 @@ Substituting the value of $b$ we have
 
 Therefore, the no-arbitrage condition resulted in a
 one-factor model with $\alpha_i = 0, E_t[\epsilon_{t+1,
-i}]=0$ and $Cov_t[F_{t+1}, \epsilon_{t+1, i}] =0$. We
-perform t-test with $H_0: \alpha_i = 0, H_1: \alpha_i \neq
-0$ to determine if the tangency portfolio $F_{t+1}$ found by
-different models align with the no-arbitrage condition.
+i}]=0$ and $Cov_t[F_{t+1}, \epsilon_{t+1, i}] =0$.
 As mispricing error $\alpha_i$ is asset dependent, we
 provide summary statistics on the individual asset
-$\alpha_i$ and the risk $\beta_{t, i}$ sorted decile portfolio
-statistics.
+$\alpha_i$, test portfolio and the risk $\beta_{t, i}$
+sorted decile portfolio statistics.
 
 $$
 R^e_{t+1, i} = \alpha_i + \beta_{t, i} F_{t+1} +

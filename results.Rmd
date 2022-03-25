@@ -1,6 +1,5 @@
 <!-- # Empirical findings -->
-
-```{r, child=("./results/data.Rmd")}
+```{r, child=("./results/sharpe.Rmd")}
 ```
 
 ## Mispricing error
@@ -8,10 +7,4 @@
 ```
 
 ```{r, child=("./results/mispricing_error_portfolio.Rmd")}
-```
-
-```{r, child=("./results/sharpe.Rmd")}
-```
-
-```{r, child=("./results/COVID.Rmd")}
 ```

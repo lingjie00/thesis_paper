@@ -1,5 +1,3 @@
-## Data
-
 <!--
 **Risk-free Rates**
 We take the Sterling Overnight Index Average (SONIA)
@@ -13,3 +11,38 @@ Macroeconomics data ($I_t$)
 
 Firm specific fundamental data ($I_{t, i}$)
 -->
+
+This paper extracts the January 1998 to December 2017 London
+Stock Exchange (LSE) monthly stock prices from Yahoo! Finance.
+The full data is then split into 12 years of training data
+(1998 - 2009), 4 years of validation data (2010 - 2013) and
+4 years of out-of-sample testing data (2014 - 2017).
+The risk free rate used to calculate excess returns are
+taken from @gregory_constructing_2011.
+Besides the risk free rates, @gregory_constructing_2011 also
+provides monthly factor data containing small minus big
+(smb), high minus low (hml), momentum (umd) factors and
+value weighted market portfolio returns.
+In addition to the price data, this paper extracts 16
+firm-specific characteristics data from financial data
+provider Finage. All quarterly data is interpolated into
+monthly data and level data are transformed using log
+differences.
+
+This paper keeps returns of the stock with all firm
+characteristics available in a certain month.
+The availability of fundamental data depends on Finage
+database, which contains only a subset of data with
+fundamental data.
+To maximise the data available, we perform two different
+trainings. First training is based only on Fama and French
+factors and past returns. A total of 651 stocks are available.
+Second training is adds on firm-specific characteristics
+data, a total of 98 stocks are available.
+
+A large macroeconomic dataset on United Kingdom is retrieved
+from @coulombe_can_2021. The dataset contains 112 monthly
+macroeconomic indicators and has been transformed by the
+author to stationary time series. Detailed explanation on
+the macroeconomic dataset can be found in @coulombe_can_2021
+website.

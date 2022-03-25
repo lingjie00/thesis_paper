@@ -1,2 +1,42 @@
 ## Sharpe ratio
 
+Similar to to @chen_deep_2019's finding, GAN SDF has a
+higher out-of-sample Sharpe ratio compared to Fama French
+models. In contrast to @chen_deep_2019's result where 
+Sharpe ratio decreases over training and testing set, the
+performance in UK data is consistent over different time
+periods. This suggests that pricing kernel is likely to
+remain consistent in UK over time. Table \@ref(tab:sharpe)
+summaries the Sharpe ratio for different models.
+
+```{r sharpe, echo=F}
+# Sharpe
+fama_sharpe <- c(0.29, 0.62, 0.42)
+gan_fun_macro_sharpe <- c(0.89, 0.47, 0.58)
+gan_fun_sharpe <- c(1.18, 0.52, 0.63)
+gan_factor_sharpe <- c(0.60, 0.60, 0.49) # done
+gan_factor_macro_sharpe <- c(2.03, 2.12, 2.07)
+
+sharpe_table <- t(data.frame(
+    c("Train", "Valid", "Test"),
+    fama_sharpe,
+    gan_fun_sharpe,
+    gan_fun_macro_sharpe,
+    gan_factor_sharpe,
+    gan_factor_macro_sharpe
+))
+row.names(sharpe_table) <- c(
+    "", "Fama French",
+    "GAN with factor (no macro)",
+    "GAN with factor (with macro)",
+    "GAN with fundamental (no macro)",
+    "GAN with fundamental (with macro)"
+)
+
+knitr::kable(sharpe_table,
+    caption = "SHARPE ratio performance",
+    digits = 2,
+    position = "H"
+)
+```
+
