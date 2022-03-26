@@ -1,4 +1,15 @@
 <!-- # Conclusion -->
-Unlike the availability of rich United States dataset
-@chen_deep_2019 uses, 
 
+This paper aims to empirically validate @chen_deep_2019's
+model, which is trained on the US data with UK data.
+Unlike the US, UK data is limited and is difficult to
+access. This paper maximises the available data and
+validates the model in different data available to show the
+varying results when using simple factor models and the
+flexible GAN model. This paper has shown that GAN
+outperforms the four-factor model in terms of Sharpe ratio
+if additional characteristics data is available.
+Furthermore, agreeing with @chen_deep_2019, macroeconomic
+data increases the Sharpe ratio. 
+If no additional firm characteristics data is available, the
+simple four-factor model outperforms the GAN model.

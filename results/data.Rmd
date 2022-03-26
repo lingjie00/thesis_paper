@@ -1,3 +1,8 @@
+---
+output: word_document
+bibliography: "../ref.bib"
+---
+
 <!--
 **Risk-free Rates**
 We take the Sterling Overnight Index Average (SONIA)
@@ -12,37 +17,58 @@ Macroeconomics data ($I_t$)
 Firm specific fundamental data ($I_{t, i}$)
 -->
 
-This paper extracts the January 1998 to December 2017 London
-Stock Exchange (LSE) monthly stock prices from Yahoo! Finance.
-The full data is then split into 12 years of training data
-(1998 - 2009), 4 years of validation data (2010 - 2013) and
-4 years of out-of-sample testing data (2014 - 2017).
-The risk free rate used to calculate excess returns are
-taken from @gregory_constructing_2011.
-Besides the risk free rates, @gregory_constructing_2011 also
-provides monthly factor data containing small minus big
-(smb), high minus low (hml), momentum (umd) factors and
-value weighted market portfolio returns.
-In addition to the price data, this paper extracts 16
-firm-specific characteristics data from financial data
-provider Finage. All quarterly data is interpolated into
-monthly data and level data are transformed using log
+This paper extracts January 1998 to December 2017 London
+Stock Exchange (LSE) monthly stock prices from Yahoo! Finance and
+splits the complete data into twelve years of
+training data (1998 - 2009), four years of validation data (2010 - 2013) and
+four years of out-of-sample testing data (2014 - 2017).
+@gregory_constructing_2011 provide the risk-free rate used
+to calculate excess returns, and 
+the monthly factor data containing small minus big
+(SMB), high minus low (HML), momentum (UMD) factors and
+value-weighted market portfolio returns. 
+@gregory_constructing_2011 provide a detailed explanation for
+the factor construction in their paper.
+In addition to the price data, this paper also extracts sixteen
+firm income statement data from @noauthor_finage_2022,
+a financial data
+provider which retrieves income
+statements through company reports. The income statements
+follow standard accounting naming convention and this paper
+assumes the data accuracy ensured by Finage.
+This paper interpolated quarterly income statement data into
+monthly data and transformed level data using log
 differences.
 
-This paper keeps returns of the stock with all firm
-characteristics available in a certain month.
-The availability of fundamental data depends on Finage
-database, which contains only a subset of data with
-fundamental data.
-To maximise the data available, we perform two different
-trainings. First training is based only on Fama and French
-factors and past returns. A total of 651 stocks are available.
-Second training is adds on firm-specific characteristics
-data, a total of 98 stocks are available.
+The analysis in this paper follows @chen_deep_2019 to remove
+stocks without complete characteristics data
+in a particular month.
+However, the Finage database only contains limited
+income statement data for a subset of stocks.
+Therefore, we perform two different data splitting to
+maximise the data available for training.
+The first dataset contains factor data and past returns data
+for 942 stocks.
+The second dataset used for training includes factor data, past returns and
+income statement data which accounts for 242 stocks.
+Furthermore, we refer to the dataset based on only
+factor and past returns as *factor data* while the
+dataset based on the factor, past returns and income
+statement data as *fundamental data*.
+Table \@ref(tab:firm-data) summarises the training data.
 
-A large macroeconomic dataset on United Kingdom is retrieved
-from @coulombe_can_2021. The dataset contains 112 monthly
-macroeconomic indicators and has been transformed by the
-author to stationary time series. Detailed explanation on
-the macroeconomic dataset can be found in @coulombe_can_2021
-website.
+Additionally, we retrieves a large macroeconomic dataset from
+@coulombe_can_2021.
+The dataset contains 112 monthly
+macroeconomic indicators comprising of 
+nine categories from domestic productions to price index,
+international trade and interest rates. 
+@coulombe_can_2021 have transformed the macroeconomic data into
+stationary time series, so this paper does not require any further data
+processing.
+Their paper and [website](https://www.stevanovic.uqam.ca/DS_UKMD.html)
+contain detailed information on data construction and
+handling.
+
+```{r, child="firm_data.Rmd"}
+```

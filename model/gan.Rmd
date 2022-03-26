@@ -1,3 +1,4 @@
+
 ## GAN model {#gan_model}
 
 GAN model consists of two competing neural networks called

@@ -7,8 +7,8 @@ input and output data.
 In this paper, we build two neural network models to (1) model
 the stochastic discount factor (SDF) weight and (2) model
 factors unexplained by the no-arbitrage condition. The [GAN
-model](#gan_model) section explains the use of these two
-neural networks in depth.
+model](#gan_model) section provides in-depth explanation on
+the use of these two neural networks.
 Each of the two neural network models combines feed-forward
 and recurrent neural networks. We first explain the
 standard feed-forward
@@ -103,8 +103,8 @@ plot(-5:5, data, type = "l", xlab = "x", ylab = "ReLU(x)")
 ### Loss function
 
 After the data is passed from the input layer to the output
-layer, a loss function calculates the loss in the model. The
-loss summarises the training objective.
+layer, a loss function calculates the loss in the model and
+summarises the training objective.
 One commonly used loss function is
 mean squared error $E(\mathbf{y} - \mathbf{\hat{y}})^2$.
 This paper implements a custom pricing loss

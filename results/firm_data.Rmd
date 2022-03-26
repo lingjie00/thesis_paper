@@ -1,0 +1,61 @@
+\blandscape
+
+```{r firm-data, echo=F}
+firm_data <- t(data.frame(
+    c("excess returns", "Return of an asset minus risk free
+      rate", "Y", "Y", "Yahoo! Finance, Gregory et al. (2011)"),
+    c("rmrf", "Excess return for market portfolio, market
+        risk premium factor", "Y", "Y", "Gregory et al. (2011)"),
+    c("hml", "High minus Low, value factor", "Y", "Y", "Gregory et al. (2011)"),
+    c("smb", "Small minus Big, size factor", "Y", "Y", "Gregory et al. (2011)"),
+    c("umd", "Momentum", "Y", "Y", "Gregory et al. (2011)"),
+    c("r2_1", "Short-term momentum, computed as
+      lagged one-month return", "Y", "Y", "Yahoo! Finance"),
+    c("r12_7", "Intermediate momentum, computed as
+        the cumulative return from 12 months before the
+        return prediction to seven months before", "Y", "Y", "Yahoo! Finance"),
+    c("costAndExpenses", "Cost and expense", "N", "Y", "Finage"),
+    c("depreciationAndAmortization", "Depreciation
+      and Amortization", "N", "Y", "Finage"),
+    c("ebitda", "Earnings Before Interest,
+      Taxes, Depreciation, and Amortization", "N", "Y", "Finage"),
+    c("ebitdaratio", "EBITDA to sales ratio", "N", "Y", "Finage"),
+    c("eps", "Earnings per share", "N", "Y", "Finage"),
+    c("epsdiluted", "Diluted Earnings per Share", "N", "Y", "Finage"),
+    c("incomeBeforeTax", "Earnings before tax", "N", "Y", "Finage"),
+    c("incomeBeforeTaxRatio", "Pretax profit margin", "N", "Y", "Finage"),
+    c("netIncome", "Net income,
+      the amount an individual or business makes after deducting costs,
+      allowances and taxes", "N", "Y", "Finage"),
+    c("netIncomeRatio", "Net profit margin", "N", "Y", "Finage"),
+    c("OperatingIncome", "Amount of profit generated from a
+      business operation, after deducing
+      operating expenses", "N", "Y", "Finage"),
+    c("revenue", "Revenue, sales generated from business
+      operations", "N", "Y", "Finage"),
+    c("weightedAverageShsOut", "Weighted average of
+      outstanding shares", "N", "Y", "Finage"),
+    c("weightedAverageShsOutDil", "Diluted weighted average of
+      outstanding shares", "N", "Y", "Finage")
+))
+firm_data_col <- c(
+    "Characteristics", "Description",
+    "Factor data", "Fundamental data",
+    "Data Source"
+)
+pander::pander(
+    firm_data,
+    format = "latex",
+    caption = "(\\#tab:firm-data) Firm-specific Training data",
+    position = "H",
+    row.names = F,
+    col.names = firm_data_col,
+    booktabs = T,
+    split.table = Inf,
+    split.cell = 30,
+    justify = "clccc"
+)
+```
+
+\elandscape
+

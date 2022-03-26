@@ -37,11 +37,10 @@ abstract:
     models.
     This paper seeks to empirically validate @chen_deep_2019's
     research based on the United States stock data
-    with the United Kingdom (UK) London Stock Exchange 1998
-    - 2017 data. This paper found that even in a relatively
-    data poor context, GAN model has higher Sharpe ratio
-    than factor models. However, the improvement in
-    mispricing error is marginal.
+    with the United Kingdom (UK) London Stock Exchange 
+    1998 - 2017 data and found
+    that the GAN model outperformed
+    benchmark four-factor model in terms of Sharpe ratio.
     "
 acknowledgement:
     "
@@ -51,6 +50,7 @@ acknowledgement:
 ```{r echo=F, warning=F, message=F}
 # libraries
 library(tidyverse)
+library(kableExtra)
 ```
 
 <!-- introduction -->
@@ -83,6 +83,8 @@ library(tidyverse)
 ```{r, child=("training.Rmd")}
 ```
 
+\newpage
+
 <!-- model evaluation -->
 # Evaluation metrics
 
@@ -91,8 +93,10 @@ library(tidyverse)
 ```{r, child=("metrics.Rmd")}
 ```
 
+\newpage
+
 <!-- data -->
-# Data
+# Data {#data}
 
 \thispagestyle{plain}
 
@@ -105,6 +109,11 @@ library(tidyverse)
 \thispagestyle{plain}
 
 ```{r, child=("results.Rmd")}
+```
+
+# Discussion
+
+```{r, child=("discussion.Rmd")}
 ```
 
 <!-- conclusion -->

@@ -1,42 +1,46 @@
 ## Sharpe ratio
 
-Similar to to @chen_deep_2019's finding, GAN SDF has a
-higher out-of-sample Sharpe ratio compared to Fama French
-models. In contrast to @chen_deep_2019's result where 
-Sharpe ratio decreases over training and testing set, the
-performance in UK data is consistent over different time
-periods. This suggests that pricing kernel is likely to
-remain consistent in UK over time. Table \@ref(tab:sharpe)
-summaries the Sharpe ratio for different models.
+Similar to @chen_deep_2019's finding, GAN SDF generally
+has a higher out-of-sample Sharpe ratio than the
+four-factor model. However, GAN SDF performs worse than
+the four-factor model when only factor data is used. Although
+@chen_deep_2019 and @freyberger_dissecting_2017 have shown
+that SDF is most likely non-linear, a simpler linear model
+outperformed a complicated GAN model when data is limited.
+Having said that, when macroeconomic data is available, the GAN
+model outperforms the factor model. This suggests that
+macroeconomic data has a role in estimating SDF,
+which is consistent with @chen_deep_2019's finding.
+The puzzling effect comes in when estimating GAN models with
+fundamental data. The performance of GAN models deteriorates
+compared to simply using factor and past return data.
+Although having more covariates does not necessarily imply a
+better model performance, in @chen_deep_2019's paper, income
+statement data are relevant.
+One possibility for the mismatched model performance
+could be the much lesser data this paper used for fundamental
+data compared to factor data. Fundamental training contains
+242 stocks, while factor training contains 942 stocks. It
+remained an open question on if the income statement data is
+relevant in estimating SDF.
 
-```{r sharpe, echo=F}
-# Sharpe
-fama_sharpe <- c(0.29, 0.62, 0.42)
-gan_fun_macro_sharpe <- c(0.89, 0.47, 0.58)
-gan_fun_sharpe <- c(1.18, 0.52, 0.63)
-gan_factor_sharpe <- c(0.60, 0.60, 0.49) # done
-gan_factor_macro_sharpe <- c(2.03, 2.12, 2.07)
+In contrast to @chen_deep_2019's result, where 
+the Sharpe ratio decreases sharply over training and testing set, the
+Sharpe ratio in UK data is relatively consistent.
+The consistent results suggest that although we expect 
+risk premia and risk exposure to be time-varying, the
+UK SDF functional form might be relatively consistent over
+time. Nonetheless, the training and validation period could
+still be over-fitting the data. Therefore, only the
+out-of-sample test period data remain the most relevant in
+evaluating different models.
 
-sharpe_table <- t(data.frame(
-    c("Train", "Valid", "Test"),
-    fama_sharpe,
-    gan_fun_sharpe,
-    gan_fun_macro_sharpe,
-    gan_factor_sharpe,
-    gan_factor_macro_sharpe
-))
-row.names(sharpe_table) <- c(
-    "", "Fama French",
-    "GAN with factor (no macro)",
-    "GAN with factor (with macro)",
-    "GAN with fundamental (no macro)",
-    "GAN with fundamental (with macro)"
-)
+In conclusion, this paper found that GAN models outperformed
+the four-factor model when measured by the Sharpe ratio.
+However, the four-factor model outperformed the GAN model if only
+past returns data is available.
+Table \@ref(tab:sharpe-result) summarises the Sharpe ratio
+for different models.
 
-knitr::kable(sharpe_table,
-    caption = "SHARPE ratio performance",
-    digits = 2,
-    position = "H"
-)
+```{r, child="sharpe_result.Rmd"}
 ```
-

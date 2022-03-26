@@ -1,0 +1,17 @@
+Since this paper attempts to empirically validate
+@chen_deep_2019's GAN model, it is worth noting that
+@chen_deep_2019 data includes 50 years of historical data
+with over 10,000 stocks. Although the number of
+macroeconomic data available is comparable (178 in
+@chen_deep_2019's paper and 112 in this paper), the number
+of firm characteristics data available in this paper is
+limited. As @karras_training_2020 and
+@zhao_differentiable_2020 and other recent literature pointed out, 
+training GAN models with little data generally
+leading to discriminator (in this paper the discriminator
+refers to the neural network estimating SDF function)
+over-fitting. However, proposed solutions in current
+literature is only applicable to image
+data. This paper takes a caution against rejecting
+@chen_deep_2019's paper due to the much smaller data
+available.

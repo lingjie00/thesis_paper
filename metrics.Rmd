@@ -1,6 +1,10 @@
 <!-- # Evaluation metrics -->
 
 This paper evaluates the performance of the GAN model against the
+four-factor model based on the Sharpe ratio.
+
+<!--
+This paper evaluates the performance of the GAN model against the
 Fama French model based on the mispricing error and Sharpe
 ratio.
 
@@ -81,6 +85,8 @@ R^e_{t+1, i} = \alpha_i + \beta_{t, i} F_{t+1} +
 \epsilon_{t+1, i}
 $$
 
+-->
+
 ## Sharpe ratio {#sharpe_ratio}
 
 William F. Sharpe (1966) proposed the Sharpe ratio to evaluate
@@ -110,3 +116,36 @@ $$
 Info on SONIA:
 https://www.bankofengland.co.uk/markets/transition-to-sterling-risk-free-rates-from-libor
 -->
+
+\newpage
+
+### GAN Sharpe ratio computation
+
+The discriminant network in the GAN model estimates the SDF
+weight $\omega_t$. Therefore, by construction, the
+tangency portfolio $F_{t+1}$ will be defined as the dot
+product between the SDF weight and assets' excess returns
+R^e_{t+1} as described in the equation
+
+$$
+F_{t+1} = \omega_t^TR^e_{t+1}.
+$$
+
+### Factor model Sharpe ratio computation
+
+Let $\omega$ be the optimal portfolio weight for factor
+models, $f$ be the factors, $\Sigma$ be the covariance
+matrix between factors and $R^f$ be the risk free rate.
+Then we can solve Sharpe ratio explicitly through the
+following maximisation problem
+
+$$
+\max_{\omega} \frac{E(\omega^Tf-R^e)}{\sqrt{\omega^T\Sigma\omega}}.
+$$
+
+The tangency portfolio $F$ is then given by the squared root
+of the solution
+
+$$
+F = \sqrt{E(f)^T\Sigma^{-1}E(f)}.
+$$
