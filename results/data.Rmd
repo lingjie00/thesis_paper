@@ -34,8 +34,7 @@ firm income statement data from @noauthor_finage_2022,
 a financial data
 provider which retrieves income
 statements through company reports. The income statements
-follow standard accounting naming convention and this paper
-assumes the data accuracy ensured by Finage.
+follow standard accounting naming convention.
 This paper interpolated quarterly income statement data into
 monthly data and transformed level data using log
 differences.

@@ -1,18 +1,22 @@
 <!-- # Empirical findings -->
 
-As described in the chapter on [data](#data) description,
-this paper splits the dataset into *factor* and *fundamental*
-data due to the limited training available.
+The [Data](#data) section describes two types of
+data splitting: *factor* and *fundamental* data.
 The *factor data* training contains more assets but lesser
 characteristic data, while *fundamental data* training
 contains more characteristic data with lesser assets.
-When interpreting the results, the reader should consider
-the difference in the dataset used.
-This paper proposed interpreting the different in results
-between datasets and models as a realistic trade off between
-selecting a flexible GAN model and a simple linear factor
-model when faced with a different number of covariates and
-assets.
+Therefore, readers should consider the difference in the
+dataset used when interpreting the results.
+<!--
+This paper proposed interpreting the difference in results
+as a trade off between flexible GAN model
+against a simple linear factor model under different number
+of covariates and assets.
+-->
+Generally, neural network models require a large dataset for
+training. However, as @noauthor_google_2019 recommended in their
+developer website, there is no common consensus among
+literature and practitioners on the required size of dataset.
 
 ```{r, child=("./results/sharpe.Rmd")}
 ```

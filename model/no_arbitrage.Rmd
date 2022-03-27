@@ -33,11 +33,11 @@ i})\sigma(M_{t+1})\sigma(R^e_{t+1})$. Since
 $\rho(\cdot)\in(0, 1)$, we can express the bounds of the
 excess return as a function of the risk of the asset,
 forming the mean-variance frontier, illustrated in
-figure \@ref(fig:mvf).
+figure \@ref(fig:mvf)
 
 $$
 |E_t(R^e_{t+1, i})| \leq \left(\frac{\sigma_t(M_{t+1})}
-{E_t(M_{t+1})}\right)\sigma_t(R^e_{t+1})
+{E_t(M_{t+1})}\right)\sigma_t(R^e_{t+1}).
 $$
 
 ![(#fig:mvf) Mean-variance frontier](./src/mvf){width=50%}
@@ -49,10 +49,10 @@ and is an affine transformation of the SDF
 ($M_{t+1} = a - b F_{t+1}$). Since any
 mean-variance efficient return carries all the pricing
 information, we consider one of the possible $(a, b) = (1,
-1)$.
+1)$
 
 $$
-M_{t+1} = 1 - F_{t+1} = 1 - \mathbf{\omega}_t^T R^e_{t+1}
+M_{t+1} = 1 - F_{t+1} = 1 - \mathbf{\omega}_t^T R^e_{t+1}.
 $$
 
 Therefore, the no-arbitrage condition reduces the
@@ -85,11 +85,11 @@ function. The pricing loss function can be viewed as a
 competition between the no-arbitrage condition and an
 alternative theory that explains the variation in
 asset excess returns, which is the key in building the
-GAN model proposed by Chen et al. (2019).
+GAN model proposed by @chen_deep_2019
 
 $$
 E\left[\left(1-\omega(I_t, I_{t, i})^T R^e_{t+1}\right)R^e_{t+1, i}
 g(I_t, I_{t, i})
-\right] = 0
+\right] = 0.
 $$
 

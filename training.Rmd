@@ -87,10 +87,10 @@ $t$ increase. We denote $\eta_0$ as the initial learning
 rate, $s$ as a hyper-parameter step that decreases the
 impact of the initial $s$ training epochs. As a result, the
 learning rate decreases faster as the training epochs
-increase.
+increase
 
 $$
-\eta(t) = \eta_0 0.1 ^{t/s}
+\eta(t) = \eta_0 0.1 ^{t/s}.
 $$
 
 ### Regularization
@@ -133,7 +133,7 @@ without terminating model training manually.
 ```{r child="training_GAN.Rmd"}
 ```
 
-## Training Fama-French factor model
+## Training factor model
 
 Fama-French factor model can be trained using least square
 estimation. This paper minimises the mean squared error loss

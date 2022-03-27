@@ -105,19 +105,17 @@ is better, and tangency portfolio $F_{t+1}$ that lies
 on the mean-variance frontier will have the highest Sharpe
 ratio possible. 
 We compare the Sharpe ratio of the tangency portfolio by
-both GAN and Fama French models to decide on the model with
-better performance.
+both GAN and four-factor models to decide on the model with
+better performance
 
 $$
-S(R_i) = \frac{E_t[R_i - R^f]}{\sigma_i}
+S(R_i) = \frac{E_t[R_i - R^f]}{\sigma_i}.
 $$
 
 <!--
 Info on SONIA:
 https://www.bankofengland.co.uk/markets/transition-to-sterling-risk-free-rates-from-libor
 -->
-
-\newpage
 
 ### GAN Sharpe ratio computation
 
@@ -131,6 +129,8 @@ $$
 F_{t+1} = \omega_t^TR^e_{t+1}.
 $$
 
+\newpage
+
 ### Factor model Sharpe ratio computation
 
 Let $\omega$ be the optimal portfolio weight for factor
@@ -140,12 +140,18 @@ Then we can solve Sharpe ratio explicitly through the
 following maximisation problem
 
 $$
-\max_{\omega} \frac{E(\omega^Tf-R^e)}{\sqrt{\omega^T\Sigma\omega}}.
+\max_{\omega} \frac{E(\omega^Tf-R^f)}{\sqrt{\omega^T\Sigma\omega}}.
 $$
 
-The tangency portfolio $F$ is then given by the squared root
-of the solution
+The optimal weight $\omega^*$ is the solution to the
+maximisation problem, which is 
 
 $$
-F = \sqrt{E(f)^T\Sigma^{-1}E(f)}.
+w^* = \frac{\Sigma^{-1}E(f)}{\sqrt{E(f)^T\Sigma^{-1}F(f)}}.
+$$
+
+The optimal Sharpe ratio $S^*$ is then the value function
+
+$$
+S^* = \sqrt{E(f)^T\Sigma^{-1}E(f)}.
 $$

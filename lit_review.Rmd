@@ -73,7 +73,7 @@ a priori of the SDF functional form, while
 non-linear models allow for a flexible estimation of the
 SDF functional form. @freyberger_dissecting_2017 show that
 non-linear relationships are essential in SDF estimation.
-@gu_empirical_2019 compared different
+@gu_empirical_2020 compared different
 machine learning models and show that tree and neural
 network models marginally outperform linear models,
 with the neural network model as the best performing model.
@@ -108,7 +108,7 @@ models.
 
 Current literature estimates SDF solely based on the
 firm characteristics data. However, 
-@pelger_interpretable_2018 found that
+@pelger_interpretable_2020 found that
 including macroeconomic data can further improve the
 performance of machine learning models, which is also
 evident in @chen_deep_2019's results.

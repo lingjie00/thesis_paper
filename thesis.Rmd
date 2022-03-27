@@ -17,13 +17,13 @@ keywords:
     Deep Learning, Stock Returns
     "
 bibliography: ref.bib
-nocite: ""
 csl: ./template/apa.csl
+nocite: ""
 abstract: 
     "
     The critical goal in asset pricing is to explain
     variation in expected returns of financial assets.
-    No-arbitrage pricing theory suggests the idea of the
+    Arbitrage pricing theory suggests the idea of the
     pricing kernel that governs asset prices.
     However, it remains a challenge to estimate the
     asset-pricing kernel. The difficulties include (1)
@@ -38,9 +38,9 @@ abstract:
     This paper seeks to empirically validate @chen_deep_2019's
     research based on the United States stock data
     with the United Kingdom (UK) London Stock Exchange 
-    1998 - 2017 data and found
-    that the GAN model outperformed
-    benchmark four-factor model in terms of Sharpe ratio.
+    1998 - 2017 data.
+    This paper found that the GAN model outperformed
+    the benchmark four-factor model in terms of Sharpe ratio.
     "
 acknowledgement:
     "
@@ -111,7 +111,11 @@ library(kableExtra)
 ```{r, child=("results.Rmd")}
 ```
 
+\newpage
+
 # Discussion
+
+\thispagestyle{plain}
 
 ```{r, child=("discussion.Rmd")}
 ```
