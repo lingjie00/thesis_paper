@@ -59,10 +59,10 @@ Therefore, the no-arbitrage condition reduces the
 asset-pricing problem into estimating an SDF weight function
 $\omega$ such that the following equation holds. We will
 use this relationship to construct our loss function that
-trains the GAN model.
+trains the GAN model
 
 $$
-E\left[\left(1-\mathbf{\omega}_t^T R^e_{t+1}\right)R^e_{t+1, i}\right] = 0
+E\left[\left(1-\mathbf{\omega}_t^T R^e_{t+1}\right)R^e_{t+1, i}\right] = 0.
 $$
 
 

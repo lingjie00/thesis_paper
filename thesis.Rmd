@@ -76,6 +76,8 @@ library(kableExtra)
 ```{r, child=("model.Rmd")}
 ```
 
+\newpage
+
 <!-- model training -->
 # Model Training {#model_training}
 \thispagestyle{plain}
