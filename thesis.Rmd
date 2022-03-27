@@ -1,47 +1,138 @@
 ---
+output:
+    bookdown::pdf_document2:
+        template: ./template/thesis_template.tex
+        fig_caption: yes
+        keep_tex: no
+        number_sections: yes
+        toc: true
+        toc_depth: 2
+        latex_engine: pdflatex
 title: "Generative Adversarial Network (GAN) model in Asset Pricing"
 author: "Wang Lingjie"
-output:
-    pdf_document:
-        toc: true
-        toc_depth: 4
+keywords:
+    "
+    Generative Adversarial Network, Asset Pricing,
+    Stochastic Discount Factor, Machine Learning,
+    Deep Learning, Stock Returns
+    "
+bibliography: ref.bib
+csl: ./template/apa.csl
+nocite: ""
+abstract: 
+    "
+    The critical goal in asset pricing is to explain
+    variation in expected returns of financial assets.
+    Arbitrage pricing theory suggests the idea of the
+    pricing kernel that governs asset prices.
+    However, it remains a challenge to estimate the
+    asset-pricing kernel. The difficulties include (1)
+    choosing the right factors, (2) estimating the pricing
+    kernel’s functional form, and (3) selecting the right
+    portfolio to estimate the kernel.
+    Recently, @chen_deep_2019 proposed a Generative
+    Adversarial Network (GAN) model that attempts to solve
+    all three challenges in a single setup and claim to
+    achieve the best performance compared to all existing
+    models.
+    This paper seeks to empirically validate @chen_deep_2019's
+    research based on the United States stock data
+    with the United Kingdom (UK) London Stock Exchange 
+    1998 - 2017 data.
+    This paper found that the GAN model outperformed
+    the benchmark four-factor model in terms of Sharpe ratio.
+    "
+acknowledgement:
+    "
+    "
 ---
 
-<!-- main markdown for the whole thesis -->
-
-<!-- abstract -->
-
-```{r, child=("abstract.Rmd")}
+```{r echo=F, warning=F, message=F}
+# libraries
+library(tidyverse)
+library(kableExtra)
 ```
 
 <!-- introduction -->
+# Introduction
+\thispagestyle{plain}
 
 ```{r, child=("introduction.Rmd")}
 ```
 
 <!-- literature review -->
+\newpage
+# Literature Review
+\thispagestyle{plain}
 
 ```{r, child=("lit_review.Rmd")}
 ```
 
 <!-- model -->
+\newpage
+# Methodology
+\thispagestyle{plain}
 
 ```{r, child=("model.Rmd")}
 ```
 
+\newpage
+
+<!-- model training -->
+# Model Training {#model_training}
+\thispagestyle{plain}
+
+```{r, child=("training.Rmd")}
+```
+
+\newpage
+
+<!-- model evaluation -->
+# Evaluation metrics
+
+\thispagestyle{plain}
+
+```{r, child=("metrics.Rmd")}
+```
+
+\newpage
+
+<!-- data -->
+# Data {#data}
+
+\thispagestyle{plain}
+
+```{r, child=("results/data.Rmd")}
+```
+
 <!-- empirical results -->
+# Empirical findings
+
+\thispagestyle{plain}
 
 ```{r, child=("results.Rmd")}
 ```
 
+\newpage
+
+# Discussion
+
+\thispagestyle{plain}
+
+```{r, child=("discussion.Rmd")}
+```
+
 <!-- conclusion -->
+# Conclusion
+
+\thispagestyle{plain}
 
 ```{r, child=("conclusion.Rmd")}
 ```
 
-<!-- reference -->
+<!-- references -->
+\newpage
 
-```{r, child=("reference.Rmd")}
-```
+# Bibliography
 
-
+\thispagestyle{plain}

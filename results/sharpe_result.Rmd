@@ -1,0 +1,33 @@
+```{r sharpe, echo=F}
+# Sharpe
+fama_sharpe <- c("Factor", "factor", "N", 0.29, 0.62, 0.42)
+gan_factor_sharpe <- c("GAN", "factor", "N", 0.65, 0.49, 0.33)
+gan_factor_macro_sharpe <- c("GAN", "factor", "Y", 1.88, 1.76, 1.99)
+gan_fun_sharpe <- c("GAN", "fundamental", "N", "0.70", 0.35, 0.49)
+gan_fun_macro_sharpe <- c("GAN", "fundamental", "Y", 1.18, 0.39, 0.69)
+
+sharpe_table <- t(data.frame(
+    fama_sharpe,
+    gan_factor_sharpe,
+    gan_factor_macro_sharpe,
+    gan_fun_sharpe,
+    gan_fun_macro_sharpe
+))
+sharpe_table_col <- c(
+    "Model", "Data used", "Included Macro data",
+    "Train", "Valid", "Test"
+)
+
+pander::pander(
+    sharpe_table,
+    format = "latex",
+    caption = "(\\#tab:sharpe-result) Sharpe ratio results",
+    position = "H",
+    row.names = F,
+    booktabs = T,
+    col.names = sharpe_table_col,
+    split.table = Inf,
+    split.cell = 30
+)
+```
+

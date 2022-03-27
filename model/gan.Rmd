@@ -1,0 +1,35 @@
+\newpage
+
+## GAN model {#gan_model}
+
+GAN model consists of two competing neural networks called
+discriminator and generator. The discriminator in this paper
+will estimate the SDF weight function $\omega(I_t, I_{t,
+i})$, and the generator will estimate the factor function
+$g(I_t, I_{t, i})$. Both models use an
+LSTM network to extract macroeconomic data and a
+feed-forward network to extract firm characteristic data.
+The [GAN architecture](#gan_structure) section
+explains the model structure in-depth
+
+$$
+\text{Discriminator: } \omega(I_t, I_{t, i})
+\text{, Generator:} g(I_t, I_{t, i}).
+$$
+
+Therefore, the GAN training procedure can be viewed as a
+zero-sum game where the discriminator minimises the
+pricing loss. In contrast, the generator tries to maximise the
+pricing loss. Note that the functions estimated by
+discriminator and generator are both time and asset
+independent. Given a data size $N$, we summarise the GAN training as the following
+min-max optimisation problem with the pricing loss function
+motivated by the no-arbitrage condition
+
+\begin{align*}
+    \min_{\omega} \max_{g} L(\omega, g|I_t, I_{t, i}) &=
+    \frac{1}{N} \sum_{i=1}^N \left\{
+    E \left[ \left( 1 - \sum_{j=1}^N \omega(I_t, I_{t, j})
+    R^e_{t+1, j} \right) R^e_{t+1, j}g(I_t, I_{t, i})
+    \right] \right\}^2.
+\end{align*}

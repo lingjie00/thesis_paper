@@ -1,146 +1,160 @@
-# Literature Review
+<!-- # Literature Review -->
 
 <!-- Explain the current literature on the issue
 Highlighting the gap in the literature
 Explain clearly how your research contribute to
 the topic -->
 
-<!-- Explain the objective in asset pricing
-The main goal in asset pricing is to understand
-the right pricing for an asset given the risk
-of the asset. -->
+<!-- The asset pricing model explains the differences in asset
+returns and risk-free returns through a risk exposure to the
+asset pricing kernel called the stochastic discount factor
+(SDF). However, it remains an empirical challenge to
+estimate the SDF. The challenge in estimating SDF comes in
+three aspects. (1) Estimating the functional form of the
+SDF, (2) selecting the correct factor and (3) selecting the
+right assets for estimation (portfolio construction).
+-->
 
-One fundamental idea of asset pricing is no
-arbitrage condition. Where the excess return is
-the risk-free return plus the risk adjusted asset
-return. (...) stochastic discount factor.
+The literature on determining the appropriate form of the
+SDF has a long history and perhaps is one of the largest
+analysis in finance. The first asset-pricing model proposed by
+@sharpe_capital_1964, @lintner_valuation_1965 and
+@mossin_equilibrium_1966 in the 1960s was called
+Capital Asset Pricing Model (CAPM).
+CAPM explains the variation in asset
+returns with the assets' exposure to market risk.
+The resultant regression coefficient in this single-factor
+model is coined as “beta”, and investors continued to use
+“beta” to describe the risk of assets.
 
-The empirical problem boils down to estimating the
-stochastic discount factor (SDF).
+@fama_common_1993 later proposed a three-factor model that
+expands on the CAPM model by including size and value
+factors.
+@fama_common_1993 found that small market capitalisation
+stocks and low-value stocks outperformed the market, and
+including the size and value factors improves the
+performance of the CAPM model.
+The size factor is the difference in returns between the
+smallest and largest stocks measured by market capitalisation.
+On the other hand, the value factor is the difference in
+returns between the cheapest and
+most expensive stocks measured by price to book ratio.
+@carhart_persistence_1997 built on the three-factor model
+to include a momentum factor: the difference
+in returns between the best and worst-performing stocks.
+@fama_five-factor_2015 later expanded on the three-factor model to
+include profitability and investment. The profitability
+factor is the difference in returns between stocks with high
+and low operating profitability, and the investment factor is
+the difference in returns between high and low capital
+investment stocks. The three, four, and five factor models
+have been a benchmark for asset pricing models and
+remain relevant today. 
+In recent years different research papers have attempted to
+find new factors to improve the factor model performance.
+The term "factor zoo" was used by @feng_taming_2020 to
+describe the hundreds of factors proposed by different
+literature.
+@feng_taming_2020 and @freyberger_dissecting_2017
+investigated the wide-ranging factors proposed by the
+different literature and found only a handful is
+statistically significant in explaining the asset returns.
+The factor models fall under the arbitrage pricing theory
+(APT) suggested by @roll_arbitrage_1984. APT summarises the
+relationship between assets' expected returns and multiple
+factors using a stochastic discount factor (SDF).
 
-<!-- Explain the current strategy in asset pricing-->
+The factor models mentioned earlier explore different
+factors while assuming a linear functional form for SDF.
+Recent literature attempt to estimate SDF
+with non-linear, non-parametric models such as tree and
+neural network models. Non-parametric models do not require
+a priori of the SDF functional form, while
+non-linear models allow for a flexible estimation of the
+SDF functional form. @freyberger_dissecting_2017 show that
+non-linear relationships are essential in SDF estimation.
+@gu_empirical_2020 compared different
+machine learning models and show that tree and neural
+network models marginally outperform linear models,
+with the neural network model as the best performing model.
 
-The challenge in estimating SDF comes in
-estimating the structure form of the SDF,
-selecting the right factor to estimate the SDF and
-constructing the right portfolio.
+Traditional machine learning models do not 
+consider economic theories during estimation.
+@gu_autoencoder_2019 found that imposing
+constraints based on economic theory can further improve
+the neural network models.
+Furthermore, @chen_deep_2019 imposed a no-arbitrage condition on neural
+networks through a generative adversarial network (GAN)
+model.
 
-Popular ways to estimate the structure forms of
-SDF revolve around linear models (using linear
-regression), non-linear models (using ensemble and
-boosting tree models, deep neural network). Linear
-model generally works well. Although non-linear
-methods improved the performance, the improvement
-is marginal.
+@goodfellow_generative_2014 first introduced GAN models for image recognition tasks,
+and GAN models continue to be heavily used in image and video tasks,
+as suggested by @s_generative_2021's recent survey.
+GAN models differ from classical neural network models by including two
+competing neural networks in a zero-sum game. In the context
+of @chen_deep_2019 and this paper, one of the neural
+networks will price assets through APT while the
+other neural networks will attempt to find factors and
+mispriced assets to increase pricing error.
+This paper will explain the GAN model in detail under methodology.
 
-The current method to select relevant factor
-involves selection based on domain expertise (3,
-4, 5 factors) or automatic feature selection
-methods (regularized linear regression such as
-Lasso). The 5 factor models seem to perform well,
-and the feature selected by Lasso is good too.
+Consumption-based asset pricing is another school of thought
+that derives SDF directly from a utility function. However, 
+@campbell_explaining_2000 show that the consumption-based model
+cannot account for the time-varying
+nature of SDF, resulting in poor performance compared to APT
+models. Therefore, this paper continued to focus on APT
+models.
 
-The portfolio construction is less well researched
-and mainly based on domain expert selection.
-Therefore, researches focus on estimating
-functional form of SDF and selecting relevant
-factors would typically keep the portfolio
-constant by using portfolio provided by (famous
-author).
+Current literature estimates SDF solely based on the
+firm characteristics data. However, 
+@pelger_interpretable_2020 found that
+including macroeconomic data can further improve the
+performance of machine learning models, which is also
+evident in @chen_deep_2019's results.
+Therefore, @chen_deep_2019 included a recurrent neural network with
+long short-term memory (LSTM) architecture in the GAN model
+to capture the times series macroeconomic data.
+@hochreiter_long_1997 first proposed the LSTM architecture, and a recent
+review on the applications of LSTM by @houdt_review_2020
+found that LSTM is still commonly used in sequence data to
+capture dynamics in data, such as language-related tasks.
+This paper will also explain the different LSTM components under
+methodology.
 
-<!-- Explain the limitation in asset pricing strategy -->
+The main contribution of this paper is in examining the
+external validity of @chen_deep_2019's model with the
+United Kingdom (U.K.) London Stock Exchange (LSE) data.
+@karolyi_home_2012 found that most
+empirical papers consider the data-rich United States, with
+only around 20% of the papers in top finance journals
+investigating countries outside the United States (U.S.).
+Likewise, @chen_deep_2019 model was also
+trained based on the U.S. data.
+Therefore, this paper explores the model performance in a
+different context, such as the U.K. market.
+There are several works of literature done on LSE data,
+but none answers the question this paper seeks to address.
+@bhatnagar_capital_2012 and 
+@korajczyk_empirical_1989 focus only on
+linear factor models, while @tobek_does_2018
+forecast asset prices without considering economic theories.
+Therefore, one of the critical contributions of this paper
+is to provide insights into the potential benefits advanced
+models can bring to the United Kingdom.
 
-As a result, the current research generally focus on
-solving only one of the problems at one time.
-Researches that focus on estimating the functional
-form of SDF generally keep the portfolio and
-factor constant. While researches that focus on
-selecting the factors might alter the functional
-form estimation but still keep the portfolio
-constant.
-
-The current researches work generally well, but
-there is still gaps in the current methods given
-by the statistically significant alpha in the
-asset pricing model.
-
-<!-- Explain how GAN model contributes to the strategy -->
-
-Generative advisory network (GAN) model proposed by
-(researcher name) attempts to solve asset pricing
-by simultaneously solve the structure model
-estimation, factor selection and portfolio
-construction in a single estimation.
-
-GAN model is based on deep neural network,
-proposed by Goodfellow. The main idea is to train
-two competing networks with different objectives,
-and link the two network with a common loss
-function. One can think of GAN model as a min max
-optimization problem.
-
-One network is called discriminative network. This
-corresponds to standard estimation such as SDF
-functional form estimation.
-
-Another the network is called generative network.
-Generative network attempts to propose new
-observations that are unable to be explained by the
-discriminative network. This could be considered
-as constructing a portfolio where asset pricing
-model failed to explain the excess return.
-
-Therefore, by training both discriminative network
-and generative network simultaneously, we are able
-to estimate the functional form of SDF with
-discriminative network, select the factors and
-combine stocks to form portfolio that is the least
-able to explained by the asset pricing model.
-
-The (researcher) has showed that GAN model
-outperformed any of the current SDF estimation,
-and is able to construct portfolio where current
-asset pricing models failed to explain most of the
-excess returns. 
-
-<!-- Explain the current validation strategy -->
-
-The (researcher) has validated his research based
-on US stock market with (xx) years of return,
-using (xx) number of factors. The final estimation
-is (xx), which is (xx) much better than current
-research.
-
-<!-- Explain why the validation strategy is insufficient -->
-
-We attempt to validate the (researcher)'s claim by
-constructing the GAN model described in the
-network and cross validate the result in the
-United Kingdom.
-
-Although the (researcher) has release their code
-base and data, there is little documentation and
-the library is outdated. Most of the research
-model failed to deliver practical impact due to
-lack of execution. Furthermore, external
-validity of the GAN model has yet to be discussed
-as far as our best knowledge.
-
-<!-- Explain how we aim to improve the validation strategy -->
-
-Therefore, our paper attempts to reconstruct the
-model using the latest library, with proper
-documentation for further researches and test the
-GAN model constructed based on the United Kingdom
-data.
-
-<!-- Explain the work done in UK, and why is it insufficient -->
-
-The United Kingdom was selected due to the
-availability of data. Most of the current
-financial research is done on the United States,
-contributing to a home bias. There is only (xx)
-researches done on the United Kingdom, and we hope
-to provide some insights on not just the GAN
-model, but general asset pricing strategy on the
-United Kingdom.
+<!--
+Current literature recommended validating asset-pricing
+models with portfolios instead of individual assets.
+A portfolio combines multiple assets and could
+theoretically reduce idiosyncratic volatility, improving
+model estimation.
+@fama_common_1993 proposed to form a test portfolio
+by sorting assets based on firm characteristics, which
+corresponds to the factors in the three-factor model.
+Characteristics sorted test portfolios remain a popular
+choice among literature.
+This paper explores characteristics sorted portfolio
+and individual assets to investigate the GAN model performance
+in different contexts.
+-->

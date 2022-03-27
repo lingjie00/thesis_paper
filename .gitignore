@@ -9,6 +9,7 @@
 # vim related
 *.swp
 .vim/
+*.vim
 
 # markdown related
 *.html

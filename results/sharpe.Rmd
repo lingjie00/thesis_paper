@@ -1,0 +1,60 @@
+## Sharpe ratio
+
+GAN models generally achieve a higher out-of-sample Sharpe
+ratio than the four-factor model. The GAN model trained on
+factor and macroeconomic data has achieved the highest Sharpe
+ratio of 1.99 in the test period compared to 0.42 in
+the four-factor model.
+However, the GAN model trained solely on factor data has achieved a
+Sharpe ratio of 0.33, which was lower than the four-factor model. 
+Meanwhile, the GAN models trained on fundamental data achieve a higher
+out-of-sample Sharpe ratio at 0.49 (without macroeconomic
+data) and 0.69 (with macroeconomic data) than the
+four-factor models.
+Therefore, the overall trend in the results shows that the GAN models
+outperform the four-factor model, which is consistent with
+@chen_deep_2019's finding.
+
+Additionally, this paper finds that adding macroeconomic data
+can improve the GAN models in both datasets. The Sharpe ratio of 
+GAN models trained on macroeconomic factors outperformed the
+GAN models trained on the same dataset, without
+macroeconomic data. The improvement in
+model performance suggests that macroeconomic data
+has a role in estimating the SDF, which aligns with
+@chen_deep_2019's finding.
+
+However, the Sharpe ratio is lower than the GAN model
+trained without the additional fundamental data. 
+Although fundamental data was relevant in @chen_deep_2019's
+paper, the GAN models trained with income
+statement data does not outperform those trained without
+income statement data in this paper.
+The two possible reasons for the lower performance could be
+either the irrelevance of income statement data or the smaller
+dataset in fundamental data.
+In our results, the GAN model trained solely on fundamental data
+outperformed the GAN model trained solely on factor
+data. Therefore, this paper suggests that the lower
+performance could be due to the smaller dataset. 
+As mentioned earlier, fundamental training contains 242 stocks, while factor
+training contains 942 stocks. Since all GAN models have the
+same parameter setting, there could be insufficient data for
+GAN models trained with fundamental data, and income
+statements could still be relevant in estimating SDF.
+
+In contrast to @chen_deep_2019's result, the Sharpe ratios
+in this paper do not decrease sharply from the in-sample
+period to the out-of-sample period. The GAN models are
+trained based on 1998-2009 data while evaluated against
+2010-2013 data and the out-of-sample period is from 
+2014 to 2017. 
+The stable Sharpe ratio suggests that although we expect the
+SDF functional form to be time-varying, the UK SDF
+functional form might be relatively consistent across the 5
+to 10 years period.
+Table \@ref(tab:sharpe-result) summarises the Sharpe ratio
+for different models.
+
+```{r, child="sharpe_result.Rmd"}
+```

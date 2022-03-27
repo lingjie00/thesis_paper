@@ -1,0 +1,122 @@
+## Neural network model {#nn_model}
+
+A neural network model is a flexible non-parametric
+model that is able to recover effectively the nonlinear
+relationships, including the interaction effects, between
+input and output data.
+In this paper, we build two neural network models to (1) model
+the stochastic discount factor (SDF) weight and (2) model
+factors unexplained by the no-arbitrage condition. The [GAN
+model](#gan_model) section provides in-depth explanation on
+the use of these two neural networks.
+Each of the two neural network models combines feed-forward
+and recurrent neural networks. We first explain the
+standard feed-forward
+neural network before expanding to the recurrent neural network
+in [long short-term memory (LSTM)
+architecture](#LSTM_model). Regularization techniques are
+employed to minimise model over-fitting and are explained
+under [model training](#model_training). 
+
+### Feed forward neural network
+
+A standard feed-forward neural network (FFN) consists of one input
+layer, one or multiple hidden layer(s) and one output layer.
+In essence, FFN performs a linear combination of covariates
+before passing the intermediate output to a nonlinear function.
+The output from the nonlinear function is then linearly
+combined again, and the procedure repeats until the output
+layer. This paper first illustrates this relationship using
+Figure \@ref(fig:feedforward) before introducing the
+individual components.
+
+The first layer in Figure \@ref(fig:feedforward) is
+the *input layer*. The number of input units in the input
+layer corresponds to the number of covariates available.
+Therefore, an input data $\mathbf{X} = (X_1, X_2, \cdots, X_p)$
+with $p$ covariates will have $p$ input units in the input
+layer. The input data in this paper includes 
+both macroeconomic factors and firm characteristics data.
+
+The second layer in Figure \@ref(fig:feedforward) is the
+*hidden layer*. The input units are linked to the hidden
+layer as a directed acyclic graph (DAG). Each hidden unit
+will first linearly combine the input units before
+passing the intermediate output to a nonlinear function 
+$h(\alpha_{0m} + \mathbf{\alpha}^T_m\mathbf{X})$,
+where $h(\cdot)$ is the nonlinear function, $m = 1,
+\cdots, M$ is the $m$th hidden units, and $\alpha$ is the
+weights in the hidden unit.
+The output in the hidden units is a nonlinear
+transformation of the input units.
+Although figure only shows a single hidden layer,
+there might be multiple hidden layers in practice, forming a
+deep neural network. The output of the hidden units will be
+passed as the input to the next hidden layer, and the
+procedure repeats.
+
+The third and final layer in Figure \@ref(fig:feedforward)
+is the *output layer*. The number of output units in the
+output layer depends on the model task. For example, a
+regression task will contain a single output unit, while a
+classification task will contain the number of categories as
+the number of output units. In the case of regression, the
+outputs from the hidden units are linearly combined to
+produce a single value as the final output of the FFN.
+
+![(#fig:feedforward) Feed forward neural network](./src/feedforward)
+
+### Network components
+
+Let $\mathbf{X}$ be the vector of inputs, $y$ be the numeric
+output being predicted in a regression task, $M$ be the
+total number of hidden units, $\alpha$ be the weights in the
+hidden units and $\beta$ be the weights in the output unit.
+The neural network structure can be summarise with the
+following equations
+
+\begin{align*}
+    Z_m &= h(\alpha_{0m} + \mathbf{\alpha}^T_m\mathbf{X}), ~m
+    = 1, \cdots, M\\
+    \mathbf{Z} &= (Z_1, Z_2, \cdots, Z_m)\\
+    y &= \beta_{0} + \mathbf{\beta}^T \mathbf{Z}.
+\end{align*}
+
+### Activation function
+
+There are various activation functions $h(\cdot)$
+available. This paper uses one of the most commonly
+used activation functions known as rectified linear unit
+(ReLU), shown in Figure \@ref(fig:relu). $ReLU(x) := \max(x,
+0)$ effectively removes the negative values.
+@nair_rectified_2010 shown in their paper that ReLU
+improves the convergence rate of stochastic gradient descent
+compared to other activation functions such as the sigmoid
+function.
+
+```{r relu, fig.cap="Rectified linear unit (ReLU) activation function", echo=F}
+data <- -5:5
+data <- ifelse(data <= 0, 0, data)
+plot(-5:5, data, type = "l", xlab = "x", ylab = "ReLU(x)")
+```
+
+### Loss function
+
+After the data is passed from the input layer to the output
+layer, a loss function calculates the loss in the model and
+summarises the training objective.
+One commonly used loss function is
+mean squared error $E(\mathbf{y} - \mathbf{\hat{y}})^2$.
+This paper implements a custom pricing loss
+function described in the [pricing loss
+function](#loss_function) section.
+
+### Back-propagation
+
+After the loss is calculated, a back-propagation training
+algorithm is then used to train the network.
+Back-propagation algorithm minimises a given loss function
+by updating the weights and constant terms in the network model
+through gradient descent methods. This paper adopted
+adaptive moment estimation (Adam) as the optimiser as
+described in [training neural network](#adam) section.

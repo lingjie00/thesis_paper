@@ -1,0 +1,157 @@
+<!-- # Evaluation metrics -->
+
+This paper evaluates the performance of the GAN model against the
+four-factor model based on the Sharpe ratio.
+
+<!--
+This paper evaluates the performance of the GAN model against the
+Fama French model based on the mispricing error and Sharpe
+ratio.
+
+## Mispricing error with beta representation {#beta}
+
+Expected return beta representation refers to the one-factor model
+implied by the no-arbitrage condition. We first explain the
+exposure to systematic risk $\beta_{t, i}$ formulation
+before interpreting the variable of interest: mispricing
+error $\alpha_i$.
+As explained in [no-arbitrage asset-pricing](#no_arbitrage)
+section, no-arbitrage condition implies
+$E_t[M_{t+1}R^e_{t+1, i}] = 0$. As shown in the equation
+below, using the covariance formula
+$Cov(X, Y) = E(XY)-E(X)E(Y)$ we have 
+$E_t[M_{t+1}R^e_{t+1, i}] = \beta_{t, i}\lambda_t$
+where $\lambda_t$ is the market price of risk that is
+independent of asset $i$ and $\beta_{t, i}$ is the quantity
+of risk.
+
+\begin{align*}
+E_t[M_{t+1}R^e_{t+1, i}] &= 0 = Cov_t[M_{t+1}R^e_{t+1, i}] +
+E_t[M_{t+1}]E_t[R^e_{t+1, i}]\\
+\Rightarrow E_t[R^e_{t+1, i}] &= 
+\left(-\frac{Cov_t[M_{t+1}, R^e_{t+1,
+i}]}{Var_t[M_{t+1}]}\right)
+\cdot
+\frac{Var_t[M_{t+1}]}{E_t[M_{t+1}]}
+= \beta_{t, i} \cdot \lambda_t
+\end{align*}
+
+We consider the general case where the stochastic discount
+factor (SDF) $M_{t+1}$ is an affine transformation of the
+tangency portfolio $F_{t+1}$,
+and we have $M_{t+1} = a - b F_{t+1}$.
+We define the tangency portfolio in terms of the 
+excess return compared to the risk-free rate $F_{t+1} :=
+\mathbf{\omega}_t^T R^e_{t+1, F}$ with the SDF weight
+$\mathbf{\omega}_t$. Furthermore, since
+$E[M_{t+1}R^f_{t+1}] = 1 \Rightarrow R^f_{t+1} = 1/E[M_{t+1}]$.
+We have:
+\begin{align*}
+    E_t[R^e_{t+1, i}] &= -Cov_t[a - b F_{t+1},
+    R^e_{t+1, i}]R^f_{t+1}
+    = b Cov_t[F_{t+1}, R^e_{t+1, i}] R^f_{t+1}
+\end{align*}
+
+When the asset $i$ is the tangency portfolio $F_{t+1}$ itself,
+we have
+\begin{align*}
+    E_t[F_{t+1}] = b Cov_t[F_{t+1}, F_{t+1}]
+    R^f_{t+1}
+    \Rightarrow b = \frac{E_t[F_{t+1}]}
+    {Var_t[F_{t+1}] R^f_{t+1}}
+\end{align*}
+
+Substituting the value of $b$ we have
+\begin{align*}
+    E_t[R^e_{t+1, i}] &= 
+    \left(\frac{E_t[F_{t+1}]}
+    {Var_t[F_{t+1}] R^f_{t+1}}\right)
+    \cdot Cov_t[F_{t+1}, R^e_{t+1, i}] R^f_{t+1}\\
+    &= \frac{Cov_t[ F_{t+1}, R^e_{t+1, i} ]}
+    {Var_t[F_{t+1}]} E_t[F_{t+1}]
+    = \beta_{t, i}E_t[F_{t+1}]
+\end{align*}
+
+Therefore, the no-arbitrage condition resulted in a
+one-factor model with $\alpha_i = 0, E_t[\epsilon_{t+1,
+i}]=0$ and $Cov_t[F_{t+1}, \epsilon_{t+1, i}] =0$.
+As mispricing error $\alpha_i$ is asset dependent, we
+provide summary statistics on the individual asset
+$\alpha_i$, test portfolio and the risk $\beta_{t, i}$
+sorted decile portfolio statistics.
+
+$$
+R^e_{t+1, i} = \alpha_i + \beta_{t, i} F_{t+1} +
+\epsilon_{t+1, i}
+$$
+
+-->
+
+## Sharpe ratio {#sharpe_ratio}
+
+William F. Sharpe (1966) proposed the Sharpe ratio to evaluate
+the performance of risk-adjusted assets relative to a
+risk-free asset. A Sharpe ratio ($S$)
+for an asset $i$ is defined as the asset's historical excess
+return $E_t(R^e_{i})$ weighted by the risk of the asset,
+where the standard deviation of the excess return $\sigma_i$
+approximates the risk of an asset. The excess return is the
+difference between the asset's return and the risk-free
+return $E_t(R^e_{i}) = E_t(R_{i} - R^f)$. Sharpe ratio
+measures the reward investors get when investing in the
+asset while considering the risk of the
+assets. Therefore, a higher Sharpe ratio implies the asset
+is better, and tangency portfolio $F_{t+1}$ that lies
+on the mean-variance frontier will have the highest Sharpe
+ratio possible. 
+We compare the Sharpe ratio of the tangency portfolio by
+both GAN and four-factor models to decide on the model with
+better performance
+
+$$
+S(R_i) = \frac{E_t[R_i - R^f]}{\sigma_i}.
+$$
+
+<!--
+Info on SONIA:
+https://www.bankofengland.co.uk/markets/transition-to-sterling-risk-free-rates-from-libor
+-->
+
+### GAN Sharpe ratio computation
+
+The discriminant network in the GAN model estimates the SDF
+weight $\omega_t$. Therefore, by construction, the
+tangency portfolio $F_{t+1}$ will be defined as the dot
+product between the SDF weight and assets' excess returns
+R^e_{t+1} as described in the equation
+
+$$
+F_{t+1} = \omega_t^TR^e_{t+1}.
+$$
+
+\newpage
+
+### Factor model Sharpe ratio computation
+
+Let $\omega$ be the optimal portfolio weight for factor
+models, $f$ be the factors, $\Sigma$ be the covariance
+matrix between factors and $R^f$ be the risk free rate.
+Then we can solve Sharpe ratio explicitly through the
+following maximisation problem
+
+$$
+\max_{\omega} \frac{E(\omega^Tf-R^f)}{\sqrt{\omega^T\Sigma\omega}}.
+$$
+
+The optimal weight $\omega^*$ is the solution to the
+maximisation problem, which is 
+
+$$
+w^* = \frac{\Sigma^{-1}E(f)}{\sqrt{E(f)^T\Sigma^{-1}F(f)}}.
+$$
+
+The optimal Sharpe ratio $S^*$ is then the value function
+
+$$
+S^* = \sqrt{E(f)^T\Sigma^{-1}E(f)}.
+$$

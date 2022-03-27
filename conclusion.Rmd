@@ -1,1 +1,27 @@
-# Conclusion
+<!-- # Conclusion -->
+
+In conclusion, this paper has derived four findings.
+Firstly, this paper found that @chen_deep_2019's GAN model
+is applicable to the U.K. market, where the model outperform the
+benchmark of four-factor model in terms of Sharpe ratio.
+The Sharpe ratio of the GAN models trained on all datasets
+is higher than the four-factor model, except the GAN
+model trained only on past return data.
+Secondly, similar to @chen_deep_2019's finding,
+macroeconomic data is essential in estimating SDF functional
+form.
+By including macroeconomic data in the GAN model, it results in a
+higher Sharpe ratio than GAN models estimated without
+macroeconomic data. Furthermore, the best performing GAN model requires
+macroeconomic data.
+Lastly, the U.K. SDF functional form has been consistent across
+the years.
+The Sharpe ratio in the training period is comparable to the
+out-of-sample test period, suggesting that the SDF
+functional form seems to be consistent over time. 
+Having said that, the consistency applies to the period
+explored in this paper. It is uncertain if the SDF will remain
+consistent after Brexit and COVID-19.
+With reference to the U.K. LSE 1998 - 2017 data,
+this paper concludes that considering the GAN model does provide
+a value to the asset pricing theory.

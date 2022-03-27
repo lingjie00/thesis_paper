@@ -1,62 +1,77 @@
-# Introduction
+<!--INTRODUCTION-->
 
-The fundamental problem of asset pricing is in understanding
-the risk premium through an asset pricing kernel.
-The challenges in estimating the asset-pricing kernel come
-in three aspects.
+The critical goal in asset pricing is to explain the variation
+in expected returns of financial assets.
+Arbitrage pricing theory (APT) suggests the idea of a pricing
+kernel, also known as the stochastic discount factor (SDF),
+that governs asset prices.
+The literature on determining the appropriate form of the
+SDF has a long history and perhaps one of the most extensive
+analyses in finance.
+However, it remains a challenge to estimate the pricing
+kernel. There are three challenges in estimating the
+asset-pricing kernel:
+(1) choosing the right factors (data features) to
+estimate the pricing kernel,
+(2) estimating the functional form of the pricing
+kernel and,
+(3) selecting the right portfolio (combination of
+individual assets) to estimate the pricing kernel. 
 
-Firstly, in choosing the right factors (data features) to
-estimate the pricing kernel.
-Current approaches involve Fama French 5-factor model (Fama
-& French, 2015) or machine learning LASSO approach in Taming
-the Factor Zoo (Feng et al., 2020).
+Factor models such as @fama_common_1993's three-factor model
+and @carhart_persistence_1997's four-factor model
+constructed different factors based on empirical
+findings and estimated pricing kernel through a linear
+combination of these constructed factors. 
+These factor models have been performing well empirically,
+and are considered the benchmark for assets pricing models.
+Besides exploring various new possible factors,
+recent literature also attempts to estimate the pricing
+kernel using non-linear and non-parametric models.
+For example, @gu_empirical_2020 found that neural network models
+outperform linear model in estimating the pricing kernel.
+Furthermore, @gu_autoencoder_2019 also realised that imposing
+economic theory onto machine learning models can
+improve model performance further.
 
-Secondly, in estimating the functional form of the pricing
-kernel.
-Fama French assumes linear pricing kernel, while others
-papers explored non-linear models using machine learning
-techniques such as ensemble and boosting tree models, feed
-forward neural network.  With machine learning techniques
-providing more significant economic gains (Gu et al., 2018).
+With reference to existing literature, @chen_deep_2019 proposed a
+Generative Adversarial Network (GAN) model that imposes the
+APT condition in the neural network model.
+GAN models are a class of neural network frameworks which
+consist of two competing network models in a zero-sum game.
+A discriminative neural network attempts to price the asset
+prices using APT, while a generative neural network attempts
+to increase pricing error through different combinations of
+assets and factors.
+Through the simultaneous training, the discriminative
+neural network estimates the functional form of
+the pricing kernel while the
+generative network constructs different portfolios
+that APT is least able to explain, thus solving the three
+problems in asset pricing theory in a single setup.
+As compared to previous research that focused on firm
+characteristics data, @chen_deep_2019 included
+macroeconomic data using long short-term memory (LSTM), a
+class of neural network architecture commonly used in
+predictions with a time series structure. Their findings
+have shown that the inclusion of macroeconomic data did
+enhance the model performance.
+Therefore, @chen_deep_2019 analyses have outperformed all
+previous models in Sharpe ratio, explained variation and
+pricing errors.
 
-Lastly, in choosing the right portfolio (combination of
-individual assets) to estimate the pricing kernel.
-Current approaches follow the characteristics sorted
-portfolio, such as Fama French size, book-to-market,
-operating profitability and investment portfolio.
-
-A recent paper proposed a Generative Adversarial Network
-(GAN) model that attempts to solve all three problems in a
-single setup (Chen et al., 2019).
-GAN models consist of a discriminative neural network model
-and a generative neural network model. The discriminative
-and generative works like police and thief with contrasting
-objectives linked with a single pricing error loss function.
-The competition can be viewed as a zero-sum game with the
-discriminative network attempts to model the pricing
-kernel, improving the asset pricing model's explanatory
-power and reducing the pricing error loss. And the
-generative network attempts to choose portfolio and factors
-that is least explained by the asset pricing model to
-increase the pricing error loss.
-The goal is to build a discriminative network model with the
-best pricing kernel estimation and a generative network
-model with the best portfolio and factor construction.
-
-The paper further includes macroeconomic data using neural
-network long short-term memory (LSTM) proposed commonly used in
-predictions with a time series structure.
-
-Our contribution comes in three levels.
-Firstly, we attempt to validate Chen's research using the
-network model proposed and data provided in the paper.
-Secondly, the current code base released by Chen relies on 
-TensorFlow v1.0, a software library that has been depreciated.
-We upgrade the existing code base using TensorFlow v2.0,
-the latest version of the software library.
-Furthermore, we attempt to provide an easy-to-use
-open-source software package that will be widely available
-to all researchers interesting in applying the GAN model to
-any asset class and data of interest.
-Lastly, we illustrate the use case of our software package
-and testify the model performance in a different country. 
+However, similar to most literature, @chen_deep_2019's
+research focus solely on the United States (U.S.) market.
+In fact, @karolyi_home_2012 pointed out that only few papers in top
+finance journals have explored the model performance in
+non-U.S. markets.
+The lack of comparison of model performance on non-U.S.
+markets thus drives this paper to empirically validate the
+external validity of @chen_deep_2019's research with the
+United Kingdom London Stock Exchange data from 2011 to 2021. 
+This paper concludes that the GAN model outperformed
+benchmark four-factor model when evaluated against the Sharpe
+ratio.
+Replication files are available on the author's GitHub
+account
+[github.com/lingjie00/asset_pricing](https://github.com/lingjie00/asset_pricing).
