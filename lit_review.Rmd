@@ -5,16 +5,6 @@ Highlighting the gap in the literature
 Explain clearly how your research contribute to
 the topic -->
 
-<!-- The asset pricing model explains the differences in asset
-returns and risk-free returns through a risk exposure to the
-asset pricing kernel called the stochastic discount factor
-(SDF). However, it remains an empirical challenge to
-estimate the SDF. The challenge in estimating SDF comes in
-three aspects. (1) Estimating the functional form of the
-SDF, (2) selecting the correct factor and (3) selecting the
-right assets for estimation (portfolio construction).
--->
-
 The literature on determining the appropriate form of the
 SDF has a long history and perhaps is one of the largest
 analysis in finance. The first asset-pricing model proposed by

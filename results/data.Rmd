@@ -1,22 +1,3 @@
----
-output: word_document
-bibliography: "../ref.bib"
----
-
-<!--
-**Risk-free Rates**
-We take the Sterling Overnight Index Average (SONIA)
-benchmark as the risk-free rates. 
-
-**Macroeconomics data**
-
-Macroeconomics data ($I_t$)
-
-**Firm fundamental data**
-
-Firm specific fundamental data ($I_{t, i}$)
--->
-
 This paper extracts January 1998 to December 2017 London
 Stock Exchange (LSE) monthly stock prices from Yahoo! Finance and
 splits the complete data into twelve years of

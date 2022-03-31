@@ -7,12 +7,6 @@ characteristic data, while *fundamental data* training
 contains more characteristic data with lesser assets.
 Therefore, readers should consider the difference across the
 datasets used when interpreting the results.
-<!--
-This paper proposed interpreting the difference in results
-as a trade off between flexible GAN model
-against a simple linear factor model under different number
-of covariates and assets.
--->
 Generally, neural network models require a large dataset for
 training. However, as @noauthor_google_2019 recommended in their
 developer website, there is no common consensus among
@@ -21,21 +15,3 @@ context-dependent.
 
 ```{r, child=("./results/sharpe.Rmd")}
 ```
-
-<!--
-## Mispricing error
-
-As explained in [Mispricing error with beta
-representation](#beta), the assets' expected excess return
-relates to the SDF in a one-factor model with $\alpha_i =
-0$. As the mispricing error is asset dependent, this paper
-first presents summary statistics on the individual asset
-before presenting on characteristic sorted portfolios
-created by @gregory_constructing_2011.
-
-```{r, child=("./results/mispricing_error_individual.Rmd")}
-```
-
-```{r, child=("./results/mispricing_error_portfolio.Rmd")}
-```
--->
