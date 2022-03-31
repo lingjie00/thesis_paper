@@ -1,10 +1,10 @@
 
-As explained in the [GAN model](#GAN_model), a GAN model
-simultaneously trains a discriminator and generator
-simultaneously. To further increase the convergence speed,
+As explained in [subsection 3.5](#GAN_model), a GAN model
+alternates between training a discriminator and generator.
+To further increase the convergence speed,
 we first train the individual network separately in a
 standard neural network training procedure before training
-them simultaneously in a GAN framework.
+them in a GAN framework.
 
 ### Discriminator network structure
 As illustrated in Figure \@ref(fig:discriminator), the discriminator network has

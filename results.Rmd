@@ -1,12 +1,12 @@
 <!-- # Empirical findings -->
 
 The [Data](#data) section describes two types of
-data splitting: *factor* and *fundamental* data.
+datasets: *factor* and *fundamental* data.
 The *factor data* training contains more assets but lesser
 characteristic data, while *fundamental data* training
 contains more characteristic data with lesser assets.
-Therefore, readers should consider the difference in the
-dataset used when interpreting the results.
+Therefore, readers should consider the difference across the
+datasets used when interpreting the results.
 <!--
 This paper proposed interpreting the difference in results
 as a trade off between flexible GAN model
@@ -16,7 +16,8 @@ of covariates and assets.
 Generally, neural network models require a large dataset for
 training. However, as @noauthor_google_2019 recommended in their
 developer website, there is no common consensus among
-literature and practitioners on the required size of dataset.
+literature and the required size of dataset may be
+context-dependent.
 
 ```{r, child=("./results/sharpe.Rmd")}
 ```

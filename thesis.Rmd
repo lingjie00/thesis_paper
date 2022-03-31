@@ -21,21 +21,21 @@ csl: ./template/apa.csl
 nocite: ""
 abstract: 
     "
-    The critical goal in asset pricing is to explain
-    variation in expected returns of financial assets.
-    Arbitrage pricing theory suggests the idea of the
+    An important topic in asset pricing is explaining
+    the variation in expected returns of financial assets.
+    No-arbitrage pricing theory suggests the idea of a
     pricing kernel that governs asset prices.
     However, it remains a challenge to estimate the
     asset-pricing kernel. The difficulties include (1)
     choosing the right factors, (2) estimating the pricing
     kernel’s functional form, and (3) selecting the right
     portfolio to estimate the kernel.
-    Recently, @chen_deep_2019 proposed a Generative
+    Recently, @chen_deep_2021 proposed a Generative
     Adversarial Network (GAN) model that attempts to solve
     all three challenges in a single setup and claim to
     achieve the best performance compared to all existing
     models.
-    This paper seeks to empirically validate @chen_deep_2019's
+    This paper seeks to empirically validate @chen_deep_2021's
     research based on the United States stock data
     with the United Kingdom (UK) London Stock Exchange 
     1998 - 2017 data.

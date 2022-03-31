@@ -1,25 +1,25 @@
 <!-- # Model training --> 
 
-This chapter explained the techniques we used to train the
-GAN and Fama-French factor models. We first describe a
-general neural network training before focusing on GAN model.
+This chapter explains the methodology used to train the
+GAN and the factor model. We first describe a
+general neural network training before focusing on the GAN model.
 
-## Training neutral network
+## Training a neutral network
 
-Training neural network is an empirical experiment.
+Training a neural network is an empirical experiment.
 We used Chen et al. (2019)’s best-performing
-hyper-parameters tuning, including the number of hidden
+hyper-parameters choices, including the number of hidden
 units and number of hidden layers, while following the best
 practice of neural network training, including dynamic
-learning rate and regularisation.
+learning rate and regularization.
 
 ### Adam Optimizer {#adam}
 
-As explained in the [neural network model](#nn_model), back-propagation
+As explained in the [subsection 3.3](#nn_model), back-propagation
 is one critical component in the training procedure.
-We used adaptive moment estimation (Adam)
-[@kingma_adam_2015], which combines momentum optimization and
-RMSProp, another optimizer famou before Adam. We define
+We used adaptive moment estimation (Adam) proposed by
+@kingma_adam_2015, which combines momentum optimization and
+RMSProp, another optimizer popular before Adam. We define
 $\mathbf{\theta}$ as the multi-variable weights,
 $\nabla_{\mathbf{\theta}}L(\mathbf{\theta})$ as the
 multi-variable gradient with respect to a loss function $L(\cdot)$,
@@ -73,12 +73,11 @@ The Adam algorithm is described as:
 5. $\mathbf{\theta} \leftarrow \mathbf{\theta} + 
    \eta \hat{ \mathbf{m} } \oslash \sqrt{\hat{ \mathbf{s} } + \epsilon}$
 
-Algorithms adapted from @geron_hands-machine_2017
-
 ### Dynamic learning rate with learning schedule
 
-The learning rate $\eta$ affects the extent gradients are
-updated. A too high learning rate prevents gradient descent
+The learning rate $\eta$ affects the extent to which gradients are
+updated by changing the step size in the gradient
+descent method. A too high learning rate prevents gradient descent
 from converging while a too low learning rate significantly
 increases the training time. Instead of using a fixed
 learning rate, this paper adopts exponential scheduling
@@ -95,16 +94,16 @@ $$
 
 ### Regularization
 
-Regularisation refers to techniques used to prevent
+Regularization refers to techniques used to prevent
 over-fitting. Over-fitting occurs when the model is tuned
 solely on the training data and does not generalise well in
 unseen test data. For example, LASSO and Ridge modify
 least square regression by including $\ell 1$ and $\ell 2$
-penalties. Deep learning provides additional regularisation
+penalties. Deep learning provides additional regularization
 techniques, including the dropout and early stopping
 adopted in this paper.
 
-#### Regularisation with dropout
+#### Regularization with dropout
 
 Dropout is a simple yet powerful algorithm, users set a
 hyper-parameter dropout rate $p$, and during training, $p$%
@@ -114,7 +113,7 @@ to train a new but dependent model during each training
 epoch, avoiding relying on the same information each time.
 Dropout is not used during prediction.
 
-#### Regularisation with early stopping
+#### Regularization with early stopping
 
 Early stopping is a technique that stops model training
 before the model over-fits the training data. Stopping
@@ -133,15 +132,8 @@ without terminating model training manually.
 ```{r child="training_GAN.Rmd"}
 ```
 
-## Training factor model
+## Training the factor model
 
-Fama-French factor model can be trained using least square
-estimation. This paper minimises the mean squared error loss
-function with the following minimisation with firm specific
-parameters $(\beta_i, s_i, h_i, \omega_i)$ and number of
-observations $T_i$,
-
-$$
-\min_{\beta_i, s_i, h_i, \omega_i} \frac{1}{T_i} \sum_{t\in T_i} \left(R^e_{t+1, i} - \alpha_i - \beta_i R^e_{mt} - s_i SMB_t - h_i HML_t - \omega_i UMD_t\right)^2.
-$$
-
+The factor model can be trained using least squares
+estimation. This paper uses ordinary least squares method
+for estimation.
