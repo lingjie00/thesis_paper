@@ -69,13 +69,14 @@ The lack of comparison of model performance on non-U.S.
 markets thus motivates this paper to empirically validate the
 external validity of @chen_deep_2021's research with the
 United Kingdom London Stock Exchange data from 2011 to 2021. 
-This paper is organised as follows. Section 2 provides the
+This paper is organised as follows: Section 2 provides the
 literature review, Section 3 explains the methodology,
-Section 4 and 5 goes in depth on the model training and
+Section 4 and 5 goes in-depth on the model training and
 evaluation metrics, Section 6 and 7 explains the data and
-empirical findings and finally this paper ends with
-discussion in Section 8 and conclusion in Section 9. 
-This paper concludes that the GAN model outperformed
+empirical findings.
+This paper will end with discussion in Section 8 and
+finally, conclusion in Section 9.
+Overall, this paper concludes that the GAN model outperformed
 benchmark four-factor model when evaluated against the Sharpe
 ratio.
 Replication files are available on the author's GitHub

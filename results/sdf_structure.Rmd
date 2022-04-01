@@ -1,0 +1,37 @@
+---
+output: word_document
+bibliography: ../ref.bib
+---
+
+\newpage
+
+## SDF structure
+
+We also study the SDF weight structure as a function of the
+factors. We discover the same two factors in
+@chen_deep_2021.
+Firstly, factors have a linear relationship
+with the SDF weight. 
+Secondly, there is an interaction
+between factors.
+Figure \@ref(fig:structure) plots the different combinations
+of factors in a matrix form. The order of row and columns
+represents value factor (HML), market excess return (RMRF),
+size factor (SMB), momentum (UMD). The figure is achieved by
+keeping all other factors at the mean level while changing
+the one fixed factor.
+The diagonal entries
+shows the general relationship between the factors and SDF
+weights. The off-diagonal entries illustrates the
+interaction effects by changing one factors while keeping
+all other factors at the mean level.
+Looking at the diagonal entries, all factors have a near
+linear relationship with the SDF weight. Explaining why
+linear factor models generally works well.
+Looking at the off-diagonal entries, we observe a
+non-trivial interaction effects between the factors.
+Therefore, non-linear models such as GAN that is able to 
+factor in the interactions between factors are able to
+perform better than linear models.
+
+![(#fig:structure) GAN SDF weight as a function of factors](./src/interaction){width=110%}

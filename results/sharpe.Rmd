@@ -46,7 +46,7 @@ statements could still be relevant in estimating the SDF.
 In contrast to @chen_deep_2021's result, the Sharpe ratios
 in this paper do not decrease sharply from the in-sample
 period to the out-of-sample period. 
-@chen_deep_2021 achieve a Sharpe ratio of 2.68 in the
+@chen_deep_2021 achieved a Sharpe ratio of 2.68 in the
 training period, 1.43 in the validation period and 0.75 in
 the testing period. However, the best performing GAN model in this
 paper achieved a Sharpe ratio of 1.88 in the training

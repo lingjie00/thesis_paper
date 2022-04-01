@@ -129,8 +129,6 @@ $$
 F_{t+1} = \omega_t^TR^e_{t+1}.
 $$
 
-\newpage
-
 ### Factor model Sharpe ratio computation
 
 Let $\omega$ be the optimal portfolio weight for factor
@@ -147,7 +145,7 @@ The optimal weight $\omega^*$ is the solution to the
 maximisation problem, which is 
 
 $$
-w^* = \frac{\Sigma^{-1}E(f)}{\sqrt{E(f)^T\Sigma^{-1}F(f)}}.
+w^* = \Sigma^{-1}E(f).
 $$
 
 The optimal Sharpe ratio $S^*$ is then the value function

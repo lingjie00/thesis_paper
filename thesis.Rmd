@@ -7,7 +7,7 @@ output:
         number_sections: yes
         toc: true
         toc_depth: 2
-        latex_engine: pdflatex
+        latex_engine: xelatex
 title: "Generative Adversarial Network (GAN) model in Asset Pricing"
 author: "Wang Lingjie"
 keywords:
@@ -44,6 +44,7 @@ abstract:
     "
 acknowledgement:
     "
+    慈乌反哺
     "
 ---
 
@@ -61,7 +62,6 @@ library(kableExtra)
 ```
 
 <!-- literature review -->
-\newpage
 # Literature Review
 \thispagestyle{plain}
 
@@ -69,14 +69,11 @@ library(kableExtra)
 ```
 
 <!-- model -->
-\newpage
 # Methodology
 \thispagestyle{plain}
 
 ```{r, child=("model.Rmd")}
 ```
-
-\newpage
 
 <!-- model training -->
 # Model Training {#model_training}
@@ -85,21 +82,15 @@ library(kableExtra)
 ```{r, child=("training.Rmd")}
 ```
 
-\newpage
-
 <!-- model evaluation -->
 # Evaluation metrics
-
 \thispagestyle{plain}
 
 ```{r, child=("metrics.Rmd")}
 ```
 
-\newpage
-
 <!-- data -->
 # Data {#data}
-
 \thispagestyle{plain}
 
 ```{r, child=("results/data.Rmd")}
@@ -107,7 +98,6 @@ library(kableExtra)
 
 <!-- empirical results -->
 # Empirical findings
-
 \thispagestyle{plain}
 
 ```{r, child=("results.Rmd")}
@@ -116,7 +106,6 @@ library(kableExtra)
 \newpage
 
 # Discussion
-
 \thispagestyle{plain}
 
 ```{r, child=("discussion.Rmd")}
@@ -124,7 +113,6 @@ library(kableExtra)
 
 <!-- conclusion -->
 # Conclusion
-
 \thispagestyle{plain}
 
 ```{r, child=("conclusion.Rmd")}
@@ -134,5 +122,4 @@ library(kableExtra)
 \newpage
 
 # Bibliography
-
 \thispagestyle{plain}

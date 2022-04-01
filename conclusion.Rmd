@@ -1,3 +1,8 @@
+---
+output: word_document
+bibliography: ref.bib
+---
+
 <!-- # Conclusion -->
 
 In conclusion, this paper delivers four key findings.
@@ -21,6 +26,12 @@ functional form seems to be consistent over time.
 Having said that, the consistency applies to the period
 explored in this paper. It is uncertain if the SDF will remain
 consistent after Brexit and COVID-19.
+This paper empirically showed that factors relevant in
+estimating SDF. Furthermore, factors are linear in
+SDF, providing justifications for linear factor models.
+However, there is an interaction effect between the factors
+and models like GAN that considers such interaction effect
+outperforms linear models.
 With reference to the U.K. LSE 1998 - 2017 data,
 this paper concludes that considering the GAN model does
-value added to the empirical asset pricing.
+value-add to the empirical asset pricing.

@@ -5,7 +5,7 @@ datasets: *factor* and *fundamental* data.
 The *factor data* training contains more assets but lesser
 characteristic data, while *fundamental data* training
 contains more characteristic data with lesser assets.
-Therefore, readers should consider the difference across the
+Therefore, readers should consider differences across the
 datasets used when interpreting the results.
 Generally, neural network models require a large dataset for
 training. However, as @noauthor_google_2019 recommended in their
@@ -14,4 +14,10 @@ literature and the required size of dataset may be
 context-dependent.
 
 ```{r, child=("./results/sharpe.Rmd")}
+```
+
+```{r, child=("./results/variable_impt.Rmd")}
+```
+
+```{r, child=("./results/sdf_structure.Rmd")}
 ```

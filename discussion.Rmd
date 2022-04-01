@@ -43,5 +43,5 @@ costs over three thousand USD, according to the price listed
 in the GPU supplier @noauthor_nvidia_2022. Moreover,
 @chen_deep_2021 used eight such GPUs for the model training. Training
 neural networks is also an energy-intensive task, and
-@strubell_energy_2019 show that the literature seldom discussed
+@strubell_energy_2019 show that the literature seldom discuss
 the high carbon emissions produced by training complicated models.

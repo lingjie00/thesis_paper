@@ -123,9 +123,6 @@ criteria. For example, training stops if the decrease in loss between $t$
 and $t+1$ is less than $\epsilon$. However, it is
 harder to decide on stopping criteria for GAN models, and
 this paper uses the Sharpe ratio as the stopping criteria.
-Besides preventing over-fitting, early stopping also allows
-automated training as users can set higher training epochs
-without terminating model training manually.
 
 ## GAN architecture {#gan_structure}
 

@@ -65,7 +65,7 @@ In the continuous $Y$ case, the
 outputs from the hidden units are linearly combined to
 produce a single value as the final output of the FFN.
 
-![(#fig:feedforward) Feed-forward neural network](./src/feedforward)
+![(#fig:feedforward) Feed-forward neural network](./src/feedforward){width=70%}
 
 ### Network components
 
@@ -95,7 +95,7 @@ improves the convergence rate of stochastic gradient descent
 compared to other activation functions such as the logistic
 function.
 
-```{r relu, fig.cap="Rectified linear unit (ReLU) activation function", echo=F}
+```{r relu, fig.cap="Rectified linear unit (ReLU) activation function", out.width="70%", fig.align = "center", echo=F}
 data <- -5:5
 data <- ifelse(data <= 0, 0, data)
 plot(-5:5, data, type = "l", xlab = "x", ylab = "ReLU(x)")
