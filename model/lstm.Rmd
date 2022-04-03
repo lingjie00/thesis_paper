@@ -14,7 +14,7 @@ an LSTM also gets a short term state
 $\mathbf{h}_{(t)}$ and a long term state $\mathbf{c}_{(t)}$.
 
 As shown in figure \@ref(fig:lstmcell), the long term state
-$\mathbf{c}_{(t-1)}$ from the previous iteration travel
+$\mathbf{c}_{(t-1)}$ from the previous iteration travels
 through a forget gate and an input
 gate before being passed through to the next iteration.
 The long term state $\mathbf{c}_{(t)}$ is also being passed
@@ -25,13 +25,13 @@ $\mathbf{f}_{(t)}, \mathbf{i}_{(t)}, \mathbf{o}_{(t)}$, with
 logistic activation functions that produce $1$ to keep the
 gate open and $0$ to close the gate. The decision on the
 gates is based on the input data $\mathbf{x}_{(t)}$ and
-short term state $\mathbf{h}_{(t)}$. The function
+the short term state $\mathbf{h}_{(t)}$. The function
 $\mathbf{q}_{(t)}$ takes in the data and short term state to
 be combined with the long term state.
 Summarising the LSTM computation, we have the following
 equations. $\mathbf{W}_{x\cdot}$ are the weights for
 $\mathbf{x}_{(t)}$, and $\mathbf{W}_{h\cdot}$ are the weights
-for $\mathbf{h}_{(t-1)}$ and $\mathbf{b}_i$ are the bias for
+for $\mathbf{h}_{(t-1)}$ and $\mathbf{b}_i$ are the constants for
 $i$ layers, $\otimes$ are element-wise multiplication.
 Therefore, using an LSTM neural network layer allows the GAN
 model to extract long term dynamics from macroeconomics data
@@ -62,6 +62,5 @@ without specifying the number of lags as a hyper-parameter.
 \otimes tanh(\mathbf{c}_{(t)})
 \end{align*}
 
-Algorithms adapted from @geron_hands-machine_2017
 
 

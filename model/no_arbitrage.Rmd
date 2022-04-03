@@ -2,8 +2,9 @@
 
 The no-arbitrage asset pricing model assumes the existence
 of an asset independent, time-dependent pricing kernel, also known as a stochastic
-discount factor (SDF) $M_t$, such that expected excess return does not
-exist. Let $R_{t+1, i}$ denote the asset $i$'s return in
+discount factor (SDF) $M_t$, such that there is no excess
+return in expectation.
+Let $R_{t+1, i}$ denote the asset $i$'s return in
 time $t+1$ and $R^f_{t+1}$ as the return of a risk-free asset.
 The excess return is then defined as $R^e_{t+1, i} :=
 R_{t+1, i} - R^f_{t+1}$. Summarising the no-arbitrage
@@ -17,7 +18,7 @@ mean-variance efficient tangency portfolio.
 The mean-variance efficient frontier refers to the maximum
 possible balance between the mean excess returns and risk
 factor, measured by the variance of the
-excess returns. A portfolio that achieve this mean-variance
+excess returns. A portfolio that maximises mean-variance
 efficiency is considered as a tangency portfolio. 
 Let $\mathbf{\omega}_t$ denote the SDF weights used to
 construct the tangency portfolio based on all the assets in
@@ -42,13 +43,14 @@ $$
 
 ![(#fig:mvf) Mean-variance frontier](./src/mvf){width=50%}
 
-Since tangency portfolio occurs at the mean-variance
+Since the tangency portfolio occurs at the mean-variance
 frontier where $\rho(M_{t+1}, F_{t+1})=-1$,
-tangency portfolio is perfectly correlated to SDF
-and is an affine transformation of the SDF
+it is perfectly correlated to the SDF
+which is given by an affine transformation of the SDF
 ($M_{t+1} = a - b F_{t+1}$). Since any
 mean-variance efficient return carries all the pricing
-information, we consider one of the possible $(a, b) = (1,
+information, without loss of generality,
+we consider one of the possible $(a, b) = (1,
 1)$
 
 $$
@@ -69,23 +71,23 @@ $$
 ## Pricing loss function {#loss_function}
 
 The no-arbitrage condition reduces the asset pricing problem
-into estimating SDF weight function $\omega$.
+into estimating the SDF weight function $\omega$.
 This paper assumes $\omega$ is a function of
 macroeconomic data $I_t$ and firm characteristic
 data $I_{t, i}$.
 However, suppose the no-arbitrage condition
 alone is insufficient to explain the differences in asset
-pricing. In that case, we can define a function $g(I_t, I_{t, i})$
+prices. In that case, we can define a function $g(I_t, I_{t, i})$
 that selects firm characteristic and assets and output some factor
 unexplained by the no-arbitrage
 to price the assets. The relationship between $\omega(I_t,
-I_{t, i})$ and $g(I_t, I_{t, i})$ can be described as the
+I_{t, i})$ and $g(I_t, I_{t, i})$ can be described by the
 following equation. We define this as our pricing loss
 function. The pricing loss function can be viewed as a
 competition between the no-arbitrage condition and an
 alternative theory that explains the variation in
 asset excess returns, which is the key in building the
-GAN model proposed by @chen_deep_2019
+GAN model proposed by @chen_deep_2021
 
 $$
 E\left[\left(1-\omega(I_t, I_{t, i})^T R^e_{t+1}\right)R^e_{t+1, i}

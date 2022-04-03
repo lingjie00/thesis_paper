@@ -1,16 +1,16 @@
-This paper empirically validates @chen_deep_2019's GAN
-model. However, the smaller dataset used in this paper 
+This paper empirically validates @chen_deep_2021's GAN
+model using UK data. However, the smaller dataset used in this paper 
 poses a challenge to the empirical approach. Furthermore,
 this paper lacks discussion on the affordability and
 environmental impact of neural network training.
 
 Firstly, despite the effort of this paper to maximise the
 data available, there is a considerable gap between the dataset
-from @chen_deep_2019's paper and ours.
-@chen_deep_2019 data include 50 years of historical data
+from @chen_deep_2021's paper and ours.
+@chen_deep_2021 data include 50 years of historical data
 with over 10,000 stocks. Although the number of
 macroeconomic data available is comparable (178 in
-@chen_deep_2019's paper and 112 in this paper), the number
+@chen_deep_2021's paper and 112 in this paper), the number
 of firm characteristics data available and the number of
 stocks available are limited.
 As @karras_training_2020 and @zhao_differentiable_2020
@@ -23,7 +23,10 @@ paper.
 The data-poor nature of the U.K. market could be one
 of the crucial factors resulting in most of the literature
 focusing on the U.S data, as mentioned in our literature
-review. Therefore, the results in this paper are still
+review. 
+Even the paid subscription provider was not able to
+furnish complete and rich data comparable to the US.
+Therefore, the results in this paper are still
 relevant in assessing the performance of the GAN model when
 subject to data limitations.
 
@@ -35,10 +38,10 @@ initially built for the gaming industry and later adopted to
 neural network training due to the multiple simultaneous
 computations available.
 Entry-level GPU used in this paper costs a
-few hundred USD while the GPU used in @chen_deep_2019's
+few hundred USD while the GPU used in @chen_deep_2021's
 costs over three thousand USD, according to the price listed
 in the GPU supplier @noauthor_nvidia_2022. Moreover,
-@chen_deep_2019 used eight such GPUs for the model training. Training
+@chen_deep_2021 used eight such GPUs for the model training. Training
 neural networks is also an energy-intensive task, and
-@strubell_energy_2019 show that literature seldom discussed
+@strubell_energy_2019 show that the literature seldom discuss
 the high carbon emissions produced by training complicated models.

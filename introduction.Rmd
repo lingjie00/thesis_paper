@@ -1,8 +1,8 @@
 <!--INTRODUCTION-->
 
-The critical goal in asset pricing is to explain the variation
+An important goal in asset pricing is to explain the variation
 in expected returns of financial assets.
-Arbitrage pricing theory (APT) suggests the idea of a pricing
+No-arbitrage pricing theory suggests the idea of a pricing
 kernel, also known as the stochastic discount factor (SDF),
 that governs asset prices.
 The literature on determining the appropriate form of the
@@ -21,55 +21,62 @@ individual assets) to estimate the pricing kernel.
 Factor models such as @fama_common_1993's three-factor model
 and @carhart_persistence_1997's four-factor model
 constructed different factors based on empirical
-findings and estimated pricing kernel through a linear
+findings and estimated the pricing kernel through a linear
 combination of these constructed factors. 
 These factor models have been performing well empirically,
 and are considered the benchmark for assets pricing models.
 Besides exploring various new possible factors,
 recent literature also attempts to estimate the pricing
-kernel using non-linear and non-parametric models.
+kernel using non-linear and non-parametric methods.
 For example, @gu_empirical_2020 found that neural network models
-outperform linear model in estimating the pricing kernel.
-Furthermore, @gu_autoencoder_2019 also realised that imposing
+outperform linear models in estimating the pricing kernel.
+Furthermore, @gu_autoencoder_2021 also realised that imposing
 economic theory onto machine learning models can
 improve model performance further.
 
-With reference to existing literature, @chen_deep_2019 proposed a
+With reference to existing literature, @chen_deep_2021 proposed a
 Generative Adversarial Network (GAN) model that imposes the
-APT condition in the neural network model.
+no-arbitrage condition in the neural network model.
 GAN models are a class of neural network frameworks which
 consist of two competing network models in a zero-sum game.
 A discriminative neural network attempts to price the asset
-prices using APT, while a generative neural network attempts
-to increase pricing error through different combinations of
+prices using no-arbitrage condition, while a generative neural network attempts
+to increase the pricing error through different combinations of
 assets and factors.
-Through the simultaneous training, the discriminative
+Through the alternating training, the discriminative
 neural network estimates the functional form of
 the pricing kernel while the
-generative network constructs different portfolios
-that APT is least able to explain, thus solving the three
-problems in asset pricing theory in a single setup.
+generative network constructs portfolios
+that no-arbitrage condition is least able to explain, thus solving the three
+problems in empirical asset pricing theory in a single setup.
 As compared to previous research that focused on firm
-characteristics data, @chen_deep_2019 included
+characteristics data, @chen_deep_2021 included
 macroeconomic data using long short-term memory (LSTM), a
 class of neural network architecture commonly used in
 predictions with a time series structure. Their findings
 have shown that the inclusion of macroeconomic data did
 enhance the model performance.
-Therefore, @chen_deep_2019 analyses have outperformed all
+Therefore, @chen_deep_2021 analyses have outperformed all
 previous models in Sharpe ratio, explained variation and
 pricing errors.
 
-However, similar to most literature, @chen_deep_2019's
+However, similar to most literature, @chen_deep_2021's
 research focus solely on the United States (U.S.) market.
 In fact, @karolyi_home_2012 pointed out that only few papers in top
 finance journals have explored the model performance in
 non-U.S. markets.
 The lack of comparison of model performance on non-U.S.
-markets thus drives this paper to empirically validate the
-external validity of @chen_deep_2019's research with the
+markets thus motivates this paper to empirically validate the
+external validity of @chen_deep_2021's research with the
 United Kingdom London Stock Exchange data from 2011 to 2021. 
-This paper concludes that the GAN model outperformed
+This paper is organised as follows: Section 2 provides the
+literature review, Section 3 explains the methodology,
+Section 4 and 5 goes in-depth on the model training and
+evaluation metrics, Section 6 and 7 explains the data and
+empirical findings.
+This paper will end with discussion in Section 8 and
+finally, conclusion in Section 9.
+Overall, this paper concludes that the GAN model outperformed
 benchmark four-factor model when evaluated against the Sharpe
 ratio.
 Replication files are available on the author's GitHub

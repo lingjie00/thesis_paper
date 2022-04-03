@@ -1,40 +1,23 @@
 <!-- # Empirical findings -->
 
 The [Data](#data) section describes two types of
-data splitting: *factor* and *fundamental* data.
+datasets: *factor* and *fundamental* data.
 The *factor data* training contains more assets but lesser
 characteristic data, while *fundamental data* training
 contains more characteristic data with lesser assets.
-Therefore, readers should consider the difference in the
-dataset used when interpreting the results.
-<!--
-This paper proposed interpreting the difference in results
-as a trade off between flexible GAN model
-against a simple linear factor model under different number
-of covariates and assets.
--->
+Therefore, readers should consider differences across the
+datasets used when interpreting the results.
 Generally, neural network models require a large dataset for
 training. However, as @noauthor_google_2019 recommended in their
 developer website, there is no common consensus among
-literature and practitioners on the required size of dataset.
+literature and the required size of dataset may be
+context-dependent.
 
 ```{r, child=("./results/sharpe.Rmd")}
 ```
 
-<!--
-## Mispricing error
-
-As explained in [Mispricing error with beta
-representation](#beta), the assets' expected excess return
-relates to the SDF in a one-factor model with $\alpha_i =
-0$. As the mispricing error is asset dependent, this paper
-first presents summary statistics on the individual asset
-before presenting on characteristic sorted portfolios
-created by @gregory_constructing_2011.
-
-```{r, child=("./results/mispricing_error_individual.Rmd")}
+```{r, child=("./results/variable_impt.Rmd")}
 ```
 
-```{r, child=("./results/mispricing_error_portfolio.Rmd")}
+```{r, child=("./results/sdf_structure.Rmd")}
 ```
--->

@@ -11,31 +11,31 @@ firm_data <- t(data.frame(
     c("umd", "Momentum", "Y", "Y", "Gregory et al. (2011)"),
     c("r2_1", "Short-term momentum, computed as
       lagged one-month return", "Y", "Y", "Yahoo! Finance"),
-    c("r12_7", "Intermediate momentum, computed as
-        the cumulative return from 12 months before the
-        return prediction to seven months before", "Y", "Y", "Yahoo! Finance"),
-    c("costAndExpenses", "Cost and expense", "N", "Y", "Finage"),
-    c("depreciationAndAmortization", "Depreciation
+    c("r12_7", "Intermediate momentum,
+        cumulative return from 12 to 7
+        months before the return prediction", "Y", "Y", "Yahoo! Finance"),
+    c("cost and expenses", "Cost and expense", "N", "Y", "Finage"),
+    c("depreciation and amortization", "Depreciation
       and Amortization", "N", "Y", "Finage"),
     c("ebitda", "Earnings Before Interest,
       Taxes, Depreciation, and Amortization", "N", "Y", "Finage"),
     c("ebitdaratio", "EBITDA to sales ratio", "N", "Y", "Finage"),
     c("eps", "Earnings per share", "N", "Y", "Finage"),
     c("epsdiluted", "Diluted Earnings per Share", "N", "Y", "Finage"),
-    c("incomeBeforeTax", "Earnings before tax", "N", "Y", "Finage"),
-    c("incomeBeforeTaxRatio", "Pretax profit margin", "N", "Y", "Finage"),
-    c("netIncome", "Net income,
+    c("income before tax", "Earnings before tax", "N", "Y", "Finage"),
+    c("income before taxRatio", "Pretax profit margin", "N", "Y", "Finage"),
+    c("netincome", "Net income,
       the amount an individual or business makes after deducting costs,
       allowances and taxes", "N", "Y", "Finage"),
-    c("netIncomeRatio", "Net profit margin", "N", "Y", "Finage"),
-    c("OperatingIncome", "Amount of profit generated from a
+    c("netincomeratio", "Net profit margin", "N", "Y", "Finage"),
+    c("operatingincome", "Amount of profit generated from a
       business operation, after deducing
       operating expenses", "N", "Y", "Finage"),
     c("revenue", "Revenue, sales generated from business
       operations", "N", "Y", "Finage"),
-    c("weightedAverageShsOut", "Weighted average of
+    c("weighted averageshsout", "Weighted average of
       outstanding shares", "N", "Y", "Finage"),
-    c("weightedAverageShsOutDil", "Diluted weighted average of
+    c("weighted averageshsout dil", "Diluted weighted average of
       outstanding shares", "N", "Y", "Finage")
 ))
 firm_data_col <- c(
@@ -52,7 +52,7 @@ pander::pander(
     col.names = firm_data_col,
     booktabs = T,
     split.table = Inf,
-    split.cell = 30,
+    split.cell = Inf,
     justify = "clccc"
 )
 ```

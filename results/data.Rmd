@@ -1,22 +1,3 @@
----
-output: word_document
-bibliography: "../ref.bib"
----
-
-<!--
-**Risk-free Rates**
-We take the Sterling Overnight Index Average (SONIA)
-benchmark as the risk-free rates. 
-
-**Macroeconomics data**
-
-Macroeconomics data ($I_t$)
-
-**Firm fundamental data**
-
-Firm specific fundamental data ($I_{t, i}$)
--->
-
 This paper extracts January 1998 to December 2017 London
 Stock Exchange (LSE) monthly stock prices from Yahoo! Finance and
 splits the complete data into twelve years of
@@ -39,12 +20,12 @@ This paper interpolated quarterly income statement data into
 monthly data and transformed level data using log
 differences.
 
-The analysis in this paper follows @chen_deep_2019 to remove
+The analysis in this paper follows @chen_deep_2021 to remove
 stocks without complete characteristics data
 in a particular month.
 However, the Finage database only contains limited
 income statement data for a subset of stocks.
-Therefore, we perform two different data splitting to
+Therefore, we perform two different data splits to
 maximise the data available for training.
 The first dataset contains factor data and past returns data
 for 942 stocks.
@@ -56,7 +37,7 @@ dataset based on the factor, past returns and income
 statement data as *fundamental data*.
 Table \@ref(tab:firm-data) summarises the training data.
 
-Additionally, we retrieves a large macroeconomic dataset from
+Additionally, we retrieve a large macroeconomic dataset from
 @coulombe_can_2021.
 The dataset contains 112 monthly
 macroeconomic indicators comprising of 

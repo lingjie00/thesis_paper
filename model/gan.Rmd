@@ -1,15 +1,13 @@
-\newpage
-
 ## GAN model {#gan_model}
 
-GAN model consists of two competing neural networks called
+The GAN model consists of two competing neural networks called
 discriminator and generator. The discriminator in this paper
 will estimate the SDF weight function $\omega(I_t, I_{t,
 i})$, and the generator will estimate the factor function
 $g(I_t, I_{t, i})$. Both models use an
-LSTM network to extract macroeconomic data and a
-feed-forward network to extract firm characteristic data.
-The [GAN architecture](#gan_structure) section
+LSTM network to extract signal from macroeconomic data and a
+feed-forward network to extract signal from firm characteristic data.
+The GAN architecture under section [subsection 3.5](#gan_structure)
 explains the model structure in-depth
 
 $$

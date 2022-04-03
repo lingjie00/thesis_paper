@@ -14,17 +14,16 @@ pricing loss function and end the chapter
 with an explanation for the Fama-French factor model.
 
 Training neural network models is an empirical challenge.
-Regularisation techniques are commonly used in machine
+Regularization techniques are commonly used in machine
 learning to prevent over-fitting and improve model training
-results. @chen_deep_2019 adopted a dropout strategy proposed
+results. @chen_deep_2021 adopted a dropout strategy proposed
 by @srivastava_dropout_2014.
 This paper further includes early stopping rules introduced
-by @yao_early_2007, early stopping allows
-automated training instead of arbitrary training epochs.
-Understanding and explaining neural networks require the
-foundation of many various fields, this paper referenced
+by @yao_early_2007.
+The discussion on neural networks presented in this section
+is referenced from the
 Hands-On Machine Learning with Scikit-Learn and TensorFlow
-for the explanation by @geron_hands-machine_2017.
+by @geron_hands-machine_2017.
 
 ```{r, child=("model/no_arbitrage.Rmd")}
 ```

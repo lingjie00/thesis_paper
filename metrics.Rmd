@@ -101,7 +101,7 @@ return $E_t(R^e_{i}) = E_t(R_{i} - R^f)$. Sharpe ratio
 measures the reward investors get when investing in the
 asset while considering the risk of the
 assets. Therefore, a higher Sharpe ratio implies the asset
-is better, and tangency portfolio $F_{t+1}$ that lies
+is better, and the tangency portfolio $F_{t+1}$ that lies
 on the mean-variance frontier will have the highest Sharpe
 ratio possible. 
 We compare the Sharpe ratio of the tangency portfolio by
@@ -123,13 +123,11 @@ The discriminant network in the GAN model estimates the SDF
 weight $\omega_t$. Therefore, by construction, the
 tangency portfolio $F_{t+1}$ will be defined as the dot
 product between the SDF weight and assets' excess returns
-R^e_{t+1} as described in the equation
+$R^e_{t+1}$ as described in the equation
 
 $$
 F_{t+1} = \omega_t^TR^e_{t+1}.
 $$
-
-\newpage
 
 ### Factor model Sharpe ratio computation
 
@@ -147,7 +145,7 @@ The optimal weight $\omega^*$ is the solution to the
 maximisation problem, which is 
 
 $$
-w^* = \frac{\Sigma^{-1}E(f)}{\sqrt{E(f)^T\Sigma^{-1}F(f)}}.
+w^* = \Sigma^{-1}E(f).
 $$
 
 The optimal Sharpe ratio $S^*$ is then the value function
