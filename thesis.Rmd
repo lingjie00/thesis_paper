@@ -3,7 +3,7 @@ output:
     bookdown::pdf_document2:
         template: ./template/thesis_template.tex
         fig_caption: yes
-        keep_tex: no
+        keep_tex: yes
         number_sections: yes
         toc: true
         toc_depth: 2
@@ -42,10 +42,7 @@ abstract:
     This paper found that the GAN model outperformed
     the benchmark four-factor model in terms of Sharpe ratio.
     "
-acknowledgement:
-    "
-    慈乌反哺
-    "
+acknowledgement: "acknowledgement.tex"
 ---
 
 ```{r echo=F, warning=F, message=F}

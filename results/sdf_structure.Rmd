@@ -7,31 +7,47 @@ bibliography: ../ref.bib
 
 ## SDF structure
 
-We also study the SDF weight structure as a function of the
-factors. We discover the same two factors in
-@chen_deep_2021.
-Firstly, factors have a linear relationship
+We also studied the SDF weight structure as a function of the
+factors and discovered the same two observations in
+@chen_deep_2021's paper.
+Firstly, factors in the four factor model have a linear relationship
 with the SDF weight. 
 Secondly, there is an interaction
-between factors.
+between these factors.
 Figure \@ref(fig:structure) plots the different combinations
 of factors in a matrix form. The order of row and columns
 represents value factor (HML), market excess return (RMRF),
 size factor (SMB), momentum (UMD). The figure is achieved by
 keeping all other factors at the mean level while changing
-the one fixed factor.
+one of the factors.
 The diagonal entries
-shows the general relationship between the factors and SDF
-weights. The off-diagonal entries illustrates the
-interaction effects by changing one factors while keeping
-all other factors at the mean level.
-Looking at the diagonal entries, all factors have a near
-linear relationship with the SDF weight. Explaining why
-linear factor models generally works well.
-Looking at the off-diagonal entries, we observe a
-non-trivial interaction effects between the factors.
-Therefore, non-linear models such as GAN that is able to 
-factor in the interactions between factors are able to
-perform better than linear models.
+show the general relationship between the factors and the SDF
+weight. Moreover, the off-diagonal entries illustrate the
+interaction effects between factors.
+The different coloured lines correspond to different values of the
+respective factors.
+Upon analysis, all factors at the diagonal entries have a near
+linear relationship with the SDF weight. This explains why
+linear factor models generally work well.
+On the other hand, we observe a
+non-trivial interaction effects between the factors at the
+off-diagonal entries.
+Therefore, non-linear models such as the GAN model which
+takes into account in the interactions between the factors
+are able to perform better than linear models.
 
-![(#fig:structure) GAN SDF weight as a function of factors](./src/interaction){width=110%}
+<!--![(#fig:structure) GAN SDF weight as a function of factors](./src/interaction){width=110%}-->
+
+\newpage
+
+\begin{figure}
+\centering
+\begin{picture}(1000, 500)
+\put(0, 0){\includegraphics[width=1.1\textwidth,height=\textheight]{./src/interaction}}
+\put(50, 20){The different coloured lines correspond to different values of the
+respective factors}
+\end{picture}
+\caption{\label{fig:structure} GAN SDF weight as a function of factors}
+\end{figure}
+
+\newpage

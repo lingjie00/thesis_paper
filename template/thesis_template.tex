@@ -192,9 +192,7 @@ citestyle=apa]{biblatex}
 \renewcommand{\abstractname}{\underline{\uppercase{acknowledgement}}}
 
     $if(acknowledgement)$
-    \begin{abstract}
-        $acknowledgement$
-    \end{abstract}
+        \input{acknowledgement}
     $endif$
 
 \newpage

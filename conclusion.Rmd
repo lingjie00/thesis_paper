@@ -7,31 +7,31 @@ bibliography: ref.bib
 
 In conclusion, this paper delivers four key findings.
 Firstly, this paper found that @chen_deep_2021's GAN model
-is applicable to the U.K. market, where the model outperform the
+is applicable to the U.K. market, where the model outperformed the
 benchmark of four-factor model in terms of Sharpe ratio.
 The Sharpe ratio of the GAN models trained on all datasets
 is higher than the four-factor model, except the GAN
 model trained only on past return data.
 Secondly, similar to @chen_deep_2021's finding,
-macroeconomic data is essential in estimating SDF functional
+macroeconomic data is essential in estimating the SDF functional
 form.
-By including macroeconomic data in the GAN model, it results in a
-higher Sharpe ratio than GAN models estimated without
-macroeconomic data. Furthermore, the best performing GAN model requires
-macroeconomic data.
+The GAN models estimated with macroeconomic data have a
+higher Sharpe ratio than the GAN models estimated 
+without macroeconomic data, and the best performing
+GAN model requires macroeconomic data.
 Lastly, 
 the Sharpe ratio in the training period is comparable to the
 out-of-sample test period, suggesting that the U.K. SDF
 functional form seems to be consistent over time. 
 Having said that, the consistency applies to the period
 explored in this paper. It is uncertain if the SDF will remain
-consistent after Brexit and COVID-19.
-This paper empirically showed that factors relevant in
-estimating SDF. Furthermore, factors are linear in
+consistent after Brexit or COVID-19.
+This paper empirically showed that the factors relevant in
+estimating the SDF. Furthermore, factors are linear in the
 SDF, providing justifications for linear factor models.
 However, there is an interaction effect between the factors
-and models like GAN that considers such interaction effect
-outperforms linear models.
+and models like the GAN which considers such interaction effect
+would likely outperforms linear models.
 With reference to the U.K. LSE 1998 - 2017 data,
 this paper concludes that considering the GAN model does
-value-add to the empirical asset pricing.
+value added to the empirical asset pricing.

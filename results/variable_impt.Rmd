@@ -8,41 +8,42 @@ bibliography: ../ref.bib
 ## Variable importance
 
 To better understand how each variable affects the SDF
-weight, we computed sensitivity score following
+weight, we have computed sensitivity score following
 @chen_deep_2021's paper. The sensitivity score measures the
-change in SDF weight $\omega$ as a variable changes. Mathematically this
+change in SDF weight $\omega$ as a variable changes. Mathematically, this
 is the average absolute gradient expressed in the following
-equation. We define $C$ as a normalising constant scaling
+equation. We define $C$ normalising constant scaling
 sensitivity scores between 0 and 1. A higher
 sensitivity means the variable has a larger effect on the
-SDF weight $\omega$ with 0 being not relevant to 1 being
-most important variable.
+SDF weight $\omega$ with 0 being not relevant and 1 being
+the most important variable.
 
 $$
 \text{Sensitivity}(x_j) = \frac{1}{C} \sum_{i=1}^N \sum_{t=1}^T
     \left|  \frac{\partial \omega(I_t, I_{t, i})}{\partial x_j} \right|.
 $$
 
-We focus our analysis here on our top performing model: GAN
+In this paper, we focus our analysis on the top performing model: the GAN
 trained on factor and macroeconomic data.
 With reference to Figure \@ref(fig:vi), the top four most
 important variables are the four factors in the factor
-model. Suggesting the factors are indeed very crucial in
-estimating SDF weight. Following the factors we have the two firm
-specific past return data, suggesting firm specific
+model (RMRF, HML, UMD, SMB). This thus suggests that the
+factors are indeed very crucial in estimating the SDF weight.
+Following the factors, we have the two firm
+specific past return data and this implies that the firm specific
 characteristics are important as well. For macroeconomic
 data, we notice that the top ten macroeconomic data
-contributed most to the SDF weight. The top ten
-macroeconomic data are revolving around indexes affecting
+contributed the most to the SDF weight. The top ten
+macroeconomic data revolve around indexes affecting
 consumers, business and the general stock markets. The top
-ten macroeconomic data includes producer price indices (PPI) of
+ten macroeconomic data include producer price indices (PPI) of
 different UK domestic markets, Composite leading indicator (CLI),
 Consumer and Business confidence index (CCI, BCI)
 iShares MSCI United Kindom ETF (UK_focused_equity) which
 tracks the mid and large size companies in UK market,
 and Standard & Poor 500 (SP500).
-Interestingly the UK SDF weight is also affected by the US
-market, suggesting possible benefits when including more US
+Interestingly, the UK SDF weight is also affected by the US
+market, suggesting the possible benefits of including more US
 market data in future studies.
 
 ![(#fig:vi) Variable importance](./src/vi){width=60%}
