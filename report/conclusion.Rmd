@@ -1,8 +1,3 @@
----
-output: word_document
-bibliography: ref.bib
----
-
 <!-- # Conclusion -->
 
 In conclusion, this paper delivers four key findings.

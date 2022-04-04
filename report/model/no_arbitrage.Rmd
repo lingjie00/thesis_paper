@@ -41,7 +41,7 @@ $$
 {E_t(M_{t+1})}\right)\sigma_t(R^e_{t+1}).
 $$
 
-![(#fig:mvf) Mean-variance frontier](./src/mvf){width=50%}
+![(#fig:mvf) Mean-variance frontier](../src/mvf){width=50%}
 
 Since the tangency portfolio occurs at the mean-variance
 frontier where $\rho(M_{t+1}, F_{t+1})=-1$,
