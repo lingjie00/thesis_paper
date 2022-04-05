@@ -1,0 +1,22 @@
+---
+output:
+    beamer_presentation:
+        theme: "Montpellier"
+        toc: false
+        keep_tex: false
+bibliography: ../ref.bib
+csl: ../template/apa.csl
+---
+
+## Sharpe ratio
+
+- Proposed by @sharpe_mutual_1966 to evaluate performance of
+  risk-adjusted assets relative to a risk-free asset
+- Balanced excess return ($R_i - R^f$) and the risk of return,
+  measured by the standard deviation of the returns $\sigma_i$
+- **Higher Sharpe ratio indicates a better performing
+  portfolio**
+
+$$
+S(R_i) = \frac{E_t[R_i - R^f]}{\sigma_i}.
+$$

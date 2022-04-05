@@ -1,0 +1,50 @@
+---
+output:
+    beamer_presentation:
+        theme: "Montpellier"
+        toc: false
+        keep_tex: false
+bibliography: ../ref.bib
+csl: ../template/apa.csl
+---
+
+## Literature review
+
+- Factor models: benchmark model
+  - CAPM^[@sharpe_capital_1964, @lintner_valuation_1965 and
+    @mossin_equilibrium_1966 proposed Capital Asset Pricing
+    Model in the 1960s independently],
+    @fama_common_1993 three-factor and
+    @carhart_persistence_1997 four-factor models
+  - $\Rightarrow$ SDF is a linear combination of selected factors
+
+- Expanding the search for factors
+  - @feng_taming_2020 describes the hundreds of new factors
+    proposed in the literature as a "factor zoo"
+  - @freyberger_dissecting_2017 and @feng_taming_2020 found
+    that only a few factors proposed in literature are
+    statistically significant in explaining the asset
+    returns
+  - $\Rightarrow$ SDF is a linear combination of
+    **potentially infinite factors**
+
+## Literature review (cont.)
+
+- Non-linear, non-parametric SDF estimation
+  - @gu_empirical_2020 compared different machine learning
+    models and found a neural network model has the highest
+    out-of-sample $R^2$ in explaining asset returns
+  - $\Rightarrow$ SDF is a **general function** of potentially
+    infinite factors
+
+- Machine learning models with economic theory
+  - @chen_deep_2021 Generative Adversary Network (GAN)
+    model, @gu_autoencoder_2021 Autoencoder network model
+    impose no-arbitrage condition to improve neural network
+    performance
+  - @chen_deep_2021 further include macroeconomic data in
+    the GAN model  
+  - $\Rightarrow$ SDF is a general function of potentially
+    infinite factors and **macroeconomic data.
+    Imposing economic theory
+    can further improve emprical SDF estimation**

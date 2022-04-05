@@ -1,0 +1,42 @@
+---
+output:
+    beamer_presentation:
+        theme: "Montpellier"
+        toc: false
+        keep_tex: false
+bibliography: ../ref.bib
+csl: ../template/apa.csl
+---
+
+## United Kingdom London Stock Exchange (1998-2017)
+
+- January 1998 to December 2017 LSE monthly stock prices
+- Risk-free rate and four factors: @gregory_constructing_2011
+  - $R^e_{mt}$, SMB, HML, UMD
+- Firm characteristic data
+  - 2 past return data (Yahoo! Finance)
+  - 14 firm income statement data (Finage LTD)
+- Macroeconomic data: @coulombe_can_2021
+  - 112 macroeconomic indicators
+- Total data consist of 132 covariates,
+  942 stocks with maximum 20 years returns
+  - Unbalanced panel is handled through empirical loss function
+
+## Data splitting
+
+- Training, validation and out-of-sample testing period
+  - Training: 1998 - 2009 (12 years)
+  - Validation: 2010 - 2013 (4 years)
+  - Out-of-sample: 2014 - 2017 (4 years)
+- Two data splits to maximise data availability
+  - Remove stocks without complete characteristic
+    data in a particular month.
+    However, Finage database only contains limited income
+    statement data for a subset of stocks
+1. Factor data
+   - Only consist of factors and macroeconomic data
+   - 942 stocks with 116 covariates across maximum 20 years
+1. Fundamental data
+   - Consist of all covariates, including firm income
+     statement data
+   - 242 stocks with 132 covariates across maximum 20 years

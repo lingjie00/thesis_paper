@@ -89,7 +89,7 @@ $$
 
 ## Sharpe ratio {#sharpe_ratio}
 
-William F. Sharpe (1966) proposed the Sharpe ratio to evaluate
+@sharpe_mutual_1966 proposed the Sharpe ratio to evaluate
 the performance of risk-adjusted assets relative to a
 risk-free asset. A Sharpe ratio ($S$)
 for an asset $i$ is defined as the asset's historical excess
@@ -111,11 +111,6 @@ better performance
 $$
 S(R_i) = \frac{E_t[R_i - R^f]}{\sigma_i}.
 $$
-
-<!--
-Info on SONIA:
-https://www.bankofengland.co.uk/markets/transition-to-sterling-risk-free-rates-from-libor
--->
 
 ### GAN Sharpe ratio computation
 

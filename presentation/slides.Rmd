@@ -1,0 +1,79 @@
+---
+title: "Generative Adversarial Network (GAN) model in Asset Pricing"
+author: "Wang Lingjie"
+output: 
+    beamer_presentation:
+        theme: "Montpellier"
+        toc: false
+        keep_tex: false
+bibliography: ../ref.bib
+csl: ../template/apa.csl
+fontsize: 10pt
+---
+
+<!-- Presentation details
+20 mins presentation
+30 sec per slide
+- 30s motivation (max 1 slide)
+- 1 min literature (max 1 slide)
+- 1 min introduction (max 1 slide)
+- 5 mins methodology (max 5 slides)
+- 2 min data (max 2 slide)
+- 8 mins results (max 4 slides)
+- 1 min discussion (max 1 slide)
+- 1 min conclusion (max 1 slide)
+10 mins QnA
+!-->
+
+# Motivation
+
+```{r child=("motivation.Rmd")}
+```
+
+# Literature
+
+```{r child=("literature.Rmd")}
+```
+
+# Generative Adversarial Network (GAN) model in Asset Pricing
+
+```{r child=("intro.Rmd")}
+```
+
+# Methodology
+
+```{r child=("method.Rmd")}
+```
+
+# Evaluation metrics
+
+```{r child=("metric.Rmd")}
+```
+
+# Data
+
+```{r child=("data.Rmd")}
+```
+
+# Results
+
+```{r child=("results.Rmd")}
+```
+
+# Discussion
+
+```{r child=("discussion.Rmd")}
+```
+
+# Conclusion
+
+```{r child=("conclusion.Rmd")}
+```
+
+# Annex {.unlisted .unnumbered}
+
+## SDF as an affine transformation of tangency portfolio
+
+## Detailed data
+
+## References
