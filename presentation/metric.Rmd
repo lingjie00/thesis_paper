@@ -1,13 +1,3 @@
----
-output:
-    beamer_presentation:
-        theme: "Montpellier"
-        toc: false
-        keep_tex: false
-bibliography: ../ref.bib
-csl: ../template/apa.csl
----
-
 ## Sharpe ratio
 
 - Proposed by @sharpe_mutual_1966 to evaluate performance of
@@ -17,6 +7,6 @@ csl: ../template/apa.csl
 - **Higher Sharpe ratio indicates a better performing
   portfolio**
 
-$$
-S(R_i) = \frac{E_t[R_i - R^f]}{\sigma_i}.
-$$
+\begin{align}
+S(R_i) = \frac{E_t[R_i - R^f]}{\sigma_i}
+\end{align}

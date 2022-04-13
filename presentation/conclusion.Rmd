@@ -1,19 +1,9 @@
----
-output:
-    beamer_presentation:
-        theme: "Montpellier"
-        toc: false
-        keep_tex: false
-bibliography: ../ref.bib
-csl: ../template/apa.csl
----
+## Research objective
 
-## Conclusion
-
-- Research objective:
   Examine the external validity of @chen_deep_2021's
   GAN model using the UK LSE 1998 - 2017 data
 
+## Results
 1. GAN model outperformed benchmark four-factor model in
    terms of Sharpe ratio
 2. Macroeconomic data is important in the SDF estimation

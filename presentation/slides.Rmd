@@ -1,14 +1,15 @@
 ---
 title: "Generative Adversarial Network (GAN) model in Asset Pricing"
 author: "Wang Lingjie"
+header-includes:
+    - \widowpenalties 1 150
 output: 
     beamer_presentation:
-        theme: "Montpellier"
+        theme: "Boadilla"
         toc: false
-        keep_tex: false
+        keep_tex: true
 bibliography: ../ref.bib
 csl: ../template/apa.csl
-fontsize: 10pt
 ---
 
 <!-- Presentation details
@@ -30,12 +31,12 @@ fontsize: 10pt
 ```{r child=("motivation.Rmd")}
 ```
 
-# Literature
+# Literature review
 
 ```{r child=("literature.Rmd")}
 ```
 
-# Generative Adversarial Network (GAN) model in Asset Pricing
+# Research objective
 
 ```{r child=("intro.Rmd")}
 ```
@@ -70,10 +71,4 @@ fontsize: 10pt
 ```{r child=("conclusion.Rmd")}
 ```
 
-# Annex {.unlisted .unnumbered}
-
-## SDF as an affine transformation of tangency portfolio
-
-## Detailed data
-
-## References
+# References {.unlisted .unnumbered .allowframebreaks}

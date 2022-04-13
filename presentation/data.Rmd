@@ -1,13 +1,3 @@
----
-output:
-    beamer_presentation:
-        theme: "Montpellier"
-        toc: false
-        keep_tex: false
-bibliography: ../ref.bib
-csl: ../template/apa.csl
----
-
 ## United Kingdom London Stock Exchange (1998-2017)
 
 - January 1998 to December 2017 LSE monthly stock prices
@@ -22,6 +12,7 @@ csl: ../template/apa.csl
   942 stocks with maximum 20 years returns
   - Unbalanced panel is handled through empirical loss function
 
+# Data
 ## Data splitting
 
 - Training, validation and out-of-sample testing period

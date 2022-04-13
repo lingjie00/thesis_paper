@@ -1,15 +1,4 @@
----
-output:
-    beamer_presentation:
-        theme: "Montpellier"
-        toc: false
-        keep_tex: false
-bibliography: ../ref.bib
-csl: ../template/apa.csl
----
-
 ## Limitation
-
 - Considerable gap between @chen_deep_2021 dataset and this
   paper
     - @chen_deep_2021: 50 years of historical data with over

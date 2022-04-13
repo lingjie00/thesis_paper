@@ -1,15 +1,4 @@
----
-output:
-    beamer_presentation:
-        theme: "Montpellier"
-        toc: false
-        keep_tex: false
-bibliography: ../ref.bib
-csl: ../template/apa.csl
----
-
-## Asset Pricing
-
+## Asset pricing
 One important goal in asset pricing
 
 - How do we explain the variation in asset returns?
@@ -20,6 +9,8 @@ No-arbitrage pricing theory
   factor
 
   (SDF, also known as pricing kernel)
+
+## SDF estimation
 
 However, how do we estimate the SDF?
 

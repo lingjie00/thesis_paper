@@ -1,13 +1,3 @@
----
-output:
-    beamer_presentation:
-        theme: "Montpellier"
-        toc: false
-        keep_tex: false
-bibliography: ../ref.bib
-csl: ../template/apa.csl
----
-
 ## No-arbitrage asset pricing model
 
 - No-arbitrage asset pricing model assumes the existence of
@@ -31,6 +21,7 @@ csl: ../template/apa.csl
         \right] = 0
   $$
 
+# Methodology
 ## No-arbitrage pricing loss
 
 - However, if no-arbitrage pricing model alone is
@@ -49,6 +40,9 @@ csl: ../template/apa.csl
     R^e_{t+1, j} \right) R^e_{t+1, j}g(I_t, I_{t, i})
     \right] \right\}^2
 \end{align}
+
+# Methodology
+## Empirical no-arbitrage pricing loss
 - The **empirical pricing loss** takes into consideration an
   unbalanced panel data by weighting the number of
   observation in the $i$th firm $T_i$
@@ -63,6 +57,7 @@ csl: ../template/apa.csl
     \right]^2
 \end{align}
 
+# Methodology
 ## Neural network model
 
 ![Feed-forward neural network](../src/feedforward){width=50%}
@@ -72,10 +67,12 @@ csl: ../template/apa.csl
 - Hidden layer: $\mathbf{Z} = (Z_1, Z_2, \cdots, Z_m)$
 - Output unit: $y = \beta_{0} + \mathbf{\beta}^T \mathbf{Z}$
 
+# Methodology
 ## Long Short-Term Memory (LSTM)
 
-![Long short-term memory cell](../src/lstm)
+![Long short-term memory cell](../src/lstm){width=85%}
 
+# Methodology
 ## LSTM details
 
 ![Long short-term memory cell](../src/lstm){width=45%}
@@ -101,6 +98,7 @@ csl: ../template/apa.csl
 - output (short-term memory): $\mathbf{y}_{(t)} = \mathbf{h}_{(t)} = \mathbf{o}_{(t)}
 \otimes tanh(\mathbf{c}_{(t)})$
 
+# Methodology
 ## GAN model
 
 - Zero-sum game between two neural networks
@@ -116,6 +114,7 @@ $$
 \min_{\omega} \max_{g} L(\omega, g|I_t, I_{t, i})
 $$
 
+# Methodology
 ## GAN model structure
 
 ![GAN model structure](../src/model){width=70%}
@@ -124,6 +123,7 @@ $$
 - Generator ($g$) estimates the conditional factors
 - Finding the Nash Equilibrium through $\min_{\omega} \max_{g} L(\omega, g|I_t, I_{t, i})$
 
+# Methodology
 ## Benchmark four-factor model
 
 - Four-factor model
