@@ -1,5 +1,8 @@
 # Generative Adversarial Network (GAN) model in Asset Pricing
 
+Planning: 164 words / minute, total 20 minutes presentation
+-> 3280 words.
+
 ## Slide 1: title slide
 
 Good afternoon professors, my name is Lingjie and welcome to
@@ -130,4 +133,90 @@ suggesting models such as neural network that is able to
 take into consideration these interaction effects will be
 able to outperform the benchmark models.
 
-## Slide 6: methodology
+## Slide 6: methodology: no-arbitrage pricing model
+
+We first explain the no-arbitrage asset pricing model.
+
+The no-arbitrage asset pricing model assumes the existence
+of an asset independent, time-dependent SDF M such that the
+expected excess return, denoted by R^e, is 0.
+
+We can also show that the SDF can be expressed as an affine
+transformation of tangency portfolio F such that M = a - bF.
+The tangency portfolio is any portfolio that achieves the
+maximum sharpe ratio possible.
+
+To construct the tangency portfolio, we construct a portfolio 
+weighted by all the assets possible, and we assume the
+weight of this portfolio, where we call SDF weight, is a
+function of the firm characteristics data I_{t, i} and a
+macroeconomic data I_t
+
+We can further consider one of the many possible tangency
+portfolio where a = 1 and b = 1, then the no-arbitrage asset
+pricing model can be expressed as a function of the SDF
+weight such that the following equation holds.
+
+## Slide 7: methodology - no-arbitrage pricing loss
+
+Now, if no-arbitrage pricing model alone is insufficient to
+explain the variations in asset returns, then we can define
+an alternative function g such that the variations in asset
+returns are explained by both the no-arbitrage pricing
+model and a g function we constructed.
+
+This g function can be viewed as a combination of assets and
+factors that no-arbitrage pricing model is least able to
+explain.
+
+This equation is what motives our no-arbitrage pricing loss
+used in the GAN model. We define the loss function as the
+following:
+
+
+## Slide 8: methodology - empirical no-arbitrage pricing loss
+
+Since not all stocks exists in the full duration of the
+dataset, we are faced with an unbalanced panel data issue.
+To overcome this, the empirical pricing loss is designed to
+weighted the loss of the ith firm by the number of observation Ti
+
+The GAN model will be optimized with respect to this
+empirical pricing loss function.
+
+
+## Slide 9: methodology - neural network model
+
+Let me first explained a simple feed-forward neural network
+before explaining the more complicated GAN model.
+
+A standard feed-forward network consist of 3 layers. The
+input layer, the hidden layer and the output layer. The
+covariates first flow from the input layer onto the hidden
+layer before combined in the output layer to produce a
+numerical output. Note that Figure 1 illustrates a case
+where the output is a numeric output, for a regression
+problem.
+
+Each of the units in the input layer correspond to a single
+covariates. Therefore, in Figure 1 we have 3 data columns.
+
+Each of the input units is connected to the individual
+hidden units in the hidden layer. Each of the hidden units
+perform a linear regression before outputting to a
+non-linear function. As showed in the 'Hidden unit', X is
+used as a linear regression while h is the non-linear
+transformation.
+
+A hidden layer will have multiple hidden units, where the
+number of hidden units M is a hyperparameter set by the
+user. A deep neural network will have multiple hidden
+layers.
+
+At the output unit, all the hidden layers will then be
+combined to form a single numeric output in the case of an
+output is quantitative or regression problem.
+
+## Slide 10: methodology - LSTM
+
+Now let me explain a Long Short-Term memory cell or LSTM.

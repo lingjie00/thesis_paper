@@ -43,9 +43,9 @@
 
 # Methodology
 ## Empirical no-arbitrage pricing loss
-- The **empirical pricing loss** takes into consideration an
-  unbalanced panel data by weighting the number of
-  observation in the $i$th firm $T_i$
+- The **empirical pricing loss** takes into consideration
+  the varying length of $ith$th firm by weighting the
+  number of observation $T_i$
 \begin{align}
     \frac{1}{N} \sum_{i=1}^N 
     \frac{T_i}{T}
@@ -66,37 +66,6 @@
 = 1, \cdots, M$
 - Hidden layer: $\mathbf{Z} = (Z_1, Z_2, \cdots, Z_m)$
 - Output unit: $y = \beta_{0} + \mathbf{\beta}^T \mathbf{Z}$
-
-# Methodology
-## Long Short-Term Memory (LSTM)
-
-![Long short-term memory cell](../src/lstm){width=85%}
-
-# Methodology
-## LSTM details
-
-![Long short-term memory cell](../src/lstm){width=45%}
-
-- input gate: $\mathbf{i}_{(t)} = \sigma(
-    \mathbf{W}_{xi}^T \mathbf{x}_{(t)}
-    + \mathbf{W}_{hi}^T\mathbf{h}_{(t-1)} + \mathbf{b}_i
-)$
-- forget gate: $\mathbf{f}_{(t)} = \sigma(
-    \mathbf{W}_{xf}^T\mathbf{x}_{(t)} + \mathbf{W}_{hf}^T
-    \mathbf{h}_{(t-1)} + \mathbf{b}_f
-)$
-- output gate: $\mathbf{o}_{(t)} = \sigma(
-    \mathbf{W}_{xo}^T \mathbf{x}_{(t)} +
-    \mathbf{W}_{ho}^T\mathbf{h}_{(t-1)} + \mathbf{b}_o
-)$
-- temp long-term state: $\mathbf{q}_{(t)} = tanh(
-    \mathbf{W}_{xg}^T \mathbf{x}_{(t)} +
-    \mathbf{W}^T_{hg}\mathbf{h}_{(t-1)} + \mathbf{b}_g
-)$
-- long-term memory: $\mathbf{c}_{(t)} = \mathbf{f}_{(t)} \otimes \mathbf{c}_{(t-1)} + 
-    \mathbf{i}_{(t)}\otimes \mathbf{q}_{(t)}$
-- output (short-term memory): $\mathbf{y}_{(t)} = \mathbf{h}_{(t)} = \mathbf{o}_{(t)}
-\otimes tanh(\mathbf{c}_{(t)})$
 
 # Methodology
 ## GAN model

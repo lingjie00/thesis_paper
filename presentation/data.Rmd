@@ -4,13 +4,12 @@
 - Risk-free rate and four factors: @gregory_constructing_2011
   - $R^e_{mt}$, SMB, HML, UMD
 - Firm characteristic data
-  - 2 past return data (Yahoo! Finance)
+  - 2 firm momentum data (Yahoo! Finance)
   - 14 firm income statement data (Finage LTD)
 - Macroeconomic data: @coulombe_can_2021
   - 112 macroeconomic indicators
 - Total data consist of 132 covariates,
   942 stocks with maximum 20 years returns
-  - Unbalanced panel is handled through empirical loss function
 
 # Data
 ## Data splitting

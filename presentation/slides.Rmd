@@ -71,4 +71,13 @@ csl: ../template/apa.csl
 ```{r child=("conclusion.Rmd")}
 ```
 
+# Annex
+
+\begin{center}
+    \Huge Annex
+\end{center}
+
+```{r child="annex.Rmd"}
+```
+
 # References {.unlisted .unnumbered .allowframebreaks}

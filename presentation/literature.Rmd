@@ -4,7 +4,7 @@
     Model in the 1960s independently],
     @fama_common_1993 three-factor and
     @carhart_persistence_1997 four-factor models
-  - $\Rightarrow$ SDF is a linear combination of selected factors
+  - $\Rightarrow$ SDF may be a linear combination of selected factors
 
 ## Expanding the search for factors
   - @feng_taming_2020 describes the hundreds of new factors
@@ -33,6 +33,6 @@
   - @chen_deep_2021 further include macroeconomic data in
     the GAN model  
   - $\Rightarrow$ SDF is a general function of potentially
-    infinite factors and **macroeconomic data.
-    Imposing economic theory
-    can further improve emprical SDF estimation**
+    infinite factors. **Including macroeconomic data and
+    imposing economic theory
+    can further improve empirical SDF estimation**

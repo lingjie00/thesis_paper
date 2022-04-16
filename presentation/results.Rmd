@@ -42,7 +42,7 @@ pander::pander(
 - $\text{Sensitivity}(x_j) = \frac{1}{C} \sum_{i=1}^N \sum_{t=1}^T
         \left|  \frac{\partial \omega(I_t, I_{t, i})}{\partial x_j} \right|$
 - Most important data features
-  1. Factors in factor model
+  1. Extended FF factors
   2. Firm specific past return data
   3. Macroeconomic indexes affecting consumers, business and
      general stock markets
@@ -51,7 +51,9 @@ pander::pander(
 
 # SDF structure
 
-![GAN SDF weight as a function of factors (small)](../src/interaction){width=40%}
+![GAN SDF weight as a function of factors](../src/interaction){width=65%}
+
+# SDF structure: summary
 
 - Diagonal entries:
   - Factors have a linear relationship with the SDF weight
@@ -60,6 +62,3 @@ pander::pander(
   - Different coloured lines correspond to different
     factor values
 
-# SDF structure: enlarged
-
-![GAN SDF weight as a function of factors](../src/interaction){width=65%}
