@@ -13,16 +13,16 @@
     that only a few factors proposed in literature are
     statistically significant in explaining the asset
     returns
-  - $\Rightarrow$ SDF is a linear combination of
+  - $\Rightarrow$ SDF may be a linear combination of
     **potentially infinite factors**
 
 # Literature review (cont.)
 
 ## Non-linear, non-parametric SDF estimation
   - @gu_empirical_2020 compared different machine learning
-    models and found a neural network model has the highest
+    models and found neural network model has the highest
     out-of-sample $R^2$ in explaining asset returns
-  - $\Rightarrow$ SDF is a **general function** of potentially
+  - $\Rightarrow$ SDF may be a **general function** of potentially
     infinite factors
 
 ## Machine learning models with economic theory
@@ -31,8 +31,8 @@
     impose no-arbitrage condition to improve neural network
     performance
   - @chen_deep_2021 further include macroeconomic data in
-    the GAN model  
-  - $\Rightarrow$ SDF is a general function of potentially
+    the GAN model to estimate the SDF
+  - $\Rightarrow$ SDF may be a general function of potentially
     infinite factors. **Including macroeconomic data and
     imposing economic theory
     can further improve empirical SDF estimation**

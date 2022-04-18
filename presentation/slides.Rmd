@@ -1,30 +1,30 @@
 ---
 title: "Generative Adversarial Network (GAN) model in Asset Pricing"
 author: "Wang Lingjie"
-header-includes:
-    - \widowpenalties 1 150
 output: 
     beamer_presentation:
         theme: "Boadilla"
         toc: false
         keep_tex: true
+header-includes:
+    - \AtBeginDocument{\title[GAN model in Asset
+        Pricing]{Generative Adversarial Network (GAN) model
+        in Asset Pricing}}
 bibliography: ../ref.bib
 csl: ../template/apa.csl
 ---
 
-<!-- Presentation details
-20 mins presentation
-30 sec per slide
-- 30s motivation (max 1 slide)
-- 1 min literature (max 1 slide)
-- 1 min introduction (max 1 slide)
-- 5 mins methodology (max 5 slides)
-- 2 min data (max 2 slide)
-- 8 mins results (max 4 slides)
-- 1 min discussion (max 1 slide)
-- 1 min conclusion (max 1 slide)
-10 mins QnA
-!-->
+# Overview
+
+- Motivation
+- Literature review
+- Research objective
+- Methodology
+- Evaluation metrics
+- Data
+- Results
+- Discussion
+- Conclusion
 
 # Motivation
 
@@ -70,6 +70,12 @@ csl: ../template/apa.csl
 
 ```{r child=("conclusion.Rmd")}
 ```
+
+# Questions
+
+\begin{center}
+    \Huge Thank you
+\end{center}
 
 # Annex
 

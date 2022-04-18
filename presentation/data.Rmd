@@ -4,7 +4,7 @@
 - Risk-free rate and four factors: @gregory_constructing_2011
   - $R^e_{mt}$, SMB, HML, UMD
 - Firm characteristic data
-  - 2 firm momentum data (Yahoo! Finance)
+  - 2 firm short and mid momentum data (Yahoo! Finance)
   - 14 firm income statement data (Finage LTD)
 - Macroeconomic data: @coulombe_can_2021
   - 112 macroeconomic indicators

@@ -9,17 +9,17 @@
 - SDF can be expressed as an affine transformation of the tangency portfolio
   $F_{t+1}$ such that $M_{t+1} = a - bF_{t+1}$
 - The tangency portfolio is constructed as a weighted
-  portfolio of all assets, we assume the SDF weight is a
+  portfolio of all assets, we assume the SDF weight $\omega$ is a
   function of firm characteristics data $I_{t, i}$ and
   macroeconomic data $I_t$ such that
   $F_{t+1} = \omega(I_t, I_{t, i})^TR^e_{t+1}$
 - Without loss of generality, consider $(a, b) = (1, 1)$, then
   the no-arbitrage asset pricing model can be expressed as
   a function of the SDF weight $\omega$ such that
-  $$
+  \begin{align}
       E_t\left[\left(1-\omega(I_t, I_{t, i})^T R^e_{t+1}\right)R^e_{t+1, i}
         \right] = 0
-  $$
+  \end{align}
 
 # Methodology
 ## No-arbitrage pricing loss
@@ -28,9 +28,9 @@
   insufficient to explain the variations in asset returns,
   we can define an alternative conditional moments function $g(I_t, I_{t, i})$ 
   such that
-  $$
+  \begin{align}
     E_t(M_{t+1}R^e_{t+1, i} g(I_t, I_{t, i})) = 0
-  $$
+  \end{align}
   which motivates the **pricing loss** used in the GAN model
 \begin{align}
     &L(\omega, g|I_t, I_{t, i}) \nonumber \\
@@ -42,23 +42,7 @@
 \end{align}
 
 # Methodology
-## Empirical no-arbitrage pricing loss
-- The **empirical pricing loss** takes into consideration
-  the varying length of $ith$th firm by weighting the
-  number of observation $T_i$
-\begin{align}
-    \frac{1}{N} \sum_{i=1}^N 
-    \frac{T_i}{T}
-    \left[ 
-    \frac{1}{T_i}
-    \sum_{t\in T_i}
-    \left( 1 - \sum_{j=1}^N \omega(I_t, I_{t, j}) R^e_{t+1, j} \right)
-    R^e_{t+1, i}g(I_t, I_{t, i})
-    \right]^2
-\end{align}
-
-# Methodology
-## Neural network model
+## Feed-forward neural network model
 
 ![Feed-forward neural network](../src/feedforward){width=50%}
 
@@ -84,7 +68,7 @@ $$
 $$
 
 # Methodology
-## GAN model structure
+## GAN model training
 
 ![GAN model structure](../src/model){width=70%}
 
@@ -96,7 +80,7 @@ $$
 ## Benchmark four-factor model
 
 - Four-factor model
-  1. $R^e_{mt}$: market risk, excess return of market
+  1. $R^e_{mt}$ (market risk): excess return of market
      portfolio
   2. SMB (small minus big): outperformance of small market
      capitalisation companies relative to large market
@@ -108,8 +92,7 @@ $$
      change
 - Estimated through OLS
     - $E(\alpha_i) = 0, E(\epsilon_{t, i}) = 0$
-
-\begin{align}
-R^e_{t+1, i} = \alpha_i + \beta_i R^e_{mt} + s_i SMB_t + h_i
-HML_t + \omega_i UMD_t + \epsilon_{t, i}
-\end{align}
+    \begin{align}
+    R^e_{t+1, i} = \alpha_i + \beta_i R^e_{mt} + s_i SMB_t + h_i
+    HML_t + \omega_i UMD_t + \epsilon_{t, i}
+    \end{align}

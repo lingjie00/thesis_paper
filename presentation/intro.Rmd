@@ -10,7 +10,7 @@
 ## Results
   1. GAN model outperformed benchmark four-factor model in
      terms of the Sharpe ratio
-  2. Macroeconomic data is important in the SDF estimation
+  2. Macroeconomic data improves the SDF estimation
   3. Extended FF factors are the most important covariates
      in SDF estimation
   4. Extended FF factors are nearly linear in the SDF.

@@ -41,24 +41,25 @@ pander::pander(
 
 - $\text{Sensitivity}(x_j) = \frac{1}{C} \sum_{i=1}^N \sum_{t=1}^T
         \left|  \frac{\partial \omega(I_t, I_{t, i})}{\partial x_j} \right|$
-- Most important data features
+
+## Most important data features
   1. Extended FF factors
   2. Firm specific past return data
   3. Macroeconomic indexes affecting consumers, business and
      general stock markets
 
-![Variable importance](../src/vi){width=60%}
+![Variable importance](../src/vi){width=50%}
 
 # SDF structure
 
-![GAN SDF weight as a function of factors](../src/interaction){width=65%}
+## GAN SDF weight structure
 
-# SDF structure: summary
+![GAN SDF weight as a function of factors](../src/interaction_sample)
 
-- Diagonal entries:
-  - Factors have a linear relationship with the SDF weight
-- Off-diagonal entries:
-  - Interaction effect between factors
-  - Different coloured lines correspond to different
-    factor values
-
+- First image: near linear relationship between `hml` (high minus low)
+  to SDF weight
+- Other images: interaction effect between `hml` and `rmrf`
+  (market risk), `smb` (small minus big) and `umd`
+  (momentum)
+- Observation holds for other factors as well,
+  similar result as @chen_deep_2021 US SDF estimation

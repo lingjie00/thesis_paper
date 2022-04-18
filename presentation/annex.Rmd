@@ -1,3 +1,36 @@
+# SDF as an affine transformation of the tangency portfolio
+
+- $E(M_{t+1}R^e_{t+1, i}) = 0 = E(M_{t+1})E(R^e_{t+1, i}) +
+  Cov(M_{t+1}R^e_{t+1, i})$
+- $Cov(M_{t+1}R^e_{t+1, i}) =
+  \rho(M_{t+1}, R^e_{t+1, i})\sigma(M_{t+1})\sigma(R^e_{t+1, i})$
+- $\Rightarrow E(M_{t+1})E(R^e_{t+1, i}) =
+  -\rho(M_{t+1}, R^e_{t+1, i})\sigma(M_{t+1})\sigma(R^e_{t+1, i})$
+- $\Rightarrow E(R^e_{t+1, i}) =
+  -\rho(M_{t+1}, R^e_{t+1, i})\frac{\sigma(M_{t+1})}{E(M_{t+1})}
+  \sigma(R^e_{t+1, i})$
+- Tangency portfolio: a portfolio that maximises
+  mean-variance efficiency
+- $\because \max \frac{E(F_{t+1})}{\sigma(F_{t+1})}$
+  when $\rho(M_{t+1}, F_{t+1}) = -1$
+- $\therefore$ $M_{t+1} = a - bF_{t+1}$
+
+# Empirical no-arbitrage pricing loss
+
+- The **empirical pricing loss** takes into consideration
+  the varying length of $i$th firm by weighting the
+  number of observation $T_i$
+\begin{align}
+    \frac{1}{N} \sum_{i=1}^N 
+    \frac{T_i}{T}
+    \left[ 
+    \frac{1}{T_i}
+    \sum_{t\in T_i}
+    \left( 1 - \sum_{j=1}^N \omega(I_t, I_{t, j}) R^e_{t+1, j} \right)
+    R^e_{t+1, i}g(I_t, I_{t, i})
+    \right]^2
+\end{align}
+
 # Long Short-Term Memory (LSTM)
 
 ![Long short-term memory cell](../src/lstm){width=85%}
@@ -27,4 +60,16 @@
     \mathbf{i}_{(t)}\otimes \mathbf{q}_{(t)}$
 - output (short-term memory): $\mathbf{y}_{(t)} = \mathbf{h}_{(t)} = \mathbf{o}_{(t)}
 \otimes tanh(\mathbf{c}_{(t)})$
+
+# Discriminator network structure
+
+![Discriminator structure](../src/discriminator){width=40%}
+
+# Generator network structure
+
+![Generator structure](../src/generator){width=40%}
+
+# SDF structure
+
+![GAN SDF weight as a function of factors](../src/interaction){width=65%}
 
