@@ -426,7 +426,7 @@ benchmark four-factor model in terms of Sharpe ratio.
 Secondly, similar to Chen's finding, including macroeconomic
 data improves the SDF estimation.
 
-Thirdly, the extended fama french factor model are the most
+Thirdly, the extended fama french factors are the most
 important covariates in SDF estimation, and they are nearly
 linear in the SDF, explaining the wide popularity of fama
 french model.
