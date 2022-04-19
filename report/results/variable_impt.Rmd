@@ -1,8 +1,3 @@
----
-output: word_document
-bibliography: ../ref.bib
----
-
 \newpage
 
 ## Variable importance
@@ -46,4 +41,4 @@ Interestingly, the UK SDF weight is also affected by the US
 market, suggesting the possible benefits of including more US
 market data in future studies.
 
-![(#fig:vi) Variable importance](./src/vi){width=60%}
+![(#fig:vi) Variable importance](../src/vi){width=60%}

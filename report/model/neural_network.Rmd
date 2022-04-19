@@ -65,7 +65,7 @@ In the continuous $Y$ case, the
 outputs from the hidden units are linearly combined to
 produce a single value as the final output of the FFN.
 
-![(#fig:feedforward) Feed-forward neural network](./src/feedforward){width=70%}
+![(#fig:feedforward) Feed-forward neural network](../src/feedforward){width=70%}
 
 ### Network components
 

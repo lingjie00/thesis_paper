@@ -1,6 +1,9 @@
 # latex related
 *.toc
 *.pdf
+*.log
+*.aux
+*.out
 
 # ignore word files
 *.doc

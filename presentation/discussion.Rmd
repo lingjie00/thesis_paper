@@ -1,0 +1,12 @@
+## Limitation
+- Considerable gap between @chen_deep_2021 dataset and this
+  paper
+    - @chen_deep_2021: 50 years of historical data with over
+      10,000 stocks
+    - This paper: 20 years of 942 stocks
+- However, even the paid data subscription @noauthor_finage_2022
+  was not able to furnish complete and rich data
+  comparable to the US
+- Nonetheless, results in this paper are still relevant in
+  assessing the performance of the GAN model when
+  subject to data limitations

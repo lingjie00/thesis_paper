@@ -1,0 +1,17 @@
+## Goal
+
+- Examine the external validity of @chen_deep_2021's
+  GAN model using the United Kingdom (U.K.) London Stock
+  Exchange (LSE) data
+- Why the UK market? Avoid "home bias": @karolyi_home_2012 found
+  only 20% of the papers in top finance journals
+  investigated countries outside of the United States
+
+## Results
+  1. GAN model outperformed benchmark four-factor model in
+     terms of the Sharpe ratio
+  2. Macroeconomic data improves the SDF estimation
+  3. Extended FF factors are the most important covariates
+     in SDF estimation
+  4. Extended FF factors are nearly linear in the SDF.
+     However, there are interaction effects between the factors

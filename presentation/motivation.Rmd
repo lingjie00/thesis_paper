@@ -1,0 +1,20 @@
+## Asset pricing
+One important goal in asset pricing
+
+- How do we explain the variation in asset returns?
+
+No-arbitrage pricing theory
+
+- Assets are priced through the stochastic discount
+  factor
+
+  (SDF, also known as pricing kernel)
+
+## SDF estimation
+
+However, how do we estimate the SDF?
+
+1. Choose the right factors (data features)
+1. Select the right portfolio (combination of
+   individual assets)
+1. Estimate the functional form

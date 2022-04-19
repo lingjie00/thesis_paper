@@ -1,8 +1,3 @@
----
-output: word_document
-bibliography: ../ref.bib
----
-
 \newpage
 
 ## SDF structure
@@ -36,14 +31,14 @@ Therefore, non-linear models such as the GAN model which
 takes into account in the interactions between the factors
 are able to perform better than linear models.
 
-<!--![(#fig:structure) GAN SDF weight as a function of factors](./src/interaction){width=110%}-->
+<!--![(#fig:structure) GAN SDF weight as a function of factors](./.src/interaction){width=110%}-->
 
 \newpage
 
 \begin{figure}
 \centering
 \begin{picture}(1000, 500)
-\put(0, 0){\includegraphics[width=1.1\textwidth,height=\textheight]{./src/interaction}}
+\put(0, 0){\includegraphics[width=1.1\textwidth,height=\textheight]{../src/interaction}}
 \put(50, 20){The different coloured lines correspond to different values of the
 respective factors}
 \end{picture}

@@ -37,7 +37,7 @@ Therefore, using an LSTM neural network layer allows the GAN
 model to extract long term dynamics from macroeconomics data
 without specifying the number of lags as a hyper-parameter.
 
-![(#fig:lstmcell) Long short-term memory cell](./src/lstm)
+![(#fig:lstmcell) Long short-term memory cell](../src/lstm)
 
 \begin{align*}
 \mathbf{i}_{(t)} &= \sigma(

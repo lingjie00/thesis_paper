@@ -1,0 +1,98 @@
+## No-arbitrage asset pricing model
+
+- No-arbitrage asset pricing model assumes the existence of
+  an asset independent, time-dependent SDF $M_{t+1}$ such
+  that 
+  \begin{align}
+    E_t(M_{t+1}R^e_{t+1, i}) = 0
+  \end{align}
+- SDF can be expressed as an affine transformation of the tangency portfolio
+  $F_{t+1}$ such that $M_{t+1} = a - bF_{t+1}$
+- The tangency portfolio is constructed as a weighted
+  portfolio of all assets, we assume the SDF weight $\omega$ is a
+  function of firm characteristics data $I_{t, i}$ and
+  macroeconomic data $I_t$ such that
+  $F_{t+1} = \omega(I_t, I_{t, i})^TR^e_{t+1}$
+- Without loss of generality, consider $(a, b) = (1, 1)$, then
+  the no-arbitrage asset pricing model can be expressed as
+  a function of the SDF weight $\omega$ such that
+  \begin{align}
+      E_t\left[\left(1-\omega(I_t, I_{t, i})^T R^e_{t+1}\right)R^e_{t+1, i}
+        \right] = 0
+  \end{align}
+
+# Methodology
+## No-arbitrage pricing loss
+
+- However, if no-arbitrage pricing model alone is
+  insufficient to explain the variations in asset returns,
+  we can define an alternative conditional moments function $g(I_t, I_{t, i})$ 
+  such that
+  \begin{align}
+    E_t(M_{t+1}R^e_{t+1, i} g(I_t, I_{t, i})) = 0
+  \end{align}
+  which motivates the **pricing loss** used in the GAN model
+\begin{align}
+    &L(\omega, g|I_t, I_{t, i}) \nonumber \\
+    &=
+    \frac{1}{N} \sum_{i=1}^N \left\{
+    E \left[ \left( 1 - \sum_{j=1}^N \omega(I_t, I_{t, j})
+    R^e_{t+1, j} \right) R^e_{t+1, j}g(I_t, I_{t, i})
+    \right] \right\}^2
+\end{align}
+
+# Methodology
+## Feed-forward neural network model
+
+![Feed-forward neural network](../src/feedforward){width=50%}
+
+- Hidden unit: $Z_m = h(\alpha_{0m} + \mathbf{\alpha}^T_m\mathbf{X}), ~m
+= 1, \cdots, M$
+- Hidden layer: $\mathbf{Z} = (Z_1, Z_2, \cdots, Z_m)$
+- Output unit: $y = \beta_{0} + \mathbf{\beta}^T \mathbf{Z}$
+
+# Methodology
+## GAN model
+
+- Zero-sum game between two neural networks
+  1. Discriminator: estimating $\omega(I_t, I_{t, i})$
+  2. Generator: estimating $g(I_t, I_{t, i})$
+- Objective: Nash-equilibrium
+  - Best discriminator that estimates the SDF
+  - Best generator that constructs portfolio and factors
+    that no-arbitrage pricing theory least able to explain
+  - Evaluation through no-arbitrage pricing loss function
+
+$$
+\min_{\omega} \max_{g} L(\omega, g|I_t, I_{t, i})
+$$
+
+# Methodology
+## GAN model training
+
+![GAN model structure](../src/model){width=70%}
+
+- Discriminator ($\omega$) estimates SDF weight
+- Generator ($g$) estimates the conditional factors
+- Finding the Nash Equilibrium through $\min_{\omega} \max_{g} L(\omega, g|I_t, I_{t, i})$
+
+# Methodology
+## Benchmark four-factor model
+
+- Four-factor model
+  1. $R^e_{mt}$ (market risk): excess return of market
+     portfolio
+  2. SMB (small minus big): outperformance of small market
+     capitalisation companies relative to large market
+     capitalisation companies
+  3. HML (high minus low): the outperformance of high
+     book-to-market value companies versus low
+     book-to-market value companies
+  4. UMD (momentum): accounts for the speed of price
+     change
+- Estimated through OLS
+    - $E(\alpha_i) = 0, E(\epsilon_{t, i}) = 0$
+    \begin{align}
+    R^e_{t+1, i} = \alpha_i + \beta_i R^e_{mt} + s_i SMB_t + h_i
+    HML_t + \omega_i UMD_t + \epsilon_{t, i}
+    \end{align}

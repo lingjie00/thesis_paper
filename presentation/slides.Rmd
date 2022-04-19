@@ -1,0 +1,89 @@
+---
+title: "Generative Adversarial Network (GAN) model in Asset Pricing"
+author: "Wang Lingjie"
+output: 
+    beamer_presentation:
+        theme: "Boadilla"
+        toc: false
+        keep_tex: true
+header-includes:
+    - \AtBeginDocument{\title[GAN model in Asset
+        Pricing]{Generative Adversarial Network (GAN) model
+        in Asset Pricing}}
+bibliography: ../ref.bib
+csl: ../template/apa.csl
+---
+
+# Overview
+
+- Motivation
+- Literature review
+- Research objective
+- Methodology
+- Evaluation metrics
+- Data
+- Results
+- Discussion
+- Conclusion
+
+# Motivation
+
+```{r child=("motivation.Rmd")}
+```
+
+# Literature review
+
+```{r child=("literature.Rmd")}
+```
+
+# Research objective
+
+```{r child=("intro.Rmd")}
+```
+
+# Methodology
+
+```{r child=("method.Rmd")}
+```
+
+# Evaluation metrics
+
+```{r child=("metric.Rmd")}
+```
+
+# Data
+
+```{r child=("data.Rmd")}
+```
+
+# Results
+
+```{r child=("results.Rmd")}
+```
+
+# Discussion
+
+```{r child=("discussion.Rmd")}
+```
+
+# Conclusion
+
+```{r child=("conclusion.Rmd")}
+```
+
+# Questions
+
+\begin{center}
+    \Huge Thank you
+\end{center}
+
+# Annex
+
+\begin{center}
+    \Huge Annex
+\end{center}
+
+```{r child="annex.Rmd"}
+```
+
+# References {.unlisted .unnumbered .allowframebreaks}

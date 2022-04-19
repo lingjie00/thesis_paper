@@ -68,7 +68,7 @@ non-U.S. markets.
 The lack of comparison of model performance on non-U.S.
 markets thus motivates this paper to empirically validate the
 external validity of @chen_deep_2021's research with the
-United Kingdom London Stock Exchange data from 2011 to 2021. 
+United Kingdom London Stock Exchange data from 1998 to 2017.
 This paper is organised as follows: Section 2 provides the
 literature review, Section 3 explains the methodology,
 Section 4 and 5 goes in-depth on the model training and
