@@ -1,6 +1,5 @@
 # latex related
 *.toc
-*.pdf
 *.log
 *.aux
 *.out
